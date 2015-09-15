@@ -11,6 +11,24 @@ description: 开发随记
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: https://avatars1.githubusercontent.com/u/5643208
 
+navigations:
+  - title: Archive
+    class: fa fa-list-ul
+    href: /archive.html
+  - title: Tags
+    class: fa fa-tags
+    href: /tags.html
+  - title: About
+    class: fa fa-user
+    href: /about.html
+  - title: Gallery
+    class: fa fa-film
+    href: http://foto.cheenwe.github.io
+  - title: Subscribe
+    class: fa fa-rss
+    href: /atom.xml
+
+
 #
 # Flags below are optional
 #
@@ -26,7 +44,7 @@ footer-links:
   linkedin:
   pinterest:
   rss: # just type anything here for a working RSS icon, make sure you set the "url" above!
-  twitter: jekyllrb
+  twitter: cheenwe
   stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
   youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: # anything in your profile username that comes after plus.google.com/
@@ -55,7 +73,7 @@ baseurl: ""
 
 markdown: redcarpet
 highlighter: pygments
-permalink: /:title/
+permalink: /:year/:month/:day/:title.html
 
 # The release of Jekyll Now that you're using
 version: v1.1.0
@@ -75,3 +93,4 @@ exclude:
     - LICENSE
     - README.md
     - CNAME
+

@@ -1,15 +1,16 @@
 ---
 layout: page
-title: About
+title: 关于我
 permalink: /about/
 ---
 
-Some information about you!
+这里是关于我的一些信息!
+技术：Ruby on Rails/AngularJS
 
-### More Information
+### 更多
 
 A place to include any other types of information that you'd like to include about yourself.
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[me@cheenwe.cn](mailto:me@cheenwe.cn)
