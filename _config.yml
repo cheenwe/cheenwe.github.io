@@ -18,12 +18,12 @@ navigations:
   - title: Tags
     class: fa fa-tags
     href: /tags.html
-  - title: About
-    class: fa fa-user
-    href: /about.html
   - title: Gallery
     class: fa fa-film
     href: http://foto.cheenwe.github.io
+  - title: About
+    class: fa fa-user
+    href: /about.html
   - title: Subscribe
     class: fa fa-rss
     href: /atom.xml

@@ -1,3 +1,4 @@
-# Just my blog
+# Just my [blog](http://cheenwe.github.io)
+
  ---
- 开始于
+ 开始于201509

@@ -1,16 +1,23 @@
 ---
 layout: page
-title: 关于我
+title: About
 permalink: /about/
 ---
+这里是我写点博客的地方
 
-这里是关于我的一些信息!
-技术：Ruby on Rails/AngularJS
+### 技术
+ * Ruby on Rails
+ * AngularJS
+ * Cucumber
 
 ### 更多
 
-A place to include any other types of information that you'd like to include about yourself.
+这里应该有一些内容的....
 
-### Contact me
+### 联系我
 
-[me@cheenwe.cn](mailto:me@cheenwe.cn)
+[me@cheenwe.cn](mailto:cxhyun@126.com)
+
+### 感谢:
+
+* [Jekyll](http://jekyllrb.com) 
