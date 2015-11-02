@@ -13,8 +13,6 @@ tags:
 ## 界面效果图
 
 ![如何插入并上传图片](http://7xl5z9.com1.z0.glb.clouddn.com/1.png)
-
-![如何插入并上传图片](../uploads/1.png)
  
 
 ##使用步骤

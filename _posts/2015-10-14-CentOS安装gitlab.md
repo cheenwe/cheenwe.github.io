@@ -33,22 +33,24 @@ sudo rpm -i gitlab-7.5.1_omnibus.5.2.0.ci-1.el6.x86_64.rpm
 ### 配置
 
 #### 配置ip
- 编辑 /etc/gitlab/gitlab.rb 文件
+编辑 /etc/gitlab/gitlab.rb 文件
 把第一行的 
- external_url 'hostname'
- 改为
- external_url='你的服务器ip地址'。
+external_url 'hostname'
+改为
+external_url='你的服务器ip地址'
 
  ```console
 nano /etc/gitlab/gitlab.rb
 ```
- #### 配置gitlab 
+
+#### 配置gitlab 
+
  ```console
 sudo gitlab-ctl reconfigure 
 ```
 如果不报错,一直按enter键到最后
 
-## 登陆及查看状态
+### 登陆及查看状态
 默认密码
  ```console
 Username: root 
