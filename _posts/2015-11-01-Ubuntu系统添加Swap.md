@@ -6,7 +6,7 @@ tags:
   - swap  
 ---
 
- # Ubuntu系统添加swap
+# Ubuntu系统添加swap
 
 ## 查看是否创建过swap:
 
@@ -36,7 +36,7 @@ tags:
     echo 10 | sudo tee /proc/sys/vm/swappiness
     echo vm.swappiness = 10 | sudo tee -a /etc/sysctl.conf
     
-## `最后，出于安全原因设置正确的文件权限，输入：
+## 最后，出于安全原因设置正确的文件权限，输入：
 
     sudo chown root:root /swapfile1
     sudo chmod 0600 /swapfile1
