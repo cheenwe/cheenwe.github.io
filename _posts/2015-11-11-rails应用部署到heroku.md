@@ -1,9 +1,9 @@
 ---
 layout: post 
-title: rails应用部署到heroku
+title:  rails应用部署到heroku
 tags:
-  - heroku 
-  - rails 
+  - heroku
+  - rails  
 ---
 
 # rails应用部署到heroku 
@@ -28,6 +28,7 @@ tags:
 
 ## 部署应用程序
 会创建git仓库,及应用地址
+    
     heroku create
 
 ## 提交代码
