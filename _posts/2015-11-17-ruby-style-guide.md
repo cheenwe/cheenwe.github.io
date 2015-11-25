@@ -1,5 +1,14 @@
-https://github.com/JuanitoFatas/ruby-style-guide/blob/master/README-zhCN.md
+---
+layout: post 
+title:  Ruby Style Guide 
+tags:
+  - ruby
+  - guide  
+---
+
 # 序幕
+
+https://github.com/JuanitoFatas/ruby-style-guide/blob/master/README-zhCN.md
 
 > 榜样很重要。<br>
 > ——墨菲警官《机器战警》

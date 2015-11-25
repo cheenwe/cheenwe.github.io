@@ -1,5 +1,15 @@
-https://github.com/JuanitoFatas/rails-style-guide/blob/master/README-zhCN.md
+---
+layout: post 
+title:  Rails Style Guide 
+tags:
+  - rails
+  - guide  
+---
+
+
 # 序幕
+
+https://github.com/JuanitoFatas/rails-style-guide/blob/master/README-zhCN.md
 
 > Role models are important. <br/>
 > -- 机械战警 Alex J. Murphy
