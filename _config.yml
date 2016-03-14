@@ -1,25 +1,10 @@
 permalink: /:year-:month-:day/:title/
 
-highlighter: pygments
-markdown: redcarpet
-redcarpet:
-  extensions: [
-   "no_intra_emphasis"
-   ,"fenced_code_blocks"
-   ,"autolink"
-   ,"tables"
-   ,"strikethrough"
-   ,"superscript"
-   ,"with_toc_data"
-   ,"footnotes"
-   ,"highlight"
-   ,"underline"
-   ,"quote"
-   ,"lax_spacing"
-   ,"prettify"
-#   ,"html_toc"
-  ]
-
+highlighter: rouge
+markdown: kramdown
+kramdown:
+  input:  GFM
+  syntax_highlighter: rouge
 
 
 paginate: 10
@@ -30,7 +15,7 @@ baseurl: ""
 
 title: "Cheenwe"
 email: "cxhyun@126.com"
-description: "i code, i life"
+description: "A Ruby Coder"
 github_username:  "cheenwe"
 swiftype_searchId: "9TDAXeK2smEEtWndRZJB"
 disqus_shortname: "cheenwecn"

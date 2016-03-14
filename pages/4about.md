@@ -8,7 +8,9 @@ published: false
 
 
 ### 技术
+ * Ruby
  * Ruby on Rails
+ * MySQL
  * AngularJS
  
 ### 联系我
