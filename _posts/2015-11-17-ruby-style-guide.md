@@ -1,9 +1,10 @@
 ---
-layout: post 
-title:  Ruby Style Guide 
+layout: post
+title:  Ruby Style Guide
 tags:
   - ruby
-  - guide  
+  - guide
+category: ruby guide
 ---
 
 # 序幕
@@ -521,7 +522,7 @@ https://github.com/JuanitoFatas/ruby-style-guide/blob/master/README-zhCN.md
     ```
 
 * 定义参数默认值时候，有默认值的参数应该在参数列表的后面。如果有默认值的参数应该在参数列表的前面，Ruby调用时会发生不可预料的结果。
-   
+
     ```Ruby
     # bad
     def some_method(a = 1, b = 2, c, d)
@@ -2119,7 +2120,7 @@ https://github.com/JuanitoFatas/ruby-style-guide/blob/master/README-zhCN.md
     ```
 
 * 在类的语法作用域中定义别名时优先使用 `alias`，因为 `alias` 有词法作用域，`self` 对象是源代码被读取时候的值（不是运行时候的 `self`），她清楚地告诉使用程序员，除非明确说明，否则方法别名的引用不会在运行时被改变或者被任何子类改变。
-   
+
     ```Ruby
     class Westerner
       def first_name
@@ -2132,7 +2133,7 @@ https://github.com/JuanitoFatas/ruby-style-guide/blob/master/README-zhCN.md
   因为 `alias` 和 `def` 一样，是关键词，相比字符串和符号，优先使用裸字（bareword）；也就是说，这样使用 `alias foo bar`， 不是 `alias :foo :bar`。
   另外要知道 Ruby 怎么处理别名和继承，方法别名定义后，即使对应的方法在后面的代码中重新定义（即修改内部实现）后，
   别名仍然可以调用到修改前的方法。
-  
+
     ```Ruby
     class Fugitive < Westerner
       def first_name
@@ -2152,7 +2153,7 @@ https://github.com/JuanitoFatas/ruby-style-guide/blob/master/README-zhCN.md
       alias given_name first_name
     end
     ```
-  
+
 * 运行时定义模块方法，类方法和单件类方法别名，总是使用 `alias_method`。因为在上述情况下 `alias` 会导致不可预期的结果
 
     ```Ruby
@@ -2961,11 +2962,11 @@ https://github.com/JuanitoFatas/ruby-style-guide/blob/master/README-zhCN.md
     # 不会发送一个消息给接受者
     # 实际上通过 UDP socket 发送一个消息
     u2.send :sleep, 0
-    
+
     # 发送一个消息给接受者，相当于 u2.sleep(0)
     u2.__send__ :sleep, 0
     ```
-    
+
 ## 其它
 
 * `ruby -w` 写安全的代码。

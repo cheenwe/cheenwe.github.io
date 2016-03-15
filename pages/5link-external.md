@@ -5,4 +5,4 @@ permalink: /link/
 icon: octicon-link-external
 ---
 
-###[请联系](mailto:cxhyun@126.com)
+### [me@cheenwe.cn](mailto:cxhyun@126.com)

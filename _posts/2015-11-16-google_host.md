@@ -1,10 +1,11 @@
-    ---
-    layout: post
-    title:  google host
-    tags:
-      - google
-      - hosts
-    ---
+---
+layout: post
+title:  google host
+tags:
+  - google
+  - hosts
+category: hosts  翻墙
+---
 
 # google host
 最新可用的google hosts文件

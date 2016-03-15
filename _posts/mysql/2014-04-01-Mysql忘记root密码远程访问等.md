@@ -1,9 +1,8 @@
 ---
 layout: post
 title: Mysql忘记root密码
-tags:
-  - mysql
-  - 服务器
+tags: mysql 服务器
+categories: mysql server
 ---
 
 # Mysql笔记整理

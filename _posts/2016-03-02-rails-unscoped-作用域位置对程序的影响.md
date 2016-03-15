@@ -1,10 +1,14 @@
 ---
 layout: post
-title:  rails unscoped作用域位置的影响
+title:  rails unscoped 作用域位置的影响
 tags:
   - unscoped
   - rails
+category: rails scope
 ---
+
+#  rails作用域scope
+scope :this_month, -> { where(play_date: Time.now.beginning_of_month..Time.now.end_of_month) }
 
 # rails作用域位置的影响
 通常为了不在控制器中写很多次 Model.order("id DESC"),直接在模型层添加一个: default_scope {order('id ASC')}

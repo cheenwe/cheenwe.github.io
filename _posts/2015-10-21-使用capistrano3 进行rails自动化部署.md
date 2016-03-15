@@ -1,11 +1,12 @@
 ---
-layout: post 
+layout: post
 title: 使用capistrano3 进行rails自动化部署
 tags:
   - rails
   - 自动化部署
+category: rails capistrano
 ---
- 
+
  # RAILS Capistrano 3自动化部署
 
 ## 环境及软件
@@ -31,7 +32,7 @@ gem 'capistrano-rbenv', "~> 2.0"
 # Use the Unicorn app server
 gem 'unicorn'
 ```
-### 2.添加配置 
+### 2.添加配置
 
 ```ruby
 bundle exec cap install
@@ -62,7 +63,7 @@ require 'capistrano/bundler'
 require 'capistrano/rbenv'
 require 'capistrano/rails/migrations'
 ```
- 
+
 ### 4 配置
 尽可能多的常见的配置 config/ deploy.rb
 特殊的配置 放在 config/deploy/production.rb中
@@ -185,7 +186,7 @@ set :branch, "unicorn" #部署的分支
 # the app should appear on. If you don't yet have DNS setup, you'll
 # need to create entries in your local Hosts file for testing.
 set :server_name, "--你部署的服务器ip,或者域名--"
- 
+
 # used in case we're deploying multiple versions of the same
 # app side by side. Also provides quick sanity checks when looking
 # at filepaths
@@ -205,7 +206,7 @@ set :unicorn_worker_count, 1 #开启unicorn进程数
 
 # whether we're using ssl or not, used for building nginx
 # config file
-set :enable_ssl, false 
+set :enable_ssl, false
 
 
 ```
@@ -226,7 +227,7 @@ unicorn配置文件
 
 ### 6编辑 config.yml 文件并拷贝到 shared/config下
 
-### 7 部署 
+### 7 部署
 
 cap production deploy
 
@@ -237,5 +238,5 @@ rake logs:tail[production]
 显示生产环境下日志 rails_app_path/shared/log/production.log
 
 rake logs:tail[unicorn]
-显示unicorn运行日志 rails_app_path/shared/log/production.log 
+显示unicorn运行日志 rails_app_path/shared/log/production.log
 

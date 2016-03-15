@@ -1,23 +1,24 @@
 ---
-layout: post 
+layout: post
 title: 使用Markdown写WIKI支持文件上传及简单密码验证
 tags:
   - Markdown
-  - wiki 
-  - gollum 
+  - wiki
+  - gollum
+  category: markdown wiki
 ---
 
 
 # 使用Markdown写WIKI支持文件上传及简单密码验证
-  
+
 ## 界面效果图
 
 ![如何插入并上传图片](http://7xl5z9.com1.z0.glb.clouddn.com/1.png)
- 
+
 
 ##使用步骤
- 
-### 安装 
+
+### 安装
 把内容克隆到本地  /var/www目录下
 
 ```console
@@ -37,8 +38,8 @@ $ bundle exec rackup
 ```
 
 ### 使用Unicorn
- 
-#### 开启服务 端口为8080 
+
+#### 开启服务 端口为8080
 
 ```console
 $ bundle exec unicorn -c config/unicorn.rb -D
@@ -48,13 +49,13 @@ $ bundle exec unicorn -c config/unicorn.rb -D
 $ bundle exec unicorn  -E production -c config/unicorn.rb -D
 ```
 
-#### 重启： 
+#### 重启：
 
 ```console
 $ ps auwx | grep unicorn
 
 获取：master 的pid如
-  $ kill -9 pid 
+  $ kill -9 pid
 ```
 
 
@@ -84,7 +85,7 @@ server {
 ## GitHub 进行实时同步
 
 ```rb
-require 'git' 
+require 'git'
 PATH = File.join(File.dirname(__FILE__), "..")
 repo = Git.open(PATH)
 repo.push(repo.remote('origin'))

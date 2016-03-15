@@ -1,12 +1,13 @@
 ---
-layout: post 
-title:  rails应用部署到heroku
+layout: post
+title:  rails 应用部署到 heroku
 tags:
   - heroku
-  - rails  
+  - rails
+category: rails heroku
 ---
 
-# rails应用部署到heroku 
+# rails应用部署到heroku
 
 ## 安装
     wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh.
@@ -28,7 +29,7 @@ tags:
 
 ## 部署应用程序
 会创建git仓库,及应用地址
-    
+
     heroku create
 
 ## 提交代码
@@ -42,7 +43,7 @@ tags:
 ## 其他命令
 
 ### 更新代码
-     git push herku 
+     git push herku
 
 
 ### 将本地数据更新到Heroku

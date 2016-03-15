@@ -1,14 +1,15 @@
 ---
-layout: post 
+layout: post
 title: Rails服务器使用nginx来提供https的服务
 tags:
   - rails
-  - https 
+  - https
+categories: rails nginx https
 ---
- 
+
 ### 什么是https
 https(443)是针对http(80)的加密协议，它可以保证用户访问网站的过程中，通讯的数据是加密的，这样可以防止第三方监听，保护用户隐私。
- 
+
 ### Ubuntu服务器
 ####首先安装nginx和openssl：
 
@@ -39,7 +40,7 @@ sudo vi /etc/nginx/sites-available/my_web
 
 ```
 里面的内容：
- 
+
 ```
 upstream unicorn {
   server 127.0.0.1:3000 fail_timeout=0;
@@ -47,17 +48,17 @@ upstream unicorn {
 server {
   listen       443;
   server_name  yourserver.com;
-    
+
   ssl                  on;
   ssl_certificate      ~/server.crt;
   ssl_certificate_key  ~/server.key;
-    
+
   ssl_session_timeout  5m;
-    
+
   ssl_protocols  SSLv2 SSLv3 TLSv1;
   ssl_ciphers  HIGH:!aNULL:!MD5;
   ssl_prefer_server_ciphers   on;
-    
+
   location / {
       proxy_set_header Host $host;
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -74,8 +75,8 @@ server {
 sudo service nginx restart
 如果没有报错，那么你就可以通过https://yourserver.com来访问你的网站了。
 
-不过，浏览器会阻止你继续访问，或者需要你的确认。 浏览器会保存一份可信网站的列表，你的服务器加密是自己生成的，不在里面。  
- 
+不过，浏览器会阻止你继续访问，或者需要你的确认。 浏览器会保存一份可信网站的列表，你的服务器加密是自己生成的，不在里面。
+
 
 
 
@@ -94,14 +95,14 @@ openssl req -new -nodes -keyout server.key -out server.csr
 openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 
 ```
- 
+
 ####生成nginx的配置文件：
 
 ```
 sudo nano /etc/nginx/conf.d/my_web_ssl.conf
 ```
 里面的内容：
- 
+
 ```
 upstream unicorn {
   server localhost:4000 fail_timeout=0;
@@ -135,8 +136,8 @@ sudo nano /etc/nginx/conf.d/my_web_http.conf
 ```
 server {
   listen       3000;
-  server_name  server_name; 
-  location / { 
+  server_name  server_name;
+  location / {
       proxy_pass http://localhost:4000;
   }
 }
@@ -145,4 +146,4 @@ server {
 
 ####然后重新启动nginx:
 
- service nginx restart 
+ service nginx restart
