@@ -4,13 +4,26 @@ title:  rails unscoped 作用域位置的影响
 tags:
   - unscoped
   - rails
-category: rails scope
+category: rails
 ---
 
 #  rails作用域scope
-scope :this_month, -> { where(play_date: Time.now.beginning_of_month..Time.now.end_of_month) }
+[源码](https://github.com/rails/rails/tree/1aef6ee6f14613e0df9cd54771cc82abb4252f9a/activerecord/lib/active_record/scoping)
 
-# rails作用域位置的影响
+## scope传参数用法
+
+```console
+scope :recent, lambda{ |date| where(["created_at > ? ", date ]) }
+scope :recent, Proc.new{ |date| where(["created_at > ? ", date ]) unless date.nil? }
+
+或者 定义方法传入默认值
+
+def self.recent(date=Time.now)
+    where(["created_at > ? ", date ])
+end
+```
+
+## rails作用域位置的影响
 通常为了不在控制器中写很多次 Model.order("id DESC"),直接在模型层添加一个: default_scope {order('id ASC')}
 
 特殊情况下又不想用到 default_scope , 只能用 unscoped 来解决

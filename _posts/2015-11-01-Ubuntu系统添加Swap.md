@@ -4,7 +4,7 @@ title: Ubuntu系统添加swap
 tags:
   - ubuntu
   - swap
-category: server swap
+category: server
 ---
 
 # Ubuntu系统添加swap

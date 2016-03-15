@@ -11,6 +11,13 @@ isNavItem: true
 <script type="text/javascript" src="{{'/static/js/tagCloud.js' | prepend:site.baseurl | prepend: site.url }}"></script>
 <script type="text/javascript" src="{{'/static/js/tags.js' | prepend:site.baseurl | prepend: site.url }}"></script>
 
+<div class="tagCloud">
+    {% for tag in site.tags %}
+    <a href="#{{ tag | first }}">{{ tag | first }}</a>
+    {% endfor %}
+</div>
+
+
 <div>
     <ul class="tag-box inline">
         {% for tag in site.tags %}
@@ -19,11 +26,6 @@ isNavItem: true
     </ul>
 </div>
 
-<div class="tagCloud">
-    {% for tag in site.tags %}
-    <a href="#{{ tag | first }}">{{ tag | first }}</a>
-    {% endfor %}
-</div>
 
 <div>
     {% for tag in site.tags %}

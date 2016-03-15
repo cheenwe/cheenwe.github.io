@@ -4,7 +4,7 @@ title:  Ruby Style Guide
 tags:
   - ruby
   - guide
-category: ruby guide
+category: ruby
 ---
 
 # 序幕

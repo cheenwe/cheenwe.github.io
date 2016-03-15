@@ -4,20 +4,22 @@ title: Rails服务器使用nginx来提供https的服务
 tags:
   - rails
   - https
-categories: rails nginx https
+  - rails
+
+categories: nginx
 ---
 
-### 什么是https
+# 什么是https
 https(443)是针对http(80)的加密协议，它可以保证用户访问网站的过程中，通讯的数据是加密的，这样可以防止第三方监听，保护用户隐私。
 
-### Ubuntu服务器
-####首先安装nginx和openssl：
+## Ubuntu服务器
+###首先安装nginx和openssl：
 
 ```
 sudo apt-get install nginx openssl
 
 ```
-####生成服务器的秘钥公钥：
+###生成服务器的秘钥公钥：
 
 ```
 openssl req -new -nodes -keyout server.key -out server.csr
@@ -31,7 +33,7 @@ server.csr (certificate signing request) https证书签名请求。
 server.crt 生成的服务器证书。
 然后有这些文件，我们可以配置nginx服务了。
 
-####生成nginx的配置文件：
+###生成nginx的配置文件：
 
 ```
 sudo touch /etc/nginx/sites-available/my_web
@@ -70,7 +72,7 @@ server {
 ```
 需要修改里面的server_name
 
-####然后重新启动nginx:
+###然后重新启动nginx:
 
 sudo service nginx restart
 如果没有报错，那么你就可以通过https://yourserver.com来访问你的网站了。
@@ -81,14 +83,14 @@ sudo service nginx restart
 
 
 
-### Centos服务器
-####首先安装nginx和openssl：
+## Centos服务器
+###首先安装nginx和openssl：
 
 ```
 yum install nginx openssl
 
 ```
-####生成服务器的秘钥公钥：
+###生成服务器的秘钥公钥：
 
 ```
 openssl req -new -nodes -keyout server.key -out server.csr
@@ -96,7 +98,7 @@ openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 
 ```
 
-####生成nginx的配置文件：
+###生成nginx的配置文件：
 
 ```
 sudo nano /etc/nginx/conf.d/my_web_ssl.conf
@@ -144,6 +146,6 @@ server {
 ```
 
 
-####然后重新启动nginx:
+###然后重新启动nginx:
 
  service nginx restart

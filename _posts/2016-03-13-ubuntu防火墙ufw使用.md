@@ -2,7 +2,7 @@
 layout: post
 title: Ubuntu 防火墙 ufw 使用
 tags: ubuntu nginx
-categories: server nginx
+categories: server
 ---
 
 # ufw

@@ -4,10 +4,10 @@ title: 使用capistrano3 进行rails自动化部署
 tags:
   - rails
   - 自动化部署
-category: rails capistrano
+category: rails
 ---
 
- # RAILS Capistrano 3自动化部署
+# Rails Capistrano 3自动化部署
 
 ## 环境及软件
 	ubuntu 14.04

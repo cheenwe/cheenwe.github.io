@@ -2,11 +2,12 @@
 layout: post
 title: Mysql忘记root密码
 tags: mysql 服务器
-categories: mysql server
+categories: mysql
 ---
 
-# Mysql笔记整理
-整理记录在有道云笔记内的内容
+
+# MySQL 备忘
+整理记录在笔记中内容
 
 ## Mysql忘记root密码
     1. KILL掉系统里的MySQL进程；

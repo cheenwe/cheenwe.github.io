@@ -4,7 +4,7 @@ title:  rails 应用部署到 heroku
 tags:
   - heroku
   - rails
-category: rails heroku
+category: rails
 ---
 
 # rails应用部署到heroku

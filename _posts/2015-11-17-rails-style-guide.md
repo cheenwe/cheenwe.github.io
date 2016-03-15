@@ -4,7 +4,7 @@ title:  Rails Style Guide
 tags:
   - rails
   - guide
-category: rails guide
+category: rails
 ---
 
 

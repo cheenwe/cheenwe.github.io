@@ -4,7 +4,7 @@ title:  google host
 tags:
   - google
   - hosts
-category: hosts  翻墙
+category: hosts
 ---
 
 # google host

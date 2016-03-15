@@ -5,7 +5,7 @@ tags:
   - Markdown
   - wiki
   - gollum
-  category: markdown wiki
+category: markdown
 ---
 
 
