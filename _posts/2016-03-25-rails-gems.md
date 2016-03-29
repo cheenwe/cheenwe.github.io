@@ -7,34 +7,36 @@ categories: ruby
 
 
 # Gem整理
+记录和整理一些常用和会用到的G
 
-服务器
+## 服务器
     puma
     thin
 
-用户登录、权限:
+## 用户登录、权限:
     devise - plataformatec/devise
     rolify - RolifyCommunity/rolify
     pundit - elabs/pundit
     cancan
     the_role
 
-状态机
+## 状态机
     statesman - gocardless/statesman
+    workfolw
 
-搜索
+## 搜索
     ransack
     sunspot(全文搜索)
 
-分页
+## 分页
     kaminari - amatsuda/kaminari
     will_paginate
 
-图表
+## 图表
     chartkick - ankane/chartkick
     lazy_high_charts
 
-图片
+## 图片
     Paperclip 图片上传
     rmagick 图片剪裁
     carrierwave
@@ -42,77 +44,76 @@ categories: ruby
     carrierwave-qiniu
     mini_magick
 
-加密
+## 加密
     bcrypt
 
-表单
+## 表单
     simple_form - plataformatec/simple_form
     nested_form：嵌套表单
 
-部署
+## 部署
     mina - mina-deploy/mina
     Capistrano
 
-SEO
+## SEO
     meta-tags - kpumuk/meta-tags
 
-配置
+## 配置
     settingslogic - binarylogic/settingslogic
 
-队列
+## 队列
     sidekiq - mperham/sidekiq
-
+    tobiassvn/sidetiq #重复性作业
     gem "delayed_job_active_record" #ActiveRecord的后端集成DelayedJob  links: https://github.com/collectiveidea/delayed_job_active_record
     gem "delayed_job" #基于数据库的同步优先级队列系统  https://github.com/collectiveidea/delayed_job
 
-HTTP and REST client
+## HTTP and REST client
     httparty
     httparty
     vcr
     rest-client
 
-监控
+## 监控
     skylight - skylightio/skylight-ruby
     newrelic_rpm
     oneapm_rpm
 
-错误处理
+## 错误处理
     better_errors - charliesome/better_errors
 
-代码检查
+## 代码检查
     rubocop - bbatsov/rubocop
 
-日志
+## 日志
     lograge - roidrage/lograge
     gem "rails-flog", require: "flog"  #Rails的日志格式参数和SQL   !!!
-
     gem "quiet_assets" #静音资产管道日志消息
 
-树形结构
+## 树形结构
     closure_tree - mceachen/closure_tree
     awesome_nested_set
     the_sortable_tree
 
-统计分析
+## 统计分析
     mixpanel-ruby - mixpanel/mixpanel-ruby
     meta_events - swiftype/meta_events
 
-关系图
+## 关系图
     voormedia/rails-erd https://github.com/voormedia/rails-erd
     gem 'railroady' #打印数据模型关联关系 !!!
 
-浏览器检测
+## 浏览器检测
     browser - fnando/browser
 
-假数据
+## 假数据
     fabrication - paulelliott/fabrication
 
-富文本编辑器
+## 富文本编辑器
     KindEditor 界面很简洁，很不错
     CKEditor https://www.ruby-toolbox.com/projects/ckeditor 能很强大，很易用
     TinyMCE https://www.ruby-toolbox.com/projects/tiny_mce
 
-测试驱动
+## 测试驱动
     rspec-rails：BDD测试框架            初始化：rails generate rspec:install
     capybara：模拟浏览器器行为
     factory_girl_rails：生成数据
@@ -127,11 +128,11 @@ HTTP and REST client
     timecop - travisjeffery/timecop
     cucumber - cucumber/cucumber
 
-JS
+## JS
     Notify.js #桌面提醒 https://alexgibson.github.io/notify.js/
     ng-notify AngularJS Notifications. http://matowens.github.io/ng-notify
 
-其他
+## 其他
     cells：view组件
     resque：后台任务
     social-share-button：分享功能
@@ -152,7 +153,7 @@ JS
     gem 'paranoia' #假删除 deleted_at:datetime:index  acts_as_paranoid  添加字段，   !!!
     gem 'acts-as-taggable-on' #标签
     gem 'by_star' #日期排序
-    gem 'activeadmin', '~> 1.0.0.pre1' # Admin管理
+    gem 'activeadmin', '~##  1.0.0.pre1' # Admin管理
     gem 'bullet' #N+1检测 !!!
     gem "awesome_print" #漂亮的打印您的Ruby对象与风格
     gem 'faker' #生成假数据，如姓名，地址和电话号码。
