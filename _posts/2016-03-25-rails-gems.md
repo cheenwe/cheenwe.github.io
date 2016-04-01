@@ -7,7 +7,7 @@ categories: ruby
 
 
 # Gem整理
-记录和整理一些常用和会用到的G
+记录和整理一些常用和会用到的GEM
 
 ## 服务器
     puma
