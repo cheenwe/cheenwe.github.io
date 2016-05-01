@@ -16,7 +16,6 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 
 echo "plugins=(git bundler osx rake ruby rails z)" >> ~/.zshrc
 
-
 # 安装rbenv
 git clone git://github.com/sstephenson/rbenv.git ~/.rbenv
 # 用来编译安装 ruby
