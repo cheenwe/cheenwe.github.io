@@ -8,15 +8,14 @@ category: java
 
 # Ubuntu 源码安装 Jitsi Meet
 
-[TOC]
-
 This describes configuring a server 182.61.25.227( jitsi.example.com) running Debian or a Debian Derivative. You will need to change references to that to match your host, and generate some passwords for  `videobridge_password`, `jicofo_password`, `auth_password` .
 
 There are also some complete [example config files](https://github.com/jitsi/jitsi-meet/tree/master/doc/example-config-files/) available, mentioned in each section.
 
 
 ## Install prosody
-```sh
+
+```console
 apt-get install prosody unzip git
 ```
 
@@ -25,7 +24,7 @@ Add config file in `/etc/prosody/conf.avail/182.61.25.227.cfg.lua` :
 
 - add your domain virtual host section:
 
-```
+```console
 VirtualHost "182.61.25.227"
     authentication = "anonymous"
     ssl = {
@@ -48,27 +47,32 @@ Component "focus.182.61.25.227"
 ```
 
 Add link for the added configuration
-```sh
+
+```console
 ln -s /etc/prosody/conf.avail/182.61.25.227.cfg.lua /etc/prosody/conf.d/182.61.25.227.cfg.lua
 ```
 
 Generate certs for the domain:
-```sh
+
+```console
 prosodyctl cert generate 182.61.25.227
 ```
 
 Create conference focus user:
-```sh
+
+```console
 prosodyctl register focus auth.182.61.25.227 auth_password
 ```
 
 Restart prosody XMPP server with the new config
-```sh
+
+```console
 prosodyctl restart
 ```
 
 ## Install nginx
-```sh
+
+```console
 apt-get install nginx
 ```
 
@@ -99,20 +103,22 @@ server {
 ```
 
 Add link for the added configuration
-```sh
+
+```console
 cd /etc/nginx/sites-enabled
 ln -s ../sites-available/182.61.25.227 182.61.25.227
 ```
 
 ## Install Jitsi Videobridge
-```sh
+
+```console
 wget https://download.jitsi.org/jitsi-videobridge/linux/jitsi-videobridge-linux-x64-725.zip
 unzip jitsi-videobridge-linux-x64-725.zip
 ```
 
 Install Oracle JDK if missing:
 
-```
+```console
 sudo apt-get install -y python-software-properties  software-properties-common
 
 sudo add-apt-repository ppa:webupd8team/java
@@ -133,36 +139,40 @@ update-alternatives --config java
 _NOTE: When installing on older Debian releases keep in mind that you need JRE >= 1.7._
 
 In the user home that will be starting Jitsi Videobridge create `.sip-communicator` folder and add the file `sip-communicator.properties` with one line in it:
+
 ```
 org.jitsi.impl.neomedia.transform.srtp.SRTPCryptoContext.checkReplay=false
 ```
 
 Start the videobridge with:
-```sh
+
+```console
 ./jvb.sh --host=localhost --domain=182.61.25.227 --port=5347 --secret=videobridge_password &
 ```
 Or autostart it by adding the line in `/etc/rc.local`:
-```sh
+
+```console
 /bin/bash /root/jitsi-videobridge-linux-x64-725/jvb.sh --host=localhost --domain=182.61.25.227 --port=5347 --secret=videobridge_password </dev/null >> /var/log/jvb.log 2>&1
 ```
 
 ## Install Jitsi Conference Focus (jicofo)
 
-```
+```console
 sudo apt-get install maven
 ```
 
 Clone source from Github repo:
-```sh
+```console
 git clone https://github.com/jitsi/jicofo.git
 ```
 Build distribution packag
-```sh
+```console
 mvn -U package -DskipTests -Dassembly.skipAssembly=false
 ```
 
 Run jicofo:
-```sh
+
+```console
 cd target
 unzip jicofo-linux-x64-1.0-SNAPSHOT.zip
 ./jicofo-linux-x64-1.0-SNAPSHOT/jicofo.sh --domain=182.61.25.227 --secret=jicofo_password --user_domain=auth.182.61.25.227 --user_name=focus --user_password=auth_password
@@ -170,7 +180,8 @@ unzip jicofo-linux-x64-1.0-SNAPSHOT.zip
 
 ## Deploy Jitsi Meet
 Checkout and configure Jitsi Meet:
-```sh
+
+```console
 cd /srv
 git clone https://github.com/jitsi/jitsi-meet.git
 mv jitsi-meet/ 182.61.25.227
@@ -180,7 +191,8 @@ nano package.json
 "lib-jitsi-meet": "git://github.com/jitsi/lib-jitsi-meet",
 
 ```
-```sh
+
+```console
 sudo apt-get install npm nodejs-legacy
 cd 182.61.25.227
 npm install browserify
@@ -189,7 +201,7 @@ npm install
 ```
 Install lib-jitsi-meet
 
-```sh
+```console
 git clone git://github.com/jitsi/lib-jitsi-meet ../lib-jitsi-meet
 cd lib-jitsi-meet
  #nano package.json
@@ -207,7 +219,7 @@ npm link lib-jitsi-meet
 
 To build the Jitsi Meet application, just type
 
-```sh
+```console
 make
 ```
 
@@ -228,7 +240,7 @@ var config = {
 ```
 
 Restart nginx to get the new configuration:
-```sh
+```console
 invoke-rc.d nginx restart
 ```
 
@@ -236,13 +248,13 @@ invoke-rc.d nginx restart
 Jitsi-Videobridge can run behind a NAT, provided that all required ports are routed (forwarded) to the machine that it runs on. By default these ports are (TCP/443 or TCP/4443 and UDP 10000-20000).
 
 The following extra lines need to be added the file `~/.sip-communicator/sip-communicator.properties` (in the home directory of the user running the videobridge):
-```
+```console
 org.jitsi.videobridge.NAT_HARVESTER_LOCAL_ADDRESS=127.0.0.1
 org.jitsi.videobridge.NAT_HARVESTER_PUBLIC_ADDRESS=182.61.25.227
 ```
 
 So the file should look like this at the end:
-```
+```console
 org.jitsi.impl.neomedia.transform.srtp.SRTPCryptoContext.checkReplay=false
 org.jitsi.videobridge.NAT_HARVESTER_LOCAL_ADDRESS=127.0.0.1
 org.jitsi.videobridge.NAT_HARVESTER_PUBLIC_ADDRESS=182.61.25.227
@@ -255,7 +267,7 @@ You are now all set and ready to have your first meet by going to http://182.61.
 ## Enabling recording
 Currently recording is only supported for linux-64 and macos. To enable it, add
 the following properties to sip-communicator.properties:
-```
+```console
 org.jitsi.videobridge.ENABLE_MEDIA_RECORDING=true
 org.jitsi.videobridge.MEDIA_RECORDING_PATH=/path/to/recordings/dir
 org.jitsi.videobridge.MEDIA_RECORDING_TOKEN=secret
@@ -266,7 +278,7 @@ will be stored (needs to be writeable by the user running jitsi-videobridge),
 and "secret" is a string which will be used for authentication.
 
 Then, edit the Jitsi-Meet config.js file and set:
-```
+```console
 enableRecording: true
 ```
 
