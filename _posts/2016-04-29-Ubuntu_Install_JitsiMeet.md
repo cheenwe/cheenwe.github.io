@@ -162,10 +162,12 @@ sudo apt-get install maven
 ```
 
 Clone source from Github repo:
+
 ```console
 git clone https://github.com/jitsi/jicofo.git
 ```
 Build distribution packag
+
 ```console
 mvn -U package -DskipTests -Dassembly.skipAssembly=false
 ```
@@ -212,7 +214,6 @@ cd lib-jitsi-meet
 npm link
 
 cd ../182.61.25.227
-
 npm link lib-jitsi-meet
 
 ```
@@ -224,7 +225,8 @@ make
 ```
 
 Edit host names in `/srv/182.61.25.227/config.js` (see also the example config file):
-```
+
+```console
 var config = {
     hosts: {
         domain: '182.61.25.227',
@@ -240,6 +242,7 @@ var config = {
 ```
 
 Restart nginx to get the new configuration:
+
 ```console
 invoke-rc.d nginx restart
 ```
@@ -248,12 +251,14 @@ invoke-rc.d nginx restart
 Jitsi-Videobridge can run behind a NAT, provided that all required ports are routed (forwarded) to the machine that it runs on. By default these ports are (TCP/443 or TCP/4443 and UDP 10000-20000).
 
 The following extra lines need to be added the file `~/.sip-communicator/sip-communicator.properties` (in the home directory of the user running the videobridge):
+
 ```console
 org.jitsi.videobridge.NAT_HARVESTER_LOCAL_ADDRESS=127.0.0.1
 org.jitsi.videobridge.NAT_HARVESTER_PUBLIC_ADDRESS=182.61.25.227
 ```
 
 So the file should look like this at the end:
+
 ```console
 org.jitsi.impl.neomedia.transform.srtp.SRTPCryptoContext.checkReplay=false
 org.jitsi.videobridge.NAT_HARVESTER_LOCAL_ADDRESS=127.0.0.1
@@ -267,6 +272,7 @@ You are now all set and ready to have your first meet by going to http://182.61.
 ## Enabling recording
 Currently recording is only supported for linux-64 and macos. To enable it, add
 the following properties to sip-communicator.properties:
+
 ```console
 org.jitsi.videobridge.ENABLE_MEDIA_RECORDING=true
 org.jitsi.videobridge.MEDIA_RECORDING_PATH=/path/to/recordings/dir
@@ -278,6 +284,7 @@ will be stored (needs to be writeable by the user running jitsi-videobridge),
 and "secret" is a string which will be used for authentication.
 
 Then, edit the Jitsi-Meet config.js file and set:
+
 ```console
 enableRecording: true
 ```
