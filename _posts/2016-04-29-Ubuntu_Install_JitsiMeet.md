@@ -188,7 +188,7 @@ cd /srv
 git clone https://github.com/jitsi/jitsi-meet.git
 mv jitsi-meet/ 182.61.25.227
 nano package.json
- # change     "lib-jitsi-meet": "jitsi/lib-jitsi-meet",
+>change     "lib-jitsi-meet": "jitsi/lib-jitsi-meet",
 
 "lib-jitsi-meet": "git://github.com/jitsi/lib-jitsi-meet",
 
@@ -265,7 +265,7 @@ org.jitsi.videobridge.NAT_HARVESTER_LOCAL_ADDRESS=127.0.0.1
 org.jitsi.videobridge.NAT_HARVESTER_PUBLIC_ADDRESS=182.61.25.227
 ```
 
-# Hold your first conference
+## Hold your first conference
 You are now all set and ready to have your first meet by going to http://182.61.25.227
 
 
