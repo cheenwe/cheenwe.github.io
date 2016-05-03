@@ -16,7 +16,11 @@ There are also some complete [example config files](https://github.com/jitsi/jit
 ## Install prosody
 
 ```console
-apt-get install prosody unzip git
+echo deb http://packages.prosody.im/debian $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list
+wget https://prosody.im/files/prosody-debian-packages.key -O- | sudo apt-key add -
+sudo apt-get update
+
+sudo apt-get install prosody unzip git
 ```
 
 ## Configure prosody
@@ -73,7 +77,7 @@ prosodyctl restart
 ## Install nginx
 
 ```console
-apt-get install nginx
+sudo apt-get install nginx
 ```
 
 Add a new file `182.61.25.227` in `/etc/nginx/sites-available` (see also the example config file):

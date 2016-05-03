@@ -16,8 +16,7 @@ category: java
 ## 安装Oracle JDK
 ### 添加add-apt-repository工具
 
->sudo apt-get install -y python-software-properties
->sudo apt-get install -y software-properties-common
+>sudo apt-get install -y python-software-properties software-properties-common
 
 ### 添加 PPA repository 到系统
 >sudo add-apt-repository ppa:webupd8team/java
