@@ -1,0 +1,31 @@
+
+准备工作：
+1.一台安装有Ubuntu的主机（美帝为优先，私人VPN大部分都是为了跨GWF的嘛，我的是AWS EC2 Ubuntu 14.04）；
+2.配置好各种防火墙，硬件，软件，所有非VPS能控制的1723（PPTP）,22(SSH)端口。
+
+开始工作：
+安装VPN软件：sudo apt-get install pptpd;
+编辑内网IP配置： sudo nano /etc/pptpd.conf;
+解开配置文件的末尾的 #localip
+#remoteip两行的开关；
+control+o（保存），control+x（退出）。
+编辑选项文件：sudo nano /etc/ppp/pptpd-options;
+解开选项文件中的#ms-dns的开关（默认是内网IP，看个人喜好修改，我是修改成了8.8.8.8,4.4.4.4）;
+control+o（保存），control+x（退出）。
+编辑账户文件，添加用户：sudo nano /etc/ppp/chap-secrets；
+增加或修改用户信息，规则是：用户名，服务器，密码，授权IP地址（例如：user pptpd password *）;
+control+o（保存），control+x（退出）。
+ 重启pptpd：sudo /etc/init.d/pptpd restart
+
+以上pptpd的配置就完成了，但是，还需要配置一下ipv4.ip_forward
+输入：sudo nano /etc/sysctl.conf
+解开#net.ipv4ip_forward=1的开关
+control+o（保存），control+x（退出）。
+输入：sudo sysctl -p
+开系统防火墙iptables，允许VPN：
+这里默认有iptables，查看规则：sudo iptables -L -nv;
+看看现在服务器有哪些规则，不要把服务器搞死，千万要记得要有SSH的防火墙规则，这很重要；
+添加防火墙规则：sudo iptables -A INPUT -p tcp -i eth0 --dport ssh -j ACCEPT
+添加防火墙规则：sudo iptables -A INPUT -p tcp -i eth0 --dport 1723 -j ACCEPT
+添加NAT规则：sudo iptables -t nat -A POSTROUTING -s 192.168.0.0/24 -o eth0 -j MASQUERADE(192.168.0.0视第一部分分配的IP地址段自行修改)；
+启动防火墙：modprobe ip_tables。
