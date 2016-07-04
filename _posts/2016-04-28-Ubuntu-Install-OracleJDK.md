@@ -14,6 +14,7 @@ category: java
 >sudo apt-get -y purge openjdk-\*
 
 ## 安装Oracle JDK
+
 ### 添加add-apt-repository工具
 
 >sudo apt-get install -y python-software-properties software-properties-common

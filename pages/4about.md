@@ -17,6 +17,6 @@ published: true
 
 [me@cheenwe.cn](mailto:cxhyun@126.com)
 
-### 感谢:
+### 感谢
 
 * [Jekyll](http://jekyllrb.com)

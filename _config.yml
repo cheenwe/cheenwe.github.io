@@ -11,8 +11,6 @@ paginate: 10
 paginate_path: ":num"
 baseurl: ""
 
-
-
 title: "Cheenwe"
 email: "cxhyun@126.com"
 description: "A Ruby Coder"
@@ -22,8 +20,8 @@ disqus_shortname: "cheenwecn"
 
 
 
-url: "http://cheenwe.github.io"
-imgrepo: "http://cheenwe.github.io/static/img"
-# url: "http://127.0.0.1:4000"
-# imgrepo: "http://127.0.0.1:4000/static/img"
+# url: "http://cheenwe.github.io"
+# imgrepo: "http://cheenwe.github.io/static/img"
+url: "http://127.0.0.1:4000"
+imgrepo: "http://127.0.0.1:4000/static/img"
 
