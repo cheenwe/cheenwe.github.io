@@ -79,7 +79,7 @@
     /**
       * 文章目录相关
       */
-    .post .toc {
+    .post ul#markdown-toc {
         display: none!important;
     }
 }
