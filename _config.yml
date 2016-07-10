@@ -27,7 +27,7 @@ defaults:
     values:
       layout: post
       styles : [highlight.css,post.css]
-      scripts : [post.js]
+      scripts : [post.js, toc.js]
 
 
 
