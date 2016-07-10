@@ -19,6 +19,15 @@ swiftype_searchId: "9TDAXeK2smEEtWndRZJB"
 disqus_shortname: "cheenwecn"
 
 
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+      styles : [highlight.css,post.css]
+      scripts : [post.js]
 
 
 
