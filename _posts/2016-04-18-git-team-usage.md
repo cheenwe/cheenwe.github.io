@@ -13,8 +13,8 @@ categories: git
 
 
 ### Commit Message 格式
-```
 
+```
 <type>(<scope>): <subject>
 <空行>
 <body>
@@ -27,13 +27,20 @@ categories: git
 头部即首行，是可以直接在页面中预览的部分，入上面图中所示，一共有三个部分<type>，<scope>，<subject>，含义分别如下
 
 **Type**
-feat：新功能（feature）
-fix：修补bug
-docs：文档（documentation）
-style： 格式（不影响代码运行的变动）
-refactor：重构（即不是新增功能，也不是修改bug的代码变动）
-test：增加测试
-chore：构建过程或辅助工具的变动
+
+- feat：新功能（feature）
+
+- fix：修补bug
+
+- docs：文档（documentation）
+
+- style： 格式（不影响代码运行的变动）
+
+- refactor：重构（即不是新增功能，也不是修改bug的代码变动）
+
+- test：增加测试
+
+- chore：构建过程或辅助工具的变动
 
 **Scope**
 用来说明本次Commit影响的范围，即简要说明修改会涉及的部分。这个本来是选填项，但从AngularJS实际项目中可以看出基本上也成了必填项了。

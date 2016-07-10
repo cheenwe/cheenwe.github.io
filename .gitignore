@@ -5,3 +5,5 @@ _site
 .local
 _study
 .local/*
+node_modules/
+package.json

@@ -45,6 +45,7 @@ control+o（保存），control+x（退出）
 control+o（保存），control+x（退出）
 
 ## 重启pptpd
+
 >sudo /etc/init.d/pptpd restart
 
 以上pptpd的配置就完成了，但是，还需要配置ipv4.ip_forward
@@ -54,6 +55,7 @@ control+o（保存），control+x（退出）
 >sudo nano /etc/sysctl.conf
 
 解开
+
 >net.ipv4ip_forward=1
 
 的注释
