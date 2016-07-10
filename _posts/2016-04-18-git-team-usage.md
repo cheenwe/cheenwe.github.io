@@ -34,7 +34,7 @@ categories: git
 
 - docs：文档（documentation）
 
-- style： 格式（不影响代码运行的变动）
+- style： 不影响功能的代码变化（空格，格式化，丢失分号等）
 
 - refactor：重构（即不是新增功能，也不是修改bug的代码变动）
 
