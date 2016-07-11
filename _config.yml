@@ -31,8 +31,8 @@ defaults:
 
 
 
-url: "http://cheenwe.github.io"
-imgrepo: "http://cheenwe.github.io/static/img"
+url: "https://cheenwe.github.io"
+imgrepo: "https://cheenwe.github.io/static/img"
 
 # url: "http://127.0.0.1:4000"
 # imgrepo: "http://127.0.0.1:4000/static/img"
