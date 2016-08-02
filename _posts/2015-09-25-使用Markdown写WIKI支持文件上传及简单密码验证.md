@@ -1,11 +1,8 @@
 ---
 layout: post
 title: 使用Markdown写WIKI支持文件上传及简单密码验证
-tags:
-  - Markdown
-  - wiki
-  - gollum
-category: markdown
+tags: Markdown wiki  gollum
+category: wiki
 ---
 
 
@@ -93,3 +90,4 @@ repo.push(repo.remote('origin'))
 
 
 ## 欢迎贡献
+[Wiki](https://github.com/cheenwe/wiki)

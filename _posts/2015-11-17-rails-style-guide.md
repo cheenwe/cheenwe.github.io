@@ -1,10 +1,8 @@
 ---
 layout: post
 title:  Rails Style Guide
-tags:
-  - rails
-  - guide
-category: rails
+tags: rails guide
+category: guide
 ---
 
 

@@ -1,10 +1,8 @@
 ---
 layout: post
 title:  Ruby Style Guide
-tags:
-  - ruby
-  - guide
-category: ruby
+tags: ruby guide
+category: guide
 ---
 
 # 序幕

@@ -1,9 +1,7 @@
 ---
 layout: post
 title: Ubuntu系统添加swap
-tags:
-  - ubuntu
-  - swap
+tags: ubuntu swap
 category: server
 ---
 

@@ -1,9 +1,7 @@
 ---
 layout: post
 title:  rails 应用部署到 heroku
-tags:
-  - heroku
-  - rails
+tags: heroku  rails
 category: rails
 ---
 

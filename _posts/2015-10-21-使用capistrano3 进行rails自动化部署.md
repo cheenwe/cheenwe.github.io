@@ -1,10 +1,8 @@
 ---
 layout: post
 title: 使用capistrano3 进行rails自动化部署
-tags:
-  - rails
-  - 自动化部署
-category: rails
+tags: rails capistrano
+category: deploy
 ---
 
 # Rails Capistrano 3自动化部署
@@ -39,6 +37,7 @@ bundle exec cap install
 ```
 产生以下文件和目录结构:
 
+```
 ├── Capfile
 ├── config
 │   ├── deploy
@@ -48,6 +47,7 @@ bundle exec cap install
 └── lib
     └── capistrano
             └── tasks
+```
 
 ### 3 在 Capfile 添加以下内容
 ```ruby
