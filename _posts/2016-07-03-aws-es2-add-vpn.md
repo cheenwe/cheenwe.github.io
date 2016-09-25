@@ -15,7 +15,7 @@ category: 服务器
 ### 编辑内网IP配置
 >sudo nano /etc/pptpd.conf
 
-### 解开配置文件的末尾的
+### 删除配置文件的末尾的
 >localip
 
 >remoteip
@@ -26,7 +26,7 @@ control+o（保存），control+x（退出）
 #### 编辑选项文件
 >sudo nano /etc/ppp/pptpd-options
 
-解开选项文件中的
+删除选项文件中的
 
 >ms-dns
 
@@ -54,7 +54,7 @@ control+o（保存），control+x（退出）
 
 >sudo nano /etc/sysctl.conf
 
-解开
+删除
 
 >net.ipv4ip_forward=1
 

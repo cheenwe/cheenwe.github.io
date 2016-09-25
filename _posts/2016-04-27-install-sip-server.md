@@ -27,19 +27,24 @@ SIP注册服务器用于接收SIP注册请求，并保存发送注册请求的UA
 >sudo apt-get install perl libdbi-perl libdbd-MySQL-perl libdbd-pg-perl libfrontier-rpc-perl libterm-readline-gnu-perl libberkeleydb-perl libncurses5-dev
 
 ## 下载源码
-地址: http://opensips.org/pub/opensips/
+[地址:](http://opensips.org/pub/opensips/)
+
 >wget http://opensips.org/pub/opensips/2.1.2/opensips-2.1.2.tar.gz
 
 解压 :
+
 >tar zxf opensips-2.1.2.tar.gz
 
 ## 编译安装
+
 >make && make install
 
 ## 修改配置
+
 >nano etc/opensips.cfg
-    将: listen=udp:127.0.0.1:5060   # CUSTOMIZE ME
-    修改为: listen=udp:*IP*:5060   #这里的的IP以本机实际IP为准
+
+将: listen=udp:127.0.0.1:5060   # CUSTOMIZE ME
+修改为: listen=udp:*IP*:5060   #这里的的IP以本机实际IP为准
 
 ## 启动服务
 >opensipsctl start
