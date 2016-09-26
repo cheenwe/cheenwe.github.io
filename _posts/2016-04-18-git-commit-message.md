@@ -94,16 +94,80 @@ footer里的主要放置不兼容变更和Issue关闭的信息
 >npm install -g commitizen
 
 ## 配置
+如果项目中没有 package.json, 需要新建一个文件
+>nano package.json
+
+文件内容如下：
+
+```
+{
+  "devDependencies": {
+    "cz-conventional-changelog": "^1.1.6"
+  }
+}
+```
+
 上一步我们在全局范围内安装了commitizen，之后我们就可以在Git仓库中配置我们的Commit规范了。打开项目执行如下命令:
 
 >commitizen init cz-conventional-changelog --save --save-exact
 
-上面的cz-conventional-changelog就是AngularJS的规范，其它的规范你可以自行到官网上找找看，不行就自己花时间拟定一份吧。此命令帮你完成了下载cz-conventional-changelog规范，配置package.json(添加依赖和配置应用规范)，想看具体改动打开package.json即可。
+上面的cz-conventional-changelog就是AngularJS的规范，其它的规范你可以自行到官网上找找看，不行就自己花时间拟定一份吧。
+此命令帮你完成了下载cz-conventional-changelog规范，配置package.json(添加依赖和配置应用规范)，想看具体改动打开package.json即可。
 
 ## 使用
 以后，凡是用到git commit命令，一律改为使用
 >git cz
 这时，就会出现选项，用来生成符合格式的 Commit message。
+
+## Validate-commit-msg
+validate-commit-msg 用于检查 Node 项目的 Commit message 是否符合格式。
+
+它的安装是手动的。首先，拷贝下面这个JS文件，放入你的代码库。文件名可以取为validate-commit-msg.js。
+
+接着，把这个脚本加入 Git 的 hook。下面是在package.json里面使用 ghooks，把这个脚本加为commit-msg时运行。
+
+```
+  "config": {
+    "ghooks": {
+      "commit-msg": "./validate-commit-msg.js"
+    }
+  }
+```
+然后，每次git commit的时候，这个脚本就会自动检查 Commit message 是否合格。如果不合格，就会报错。
+
+## 生成 Change log
+
+如果你的所有 Commit 都符合 Angular 格式，那么发布新版本时， Change log 就可以用脚本自动生成（例1，例2，例3）。
+
+生成的文档包括以下三个部分。
+
+New features
+Bug fixes
+Breaking changes.
+每个部分都会罗列相关的 commit ，并且有指向这些 commit 的链接。当然，生成的文档允许手动修改，所以发布前，你还可以添加其他内容。
+
+conventional-changelog 就是生成 Change log 的工具，运行下面的命令即可。
+
+> npm install -g conventional-changelog
+> cd my-project
+> conventional-changelog -p angular -i CHANGELOG.md -w
+上面命令不会覆盖以前的 Change log，只会在CHANGELOG.md的头部加上自从上次发布以来的变动。
+
+如果你想生成所有发布的 Change log，要改为运行下面的命令。
+
+> conventional-changelog -p angular -i CHANGELOG.md -w -r 0
+为了方便使用，可以将其写入package.json的scripts字段。
+```
+{
+  "scripts": {
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w -r 0"
+  }
+}
+```
+以后，直接运行下面的命令即可。
+
+> npm run changelog
+
 
 ## 附
 
@@ -148,30 +212,29 @@ module.exports = {
         message: '选择您正在提交的内容:',
         choices: [
         {
-          name: '新功能:    新功能添加',
+          name: 'Feature: 新功能添加',
           value: 'feat'
         }, {
-          name: '修补bug:    bug修复',
+          name: 'Fix bug: 修补bug',
           value: 'fix'
         }, {
-          name: '文档:    文档添加及修改',
+          name: 'Documentation: 文档添加及修改',
           value: 'docs'
         }, {
-          name: '格式:    不影响功能的代码变化（空格，格式化，丢失分号等）',
+          name: 'Style: 不影响功能的代码变化（空格，格式化，丢失分号等）',
           value: 'style'
         }, {
-          name: '重构:    代码重构',
+          name: 'Refactor:    代码重构',
           value: 'refactor'
         }, {
-          name: '优化:    提高性能的代码更改',
+          name: 'Performance improves:    提高性能的代码更改',
           value: 'perf'
         }, {
-          name: '测试:    添加测试代码，或功能测试代码添加',
+          name: 'Add test:    添加测试代码，或功能测试代码添加',
           value: 'test'
         }, {
-          name: '辅助:    改变构建过程或辅助工具和库，如文档生成',
+          name: 'Auxiliary tools:    改变构建过程或辅助工具和库，如文档生成',
           value: 'chore'
-
         }]
       }, {
         type: 'input',
@@ -216,5 +279,6 @@ module.exports = {
     });
   }
 }
+
 
 ```
