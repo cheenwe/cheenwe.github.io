@@ -57,7 +57,7 @@ mail.deliver!
 require 'mail'
 
 mail = Mail.new do
-  from     'root@pm.cheenwe.cn'
+  from     'root@pm.cheenwe.cn' #如果没有域名请填写  账户名@localhost, 否则无法发送
   to       '869523867@qq.com'
   subject  'Here is the image you wanted'
   body     "May be good!"#File.read('body.txt')

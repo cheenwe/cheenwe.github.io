@@ -31,7 +31,7 @@ mail.deliver!
 
 
 # 使用sendmail
-# sudo apt-get install sendmail-base
+# sudo apt-get install sendmail
 
 #!/usr/bin/ruby
 
