@@ -1,32 +1,39 @@
-# Blog Address
+# 博客地址
 
-<http://cheenwe.github.io/>
+<https://cheenwe.github.io/>
 
 
-# Must Modify
+# 修改内容
 
 ## 1.swiftype
 
-This service provides the on-site search function.
+开启免费搜索功能.
 
-Service address： <https://swiftype.com/>.
+swiftype官网： <https://swiftype.com/>.
 
-After the setup is complete， you need to modify the `swiftype_searchId` in `_config.yml`.
+修改 `swiftype_searchId` 在 `_config.yml`.
 
-In your swiftype engine, go to `Setup and integration` -> `Install Search`, you could find the `swiftype_searchId`.
+### 如何找到swiftype_searchId:
 
-```html
-<script type="text/javascript">
-...
-...
-  _st('install','swiftype_searchId','2.0.0');
-</script>
-```
+1. 登陆swiftype
+
+2. 选择 `Setup and integration` -> `Install Search`
+
+3. 找到`swiftype_searchId`.
+
 
 ## 2.disqus
 
-This service provides the comment function.
+开启 disqus 评论功能.
 
-Service address： <https://disqus.com/>.
+disqus官网： <https://duoshuo.com/>.
 
-After the setup is complete， you need to modify the `disqus_shortname` in `_config.yml`.
+修改 `disqus_shortname` 在 `_config.yml`.
+
+## 3. 多说
+
+开启评论功能.
+
+多说官网： <https://duoshuo.com/>.
+
+修改 `duoshuo_shortname` 在 `_config.yml`.

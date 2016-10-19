@@ -8,10 +8,15 @@ published: true
 
 
 ### 技术
- * Ruby
- * Ruby on Rails
- * MySQL
- * AngularJS
+
+- Ruby
+
+- Ruby on Rails
+
+- MySQL
+
+- AngularJS
+
 
 ### 联系我
 
