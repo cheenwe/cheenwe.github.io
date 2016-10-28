@@ -11,7 +11,7 @@ paginate: 10
 paginate_path: ":num"
 baseurl: ""
 
-title: "Daniel"
+title: "Daniel Gao"
 email: "gzd1214@163.com"
 description: "A iOS Coder"
 beian: "暂无"
@@ -37,4 +37,3 @@ imgrepo: "https://daniel1214.github.io/static/img"
 
 # url: "http://127.0.0.1:4000"
 # imgrepo: "http://127.0.0.1:4000/static/img"
-
