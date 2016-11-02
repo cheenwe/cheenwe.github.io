@@ -1,8 +1,7 @@
 ---
 layout: post
 title: Rails服务器使用nginx来提供https的服务
-tags:  rails  https rails
-
+tags:  rails  https
 categories: https
 ---
 
