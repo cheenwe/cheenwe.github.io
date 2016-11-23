@@ -8,9 +8,6 @@ category: rails
 
 # Rails 创建Join表单并使用UUID
 
-在某些情况下需要对大量的数据进行处理，可以使用 find_in_batches 方法进行处理
-
-
 ## 只创建Join table
 
 ```ruby
