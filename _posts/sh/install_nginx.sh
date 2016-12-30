@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 echo -n "安装nginx的依赖包"
@@ -14,3 +15,4 @@ cd /usr/local/src/nginx-1.9.9
 sudo ./configure --prefix=/usr/local/nginx --with-openssl=/usr/include/openssl
 
 sudo make && sudo make install
+
