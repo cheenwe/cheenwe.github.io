@@ -61,3 +61,38 @@ aFile = File.new("input.json", "r+")
 aFile.syswrite(list_arrary)
 
 
+
+
+
+# ## remove => and key value
+
+# ```sh
+# list_arrary = File.read('/Users/chenwei/workspace/project/test/sina_pic/d.json').gsub(":mid",'"mid"').gsub(":caption_render",'"caption_render"').gsub(":caption",'"caption"').gsub(":url",'"url"').gsub('"=>"', '":"')
+
+
+# # list_arrary = File.read('/Users/chenwei/workspace/project/test/sina_pic/a.json').gsub('"=>"', '":"')
+
+# lists = list_arrary
+
+# aFile = File.new("/Users/chenwei/workspace/project/test/sina_pic/a.json", "r+")
+
+
+# aFile.syswrite(lists)
+
+# ```
+
+# ## create records
+
+# ```
+# JSON.parse(File.read('/Users/chenwei/workspace/project/test/sina_pic/00.json')).each do |record|
+# ireads = Iread.where(mid:record["mid"])
+# if ireads.present?
+# Picture.create( iread_id: ireads.last.id, url: record["url"])
+# else
+# iread = Iread.create(mid: record["mid"],caption: record["caption"],caption_render: record["caption_render"])
+# Picture.create( iread_id: iread.id, url: record["url"])
+# end
+# end
+# ```
+
+
