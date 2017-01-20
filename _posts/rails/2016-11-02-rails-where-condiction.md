@@ -12,7 +12,12 @@ category: rails
 ## 模糊查询
 
 - 单条件
-User.where("name LIKE ?", "%#{search}%")
+
+>User.where("name LIKE ?", "%#{search}%")
+
+- 数组查询
+
+>Api::V1::Heartbeat.where("alarm_type in (?)", types)
 
 - 多个条件
 
