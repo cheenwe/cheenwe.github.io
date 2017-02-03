@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Ubuntu 设置 IP
-tags: ubuntu
-category:  ubuntu config
+tags: ubuntu config
+category:  ubuntu
 ---
 
 # Ubuntu 设置 IP
@@ -18,6 +18,7 @@ category:  ubuntu config
 >sudo dhclient
 
 指定网卡
+
 >sudo dhclient em1
 
 或者编辑配置文件
@@ -54,4 +55,5 @@ iface em2 inet static
 或者重启网卡
 
 >ifconfig em2 down
+
 >ifconfig em2 up

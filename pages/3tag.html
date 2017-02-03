@@ -29,7 +29,7 @@ scripts: [tagCloud.js,tags.js]
     <h2 id="{{ tag | first }}">{{ tag | first }}</h2>
     <ul>
         {% for posts in tag  %}{% for post in posts %}{% if post.title != null %}
-        <li itemscope><span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date_to_string }}</time></span> &raquo; <a href="{{ post.url | prepend: site.baseurl | prepend: site.url }}">{{ post.title }}</a></li>
+        <li itemscope><span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date:"%Y/%m/%d" }}</time></span> &raquo; <a href="{{ post.url | prepend: site.baseurl | prepend: site.url }}">{{ post.title }}</a></li>
         {% endif %}{% endfor %}{% endfor %}
     </ul>
     {% endfor %}

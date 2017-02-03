@@ -35,6 +35,7 @@ gem 'unicorn'
 ```ruby
 bundle exec cap install
 ```
+
 产生以下文件和目录结构:
 
 ```
@@ -114,10 +115,7 @@ set(:config_files, %w(
 
 # which config files should be made executable after copying
 # by deploy:setup_config
-set(:executable_config_files, %w(
-  unicorn_init.sh
-))
-
+set(:executable_config_files, %w(unicorn_init.sh))
 
 # files which need to be symlinked to other parts of the
 # filesystem. For example nginx virtualhosts, log rotation
@@ -212,14 +210,16 @@ set :enable_ssl, false
 ```
 
 其他文件夹
-config/deploy
-/lib/capistrano
+
+>config/deploy
+>/lib/capistrano
+
 复制到项目中
 
 
 ### 5 生成nginx/unicorn等配置文件
 
-cap production deploy:setup_config
+>cap production deploy:setup_config
 
 执行后文件位置在 部署文件夹/shared/config 内
 nginx配置文件
@@ -229,14 +229,15 @@ unicorn配置文件
 
 ### 7 部署
 
-cap production deploy
+>cap production deploy
 
 部署完成
 
 ### 8 其他命令
-rake logs:tail[production]
+>rake logs:tail[production]
+
 显示生产环境下日志 rails_app_path/shared/log/production.log
 
-rake logs:tail[unicorn]
+>rake logs:tail[unicorn]
 显示unicorn运行日志 rails_app_path/shared/log/production.log
 
