@@ -22,7 +22,7 @@ sudo chown redis.redis /var/log/redis
 sudo /etc/init.d/redis-server start
 
 
-or>>>>>>>>
+# or>>>>>>>>
 
 
 
