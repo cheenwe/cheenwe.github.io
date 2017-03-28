@@ -1,0 +1,38 @@
+.main .section {
+    background: url("https://www.jiguang.cn/img/website/index_intro_bg.jpg") no-repeat center 20px;
+    background-size: cover;
+    height: 720px;
+}
+
+.main .section .intro-wrapper {
+    /*position: absolute;*/
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    min-width: 1000px;
+}
+
+.main .section .intro-wrapper .title {
+    width: 100%;
+    position: absolute;
+    top: 38vh;
+    text-align: center;
+}
+
+.main .section .intro-wrapper .title-en {
+    font-size: 60px;
+    color: white;
+    font-family: 'HelveticaNeue-UltraLight', "PingFang SC", 'Microsoft Yahei',Arial,Verdana,sans-serif;
+    font-weight: 100;
+}
+.main .section .intro-wrapper .title-zh {
+    margin-top: 33px;
+    font-size: 48px;
+    color:#ffffff;
+}
+
+.main .section .intro-wrapper .dot {
+    display: inline-block;
+    margin: 0 17px;
+}
