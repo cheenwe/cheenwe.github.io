@@ -1,31 +1,35 @@
 # 博客地址
 
-<https://cheenwe.github.io/>
+<https://cheenwe.cn/>
+
+记录
 
 
-# 修改内容
+## 1. 统计
 
-## 1.swiftype
+- 不蒜子统计
+  两行代码 搞定计数
 
-开启免费搜索功能.
-
-swiftype官网： <https://swiftype.com/>.
-
-修改 `swiftype_searchId` 在 `_config.yml`.
-
-### 如何找到swiftype_searchId:
-
-1. 登陆swiftype
-
-2. 选择 `Setup and integration` -> `Install Search`
-
-3. 找到`swiftype_searchId`.
+官网： <http://busuanzi.ibruce.info/>.
 
 
-## 2. 多说
+- 百度统计
 
-开启评论功能.
+官网： <http://tongji.baidu.com/>.
+
+在 `_config.yml`中修改 `baidu_tongji_id`.
+
+
+## 2. 评论
+
+评论功能.
 
 多说官网： <https://duoshuo.com/>.
 
-修改 `duoshuo_shortname` 在 `_config.yml`.
+在 `_config.yml`中修改 `duoshuo_shortname`.
+
+## 3. 搜索
+
+[Lunr.js](http://lunrjs.com/)
+
+简单的全文搜索

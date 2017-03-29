@@ -8,62 +8,39 @@ Your whole world changes over night.
 And all of your priorities change immediately.  //priorities : 优先
 So fast that it makes it really difficult to process sometimes.
 Now, you also have to learn a tremendous amount about being a parent. //tremendous: 极大的
-like, for example,
-how to dress your child.
+like, for example, how to dress your child.
 (Laughter)
 This was new to me.
-This is an actual outfit, //装备
-I thought this was a good idea.
-And even Lela knows
-that it's not a good idea. (Laughter)
-So there is so much to learn and
-so much craziness all at once.
-And to add to the craziness,
-Kelsey and I both work from home,
-e're entrepreneurs,
-we run our own businesses.
-So, Kelsey develops courses
-online for yoga teachers.
+This is an actual outfit, I thought this was a good idea.//装备
+And even Lela knows that it's not a good idea. (Laughter)
+So there is so much to learn and so much craziness all at once.//疯狂
+And to add to the craziness, Kelsey and I both work from home,
+we're entrepreneurs, we run our own businesses.//企业家
+So, Kelsey develops courses online for yoga teachers.
 I'm an author.
 And so, I'm working from home,
 Kelsey's working from home.
-We have an infant
-and we're trying to make sure
-that everything gets done
-that needs done.
+We have an infant and we're trying to make sure
+that everything gets done that needs done.
 And life is really, really busy.
-And a couple of weeks
-into this amazing experience,
-when the sleep deprivation
-really kicked in,
+And a couple of weeks into this amazing experience,
+when the sleep deprivation really kicked in, //sleep deprivation睡眠剥夺
 like around week eight,
 I had this thought,
-and it was the same thought
-that parents across the ages,
-internationally,
-everybody has had this thought,
+and it was the same thought that parents across the ages,
+internationally, everybody has had this thought,
 which is:
-I am never going to have
-free time ever again.
+I am never going to have free time ever again.
 (Laughter)
 Somebody said it's true.
 It's not exactly true,
-but it feels really, really true
-in that moment.
-And this was really
-disconcerning to me,
-because one of the things that I enjoy
-more than anything else
-is learning new things.
-Getting curious about something
-and diving in
-and fiddling around and
-learning through trial and error.
-And eventually becoming pretty good
-at something.
+but it feels really, really true in that moment.
+And this was really disconcerning to me,
+because one of the things that I enjoy more than anything else is learning new things.
+Getting curious about something and diving in and fiddling around and learning through trial and error.
+And eventually becoming pretty good at something.
 And without this free time,
-I didn't know how I was ever
-going to do that ever again.
+I didn't know how I was ever going to do that ever again.
 And so, I'm a big geek,
 I want to keep learning things,
 I want to keep growing.
