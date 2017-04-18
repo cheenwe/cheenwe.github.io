@@ -24,9 +24,11 @@
 
 评论功能.
 
-多说官网： <https://duoshuo.com/>.
+畅言官网： <http://changyan.kuaizhan.com/>.
 
-在 `_config.yml`中修改 `duoshuo_shortname`.
+在 `_config.yml`中修改 `changyan_appid 和 changyan_conf`.
+
+
 
 ## 3. 搜索
 

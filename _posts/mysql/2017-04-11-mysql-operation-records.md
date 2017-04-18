@@ -72,14 +72,16 @@ mysql> select id,count(*) from albums group by id having count(*) >1;
 语句如下：
 
 >create table user_temp as (select distinct * from users);
+
 >truncate table users;
+
 >insert into users select * from user_temp;
+
 >delete table user_temp;
 
 
 
 ```sql
-
 mysql> desc albums;
 +------------+--------------+------+-----+---------+-------+
 | Field      | Type         | Null | Key | Default | Extra |
@@ -108,6 +110,7 @@ mysql> desc albums;
 原因是该表中有重复数据
 
 
+```sql
 mysql> select * from albums where id = "300435191";
 +-----------+----------+-----------+------------+--------+------+-------+
 | id        | user_id  | name      | created_at | remark | kind | total |
@@ -116,20 +119,20 @@ mysql> select * from albums where id = "300435191";
 | 300435191 | 74386764 | honru2012 | 2012-05-04 |        |    1 |   120 |
 +-----------+----------+-----------+------------+--------+------+-------+
 2 rows in set (0.18 sec)
-
-
+```
 
 ### 添加外键
-
-
 >Alter Table `albums` Add  Foreign Key (`user_id`) References `users` (`id`);
 
-
 ### 主键自增
-
-
 >ALTER TABLE `albums` CHANGE `id` `id` bigint NOT NULL AUTO_INCREMENT;
 
+
+### 删除字段
+>Alter Table `albums` DROP   column id;
+
+### 添加字段
+>Alter Table `albums` add   column id bigint;
 
 
 ## MySQL 的 RowNum 实现
