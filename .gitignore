@@ -8,3 +8,4 @@ _study
 .vscode/
 node_modules/
 package.json
+.DS_Store
