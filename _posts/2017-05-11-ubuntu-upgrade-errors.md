@@ -8,13 +8,16 @@ category:  ubuntu
 
 # ubuntu 报错问题记录
 
->dpkg: error processing package util-linux (--configure)
+## dpkg: error processing package util-linux (--configure)
 
 
 
-$ sudo mv /var/lib/dpkg/info/ /var/lib/dpkg/info_old/
-$ sudo mkdir /var/lib/dpkg/info/
-$ sudo apt-get update
+```shell
+ sudo mv /var/lib/dpkg/info/ /var/lib/dpkg/info_old/
+ sudo mkdir /var/lib/dpkg/info/
+ sudo apt-get update
+
+```
 
 
 ```
@@ -35,11 +38,10 @@ done
 ```
 
 
-重新配置时区
+## 重新配置时区
 
 >dpkg-reconfigure tzdata
-
-
+ 
 
 Processing triggers for dbus (1.10.10-1ubuntu2) ...
 Processing triggers for libgdk-pixbuf2.0-0:amd64 (2.36.5-3) .
@@ -54,4 +56,5 @@ Calculating upgrade... Done
 The following packages have been kept back:
 
 执行:
+
 >apt-get -u dist-upgrade
