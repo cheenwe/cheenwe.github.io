@@ -9,3 +9,5 @@ _study
 node_modules/
 package.json
 .DS_Store
+*.log
+*.out
