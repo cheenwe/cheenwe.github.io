@@ -61,6 +61,14 @@ category: ruby
 
 "hello".delete "lo" #=> "he"
 
+### 字符串 转 类
+
+>"Article".constantize
+
+or
+
+>Object.const_get("Article")
+
 ### 替换 gsub
 ```ruby
 b = "crm_property_anime_type"

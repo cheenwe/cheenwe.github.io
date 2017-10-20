@@ -5,6 +5,7 @@ tags: git
 categories: git
 ---
 
+[语义化版本 2.0.0](http://semver.org/lang/zh-CN/)
 
 ## 版本命名规范
 软件版本号由四部分组成，第一个1为主版本号，第二个1为子版本号，第三个1为阶段版本号，第四部分为日期版本号加希腊字母版本号，希腊字母版本号共有5种，分别为：base、alpha、beta、RC、release。

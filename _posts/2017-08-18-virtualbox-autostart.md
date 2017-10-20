@@ -1,7 +1,7 @@
 ---
 layout: post
 title: VirtualBox 给虚拟机磁盘扩容
-tags:   virtualbox
+tags:   virtualbox windows
 category:  virtualbox
 ---
 

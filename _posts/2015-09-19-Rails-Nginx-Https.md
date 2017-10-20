@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Rails服务器使用nginx来提供https的服务
+title: 提供https的服务
 tags:  rails  https
 categories: https
 ---
@@ -9,19 +9,38 @@ categories: https
 https(443)是针对http(80)的加密协议，它可以保证用户访问网站的过程中，通讯的数据是加密的，这样可以防止第三方监听，保护用户隐私。
 
 ##  免费ssl证书认证
-[地址](https://www.startssl.com/)
-
-## Ubuntu服务器
-### 首先安装nginx和openssl：
+[https://www.startcomca.com](https://www.startcomca.com/)
 
 ```
-sudo apt-get install nginx openssl
+sudo mkdir /etc/nginx/ssl
+cd /etc/nginx/ssl
+
+#生成private key
+sudo openssl genrsa -des3 -out server.key 2048
+这里问你输入一个passphrase,选择一个容易记得，下一步会需要输入。
+
+#生成 CSR
+sudo openssl req -new -key server.key -out server.csr
+
+Country Name (2 letter code) [AU]:US  #国家代码
+State or Province Name (full name) [Some-State]:New York #省份
+Locality Name (eg, city) []:NYC  #城市
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Awesome Inc #公司名称
+Organizational Unit Name (eg, section) []:   #部门名称
+Common Name (e.g. server FQDN or YOUR name) []: www.example.com                  
+Email Address []: admin@example.com  #管理员邮箱
+```
+生成之后，在CSR那个框框里面填入 server.csr 文件的内容。
+
+收到证书后，再/etc/nginx/ssl文件夹下面新建一个server.crt的文件，把证书内容粘贴进去。证书这部分就搞定了。
+
+## 自己颁发证书
+浏览器会提示 不安全
 
 ```
-### 生成服务器的秘钥公钥：
+sudo apt-get install  openssl
 
-```
-openssl req -new -nodes -keyout server.key -out server.csr
+openssl req -new -nodes -keyout server.key -out server.csr #生成 CSR和私有 KEY
 openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 
 ```
@@ -31,6 +50,9 @@ server.key 服务器的私钥。
 server.csr (certificate signing request) https证书签名请求。
 server.crt 生成的服务器证书。
 然后有这些文件，我们可以配置nginx服务了。
+
+
+## Ubuntu服务器 
 
 ### 生成nginx的配置文件：
 
@@ -81,19 +103,6 @@ sudo service nginx restart
 
 
 ## Centos服务器
-### 首先安装nginx和openssl：
-
-```
-yum install nginx openssl
-
-```
-### 生成服务器的秘钥公钥：
-
-```
-openssl req -new -nodes -keyout server.key -out server.csr
-openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
-
-```
 
 ### 生成nginx的配置文件：
 
@@ -143,7 +152,14 @@ server {
 }
 ```
 
-
 ### 然后重新启动nginx:
 
  service nginx restart
+
+## http 跳转 https
+
+server {
+  listen      80;
+  server_name server_name;
+  rewrite     ^   https://$server_name$request_uri? permanent;
+}

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: VirtualBox 开机自动启动虚拟机
-tags:   virtualbox
+tags:   virtualbox windows
 category:  virtualbox
 ---
 
