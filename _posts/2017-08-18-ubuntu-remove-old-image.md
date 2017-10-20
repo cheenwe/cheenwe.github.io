@@ -13,7 +13,9 @@ category:  ubuntu
 
 1. 查看系统现有内核
 
->dpkg --get-selections|grep linux-image
+```
+dpkg --get-selections|grep linux-image
+```
 
 linux-image-4.4.0-53-generic      install
 linux-image-4.8.0-53-generic      install
@@ -35,6 +37,8 @@ Linux chenwei 4.8.0-53-generic #56~16.04.1-Ubuntu SMP Tue May 16 01:18:56 UTC 20
 4. 清理残留文件
 
 到/usr/src目录下，删除已经卸载的内核目录。
+
+cd /usr/src
 
 sudo rm -rf  linux-headers-4.4.0-21/
 

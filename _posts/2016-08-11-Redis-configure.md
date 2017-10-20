@@ -23,11 +23,11 @@ sed 's/^port .*/port 0/' /etc/redis/redis.conf.orig | sudo tee /etc/redis/redis.
 
 echo 'unixsocket /var/run/redis/redis.sock' | sudo tee -a /etc/redis/redis.conf
 
-echo 'unixsocketperm 770' | sudo tee -a /etc/redis/redis.conf
+echo 'unixsocketperm 777' | sudo tee -a /etc/redis/redis.conf
 
 mkdir /var/run/redis
 chown redis:redis /var/run/redis
-chmod 755 /var/run/redis
+chmod 777 /var/run/redis
 
 if [ -d /etc/tmpfiles.d ]; then
   echo 'd  /var/run/redis  0755  redis  redis  10d  -' | sudo tee -a /etc/tmpfiles.d/redis.conf
