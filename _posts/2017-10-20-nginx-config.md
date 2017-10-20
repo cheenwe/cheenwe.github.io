@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Puma install errors
-tags:   puma 
-category:  gems
+title: nginx config
+tags:   nginx 
+category:  nginx
 ---  
 
 
