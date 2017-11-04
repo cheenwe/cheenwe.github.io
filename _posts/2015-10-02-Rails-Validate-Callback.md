@@ -25,12 +25,30 @@ category: rails
 
 * validates_numericality_of :age, :only_integer => true
 
+* validates :age, numericality: { only_integer: true }
+
 * validates_numericality_of :age, :greater_than => 18 #greater_than_or_equal_to, equal_to, less_than, less_than_or_equal_to
 
 * validates_presence_of :price,
       :message => Proc.new { |book, data|
       "You must provide #{data[:attribute]} for #{book.title}"
       }
+
+
+### 验证为整数
+
+*  validates :amount, numericality: { greater_than_or_equal_to: 0 }
+
+```
+:greater_than：属性值必须比指定的值大。该选项默认的错误消息是“must be greater than %{count}”；
+:greater_than_or_equal_to：属性值必须大于或等于指定的值。该选项默认的错误消息是“must be greater than or equal to %{count}”；
+:equal_to：属性值必须等于指定的值。该选项默认的错误消息是“must be equal to %{count}”；
+:less_than：属性值必须比指定的值小。该选项默认的错误消息是“must be less than %{count}”；
+:less_than_or_equal_to：属性值必须小于或等于指定的值。该选项默认的错误消息是“must be less than or equal to %{count}”；
+:other_than：属性值必须与指定的值不同。该选项默认的错误消息是“must be other than %{count}”。
+:odd：如果设为 true，属性值必须是奇数。该选项默认的错误消息是“must be odd”；
+:even：如果设为 true，属性值必须是偶数。该选项默认的错误消息是“must be even”；
+```
 
 ### 唯一性
 
