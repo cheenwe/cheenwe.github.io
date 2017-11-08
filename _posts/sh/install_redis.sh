@@ -5,9 +5,6 @@ curl -O http://download.redis.io/releases/redis-$VERSION.tar.gz
 tar zxf redis-$VERSION.tar.gz
 cd redis-$VERSION
 make && sudo make install
-cd ..
-sudo rm -R redis-$VERSION
-rm redis-$VERSION.tar.gz
 
 sudo cp redis-server /etc/init.d/redis-server
 sudo chmod +x /etc/init.d/redis-server
@@ -20,6 +17,10 @@ sudo chown redis.redis /var/lib/redis
 sudo chown redis.redis /var/log/redis
 
 sudo /etc/init.d/redis-server start
+
+cd ..
+sudo rm -R redis-$VERSION
+rm redis-$VERSION.tar.gz
 
 
 # or>>>>>>>>
@@ -38,9 +39,9 @@ echo 'unixsocket /var/run/redis/redis.sock' | sudo tee -a /etc/redis/redis.conf
 echo 'unixsocketperm 770' | sudo tee -a /etc/redis/redis.conf
 
 # Create the directory which contains the socket
-mkdir /var/run/redis
-chown redis:redis /var/run/redis
-chmod 755 /var/run/redis
+sudo mkdir /var/run/redis
+sudo chown redis:redis /var/run/redis
+sudo chmod 755 /var/run/redis
 
 # Persist the directory which contains the socket, if applicable
 if [ -d /etc/tmpfiles.d ]; then

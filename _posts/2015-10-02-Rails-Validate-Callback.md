@@ -37,7 +37,7 @@ category: rails
 
 ### 验证为整数
 
-*  validates :amount, numericality: { greater_than_or_equal_to: 0 }
+*  validates :amount, numericality: { greater_than_or_equal_to: 0 }, :allow_nil => true
 
 ```
 :greater_than：属性值必须比指定的值大。该选项默认的错误消息是“must be greater than %{count}”；

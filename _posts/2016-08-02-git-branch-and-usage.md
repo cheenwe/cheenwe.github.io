@@ -123,3 +123,21 @@ Git创建 Dev 分支的命令：
 
 >git branch -d fixbug-0.1
 
+
+
+
+
+## git tag usage
+
+```
+# 添加
+git tag -a V0.1.110811 -m"基本部署完成，有BUG待做"
+
+＃删除
+git tag -d V0.1.110811
+
+#推送到远程
+git push origin V0.1.110811
+
+git push –tags
+```
