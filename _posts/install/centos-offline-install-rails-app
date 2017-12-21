@@ -1,4 +1,5 @@
-# CentOS下里离线部署Rails 应用环境
+# CentOS　部署应用程序
+
  默认所有安装包都下载
 
 rsync  -aSz  . em@192.168.100.168:~/
@@ -171,3 +172,7 @@ bundle install
 cp /home/deploy/project/web_server/config/database.yml.example /home/deploy/project/web_server/config/database.yml
 
 rails db:create db:migrate db:seed
+
+
+
+## 重启脚本
