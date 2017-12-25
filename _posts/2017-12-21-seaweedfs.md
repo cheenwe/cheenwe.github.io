@@ -7,7 +7,13 @@ category:   server filesystem
 
 # seaweedfs
 
-## install go
+seaweedfsÊÇÒ»¸öÓÉ golang ¿ª·¢µÄ·Ö²¼Ê½´æ´¢ÎÄ¼şµÄÏµÍ³, ÊÊÓÃÓÚ´æ´¢´óÁ¿Ğ¡ÎÄ¼ş¡£
+
+## °²×°
+```shell
+
+# install golang
+
 wget https://dl.gocn.io/golang/1.9.2/go1.9.2.linux-amd64.tar.gz
 sudo tar -C /usr/local -zxvf go1.9.2.linux-amd64.tar.gz
 
@@ -17,73 +23,50 @@ echo "export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin" >> ~/.bashrc
 source ~/.bashrc
 go version
 
-## install  mercurial
+# install mercurial
 
-sudo apt install git mercurial unzip
+sudo apt install git mercurial
 
-go get github.com/chrislusf/seaweedfs/go/weed
+# install seaweedfs
+#go get github.com/chrislusf/seaweedfs/go/weed
 
-wget  https://bintray.com/artifact/download/chrislusf/seaweedfs/weed_0.70beta_linux_amd64.tar.gz
+wget  https://github.com/chrislusf/seaweedfs/releases/download/0.76/freebsd_amd64.tar.gz
+sudo tar -C /usr/local/bin/ freebsd_amd64.tar.gz
 
-sudo mkdir /home/data/
+```
 
-sudo chmod -R 777  /home/data/
+## Ê¹ÓÃ
 
+¿ªÆô·şÎñ
+
+```shell
+# Æô¶¯Ö÷·şÎñ: localhost:9333
 ./weed master
+# Æô¶¯¾í·şÎñ:
+./weed volume -max=100 -mserver="localhost:9333"
 
-./weed volume -dir="/home/data/" -max=5 -mserver="192.168.100.117:9333" -port=9080
+# »òÕß
 
-# æäº¤ä¸€ä¸ªå­˜å‚¨è¯·æ±‚ï¼Œè¿™ä¸ªæ—¶å€™weedå…ˆè¦åˆ†é…ä¸€ä¸ªå…¨å±€çš„æ–‡ä»¶ID
+./weed server -master.port=9333 -volume.port=8080 -dir="/tmp/data"
 
-curl -X POST http://192.168.100.117:9333/dir/assign
+```
 
-# å­˜å‚¨ä¸€å¼ å›¾ç‰‡
+ÉÏ´«ÎÄ¼ş
 
-curl -X PUT -F file=@/tmp/1.jpg http://192.168.100.117:9080/6,04f00144db
+```
+curl -F file=@/tmp/1.jpg http://localhost:9333/submit [15:19:42]
+>{"fid":"6,61db2c0e36","fileName":"1.jpg","fileUrl":"192.168.100.2:8080/6,61db2c0e36","size":131983}%
 
-curl -X PUT -F file=@/tmp/1.jpg http://192.168.100.172:9080/1,04f00144db
+#»ò
 
+# Ìá½»Ò»¸ö´æ´¢ÇëÇó£¬Õâ¸öÊ±ºòweedÏÈÒª·ÖÅäÒ»¸öÈ«¾ÖµÄÎÄ¼şID
+curl -X POST http://192.168.100.2:9333/dir/assign
 
+# ´æ´¢Ò»ÕÅÍ¼Æ¬
+curl -X PUT -F file=@/tmp/1.jpg http://192.168.100.2:8080/6,04f00144db
+```
+·ÃÎÊ 192.168.100.2:8080/6,61db2c0e36 ¼´²é¿´ÉÏ´«ÎÄ¼ş
 
+----
+²Î¿¼:¡¡https://yanyiwu.com/work/2015/01/09/weed-fs-source-analysis.html
 
-
-
-
-
-
-
-
-
-
-
-
-
-curl "http://192.168.100.117:9080/6/?pretty=y"
-
-
-
-alias s1='ssh chenwei@192.168.100.172'
-alias s2='ssh ubuntu@192.168.100.117'
-
-
-ssh-copy-id chenwei@192.168.100.172
-ssh-copy-id ubuntu@192.168.100.117
-
-
-
-
-## Install Go
-
-sudo apt-get install golang
-
-
-wget https://dl.gocn.io/golang/1.9.2/go1.9.2.linux-amd64.tar.gz
-
-
-scp chenwei@192.168.100.172:~/go1.9.2.linux-amd64.tar.gz .
-
-scp go1.9.2.linux-amd64.tar.gz ubuntu@192.168.100.117:~/
-
-
-
-http://blog.csdn.net/Anumbrella/article/details/78585937?locationNum=9&fps=1
