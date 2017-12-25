@@ -1,0 +1,9 @@
+#!/bin/sh
+# .git/hooks/pre-commit
+tag=$(git describe --tags `git rev-list --tags --max-count=1`)
+gitVersion=${tag##*.}
+num=$(git rev-list HEAD --count)
+echo $num
+#gitVersion =${gitVersion:0:3}${num} 
+git tag -a ${gitVersion:0:3}${num} -m test
+git push origin ${gitVersion:0:3}${num}

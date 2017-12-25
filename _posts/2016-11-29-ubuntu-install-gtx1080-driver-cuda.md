@@ -246,3 +246,22 @@ blacklist nvidia-96-updates
 alias nvidia nvidia_current_updates
 alias nouveau off
 alias lbm-nouveau off
+
+
+
+
+
+
+
+## 更新完显卡驱动后登录界面进入死循环, 输入密码无法登录…
+
+```sh
+CTRL+ALT+F1
+
+sudo apt remove nvidia-*
+sudo apt autoremove
+sudo nvidia-uninstall
+sudo reboot
+#重新安装显卡驱动
+
+```

@@ -29,7 +29,6 @@ def traverse_dir(file_path)
             end
         end
     end
-    
 end
 
 traverse_dir(TRAVERSE_PATH)

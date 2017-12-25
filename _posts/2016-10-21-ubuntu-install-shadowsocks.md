@@ -9,9 +9,11 @@ category: vpn
 
 ## 安装
 
->sudo apt-get update
->sudo apt-get install python-gevent python-pip
->sudo pip install shadowsocks
+```
+sudo apt-get update
+sudo apt-get install python-gevent python-pip
+sudo pip install shadowsocks
+```
 
 添加配置文件
 >sudo nano /usr/local/lib/python2.7/dist-packages/shadowsocks/config.json
