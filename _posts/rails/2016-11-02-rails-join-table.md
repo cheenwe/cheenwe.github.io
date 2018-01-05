@@ -43,3 +43,6 @@ class CreateJoinTableUserRole < ActiveRecord::Migration
   end
 end
 ```
+
+## 生成多态
+rails g model relay user_id:integer to_user_id:integer modelable:references{polymorphic}

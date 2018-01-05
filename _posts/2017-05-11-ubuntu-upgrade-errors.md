@@ -8,6 +8,25 @@ category:  ubuntu
 
 # ubuntu 报错问题记录
 
+## Windows 无法访问 \\192.168.xx.xx 您没有权限访问 \\192.168.xx.xx 请于网络管理员联系请求访问权限
+
+安装配置完 samba 后无法访问,出现以上问题, 关闭 selinux
+
+修改`/etc/selinux/config`文件中设置`SELINUX=disabled` ，然后重启服务器。
+
+临时方法:
+>setenforce 0
+
+## dpkg was interrupted,you must manually run dpkg --configure -a‘ to correct the problem
+```shell
+sudo rm /var/lib/dpkg/updates/*
+
+sudo apt-get update
+
+sudo apt-get upgrade
+
+```
+
 ## dpkg: error processing package util-linux (--configure)
 
 
@@ -41,16 +60,16 @@ done
 ## 重新配置时区
 
 >dpkg-reconfigure tzdata
- 
+
 
 Processing triggers for dbus (1.10.10-1ubuntu2) ...
 Processing triggers for libgdk-pixbuf2.0-0:amd64 (2.36.5-3) .
 
 
->sudo apt upgrade           
+>sudo apt upgrade
 
 Reading package lists... Done
-Building dependency tree       
+Building dependency tree
 Reading state information... Done
 Calculating upgrade... Done
 The following packages have been kept back:
