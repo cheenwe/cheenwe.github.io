@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Ruby 报错记录
-tags:    ruby rails erors
-category:   ruby rails
+tags:    ruby erors
+category:   ruby
 ---
 
 

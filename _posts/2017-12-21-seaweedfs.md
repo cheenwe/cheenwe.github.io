@@ -1,15 +1,15 @@
 ---
 layout: post
 title:  seaweedfs
-tags:   server filesystem
-category:   server filesystem
+tags: server filesystem åˆ†å¸ƒå¼æ–‡ä»¶ç³»ç»Ÿ
+category: filesystem
 ---
 
 # seaweedfs
 
-seaweedfsÊÇÒ»¸öÓÉ golang ¿ª·¢µÄ·Ö²¼Ê½´æ´¢ÎÄ¼şµÄÏµÍ³, ÊÊÓÃÓÚ´æ´¢´óÁ¿Ğ¡ÎÄ¼ş¡£
+seaweedfs æ˜¯ä¸€ä¸ªç”± golang å¼€å‘çš„åˆ†å¸ƒå¼å­˜å‚¨æ–‡ä»¶çš„ç³»ç»Ÿ, é€‚ç”¨äºå­˜å‚¨å¤§é‡å°æ–‡ä»¶ã€‚
 
-## °²×°
+## å®‰è£…
 ```shell
 
 # install golang
@@ -35,38 +35,38 @@ sudo tar -C /usr/local/bin/ freebsd_amd64.tar.gz
 
 ```
 
-## Ê¹ÓÃ
+## ä½¿ç”¨
 
-¿ªÆô·şÎñ
+å¼€å¯æœåŠ¡
 
 ```shell
-# Æô¶¯Ö÷·şÎñ: localhost:9333
+# å¯åŠ¨ä¸»æœåŠ¡: localhost:9333
 ./weed master
-# Æô¶¯¾í·şÎñ:
+# å¯åŠ¨å·æœåŠ¡:
 ./weed volume -max=100 -mserver="localhost:9333"
 
-# »òÕß
+# æˆ–è€…
 
 ./weed server -master.port=9333 -volume.port=8080 -dir="/tmp/data"
 
 ```
 
-ÉÏ´«ÎÄ¼ş
+ä¸Šä¼ æ–‡ä»¶
 
 ```
 curl -F file=@/tmp/1.jpg http://localhost:9333/submit [15:19:42]
 >{"fid":"6,61db2c0e36","fileName":"1.jpg","fileUrl":"192.168.100.2:8080/6,61db2c0e36","size":131983}%
 
-#»ò
+#æˆ–
 
-# Ìá½»Ò»¸ö´æ´¢ÇëÇó£¬Õâ¸öÊ±ºòweedÏÈÒª·ÖÅäÒ»¸öÈ«¾ÖµÄÎÄ¼şID
+# æäº¤ä¸€ä¸ªå­˜å‚¨è¯·æ±‚ï¼Œè¿™ä¸ªæ—¶å€™weedå…ˆè¦åˆ†é…ä¸€ä¸ªå…¨å±€çš„æ–‡ä»¶ID
 curl -X POST http://192.168.100.2:9333/dir/assign
 
-# ´æ´¢Ò»ÕÅÍ¼Æ¬
+# å­˜å‚¨ä¸€å¼ å›¾ç‰‡
 curl -X PUT -F file=@/tmp/1.jpg http://192.168.100.2:8080/6,04f00144db
 ```
-·ÃÎÊ 192.168.100.2:8080/6,61db2c0e36 ¼´²é¿´ÉÏ´«ÎÄ¼ş
+è®¿é—® 192.168.100.2:8080/6,61db2c0e36 å³æŸ¥çœ‹ä¸Šä¼ æ–‡ä»¶
 
 ----
-²Î¿¼:¡¡https://yanyiwu.com/work/2015/01/09/weed-fs-source-analysis.html
+å‚è€ƒ:ã€€https://yanyiwu.com/work/2015/01/09/weed-fs-source-analysis.html
 

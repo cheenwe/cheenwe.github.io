@@ -11,9 +11,9 @@ paginate: 10
 paginate_path: ":num"
 baseurl: ""
 
-title: "Cheenwe"
+title: "cheenwe的博客"
 email: "cxhyun@126.com"
-description: "A Ruby Coder"
+description: "记录开发中点滴"
 beian: "豫ICP备16011691号"
 github_username:  "cheenwe"
 swiftype_searchId: "9TDAXeK2smEEtWndRZJB"
