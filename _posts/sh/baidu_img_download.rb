@@ -100,7 +100,7 @@ if END_PAGE > 0
   (START_PAGE..END_PAGE).each do |page|
     p += 1
     puts "---------------- 第 #{page} 页数据 ----------------"
-    result = request_url(search_url(PER_PAGE, page*PER_PAGE))
+    result = request_url(search_url(PER_PAGE, page))
     JSON.parse(result)["data"].each_with_index do |list, index|
       write_pic_file(list["middleURL"], @down_dir, i.to_s)  unless list["middleURL"].nil?
       i += 1
@@ -115,7 +115,7 @@ else
   (START_PAGE..(total_nums/PER_PAGE).to_i).each do |page|
     p += 1
     puts "---------------- 第 #{page} 页数据 ----------------"
-    result = request_url(search_url(PER_PAGE, page*PER_PAGE))
+    result = request_url(search_url(PER_PAGE, page))
     JSON.parse(result)["data"].each_with_index do |list, index|
       write_pic_file(list["middleURL"], @down_dir, i.to_s) unless list["middleURL"].nil?
       i += 1

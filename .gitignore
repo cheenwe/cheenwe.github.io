@@ -11,3 +11,5 @@ package.json
 .DS_Store
 *.log
 *.out
+*.db
+__pycache__
