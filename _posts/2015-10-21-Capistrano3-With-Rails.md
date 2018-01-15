@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 使用capistrano3 进行rails自动化部署
-tags: rails capistrano
+tags: rails capistrano 部署
 category: deploy
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: Rails 离线 Bundle
 tags:   rails bundle
-category:  rails bundle
+category:  rails
 ---
 
 

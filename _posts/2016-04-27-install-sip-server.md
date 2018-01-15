@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ubuntu 安装 SIP 服务器
-tags: sip
+tags: ubuntu sip install
 category: server
 ---
 

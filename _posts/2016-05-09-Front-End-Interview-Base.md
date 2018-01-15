@@ -2,7 +2,7 @@
 layout: post
 title: 如何面试前端工程师：Github很重要
 tags: 前端基础 面试 JavaScript
-category: 前端
+category: frontend
 ---
 
 

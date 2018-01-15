@@ -1,7 +1,7 @@
 ---
 layout: post
 title: PostgreSQL Create View
-tags: postgresql
+tags: postgresql 创建视图
 category: postgresql
 ---
 

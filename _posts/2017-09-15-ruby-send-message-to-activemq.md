@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Rails Send Message To ActiveMQ
-tags:   gem ActiveMQ
-category:  ruby 
+tags:   gem ActiveMQ activemq
+category:  rails
 ---
 
 项目中有 c++ 程序需要写数据库等操作, 为了保证数据的一致性, c++ 程序更新完数据库后需要通知后台 rails web 程序更新数据显示, 使用消息总线 ActiveMQ 作为中间件.
@@ -55,14 +55,14 @@ rails g active_messaging:processor
 
 ### 添加监听队列
 
-在 项目目录 app 下创建 自己 的processors 
+在 项目目录 app 下创建 自己 的processors
 
 >my_message_processor.rb
 
 ```
 class MyMessageProcessor < ActiveMessaging::Processor
   #监听 dete_push
-  subscribes_to :dete_push 
+  subscribes_to :dete_push
 
   def on_message(message)
     logger.debug "MyMessageProcessor received: " + message

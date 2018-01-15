@@ -6,6 +6,8 @@ categories: ruby
 ---
 
 # Ruby模拟多线程测试服务器压力
+建议使用 (jemet)[http://jmeter.apache.org/download_jmeter.cgi] 测试
+
 用于测试接口服务器的稳定性,及最大并发量
 
 ## 多线程 demo

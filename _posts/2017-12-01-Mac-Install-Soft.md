@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Mac Install Soft
-tags:    mac
+tags:    mac install soft
 category:   mac
 ---
 

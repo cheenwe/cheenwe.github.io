@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Rails Join Table
-tags: rails基础
+tags: rails join_table uuid
 category: rails
 ---
 

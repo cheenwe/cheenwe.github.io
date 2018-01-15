@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 深入理解代码评审
-tags: coding
-categories: coding
+tags: coding review 代码评审
+categories: reading
 ---
 
 

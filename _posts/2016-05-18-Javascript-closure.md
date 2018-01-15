@@ -2,7 +2,7 @@
 layout: post
 title: 请用一句优雅的话表达javascript闭包
 tags: 前端基础 闭包 JavaScript
-category: 前端
+category: frontend
 ---
 
 严格的讲，闭包常常表现为一个函数内部的函数，它使用了非自己定义的、自己所在作用域内的变量，并且使这些变量突破了作用域的限制。

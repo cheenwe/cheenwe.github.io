@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Rails 离线 Bundle
-tags:   rails bundle
-category:  rails bundle
+tags:   rails offline bundle
+category:  rails
 ---
 
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Git 分支命名规范
-tags: git branch
+tags: git branch 分支命名规范
 categories: git
 ---
 
@@ -122,9 +122,6 @@ Git创建 Dev 分支的命令：
 最后，删除”修补bug分支”：
 
 >git branch -d fixbug-0.1
-
-
-
 
 
 ## git tag usage

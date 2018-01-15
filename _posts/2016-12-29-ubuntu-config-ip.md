@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ubuntu 设置 IP
-tags: ubuntu config
+tags: ubuntu config ip
 category:  ubuntu
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ubuntu挂载新硬盘
-tags:  ubuntu disk
+tags:  ubuntu disk 挂载新硬盘
 category: server
 ---
 

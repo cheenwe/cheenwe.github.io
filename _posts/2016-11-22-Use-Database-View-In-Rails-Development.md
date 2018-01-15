@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 在 Rails 项目开发过程中使用视图
-tags: rails
-category: rails基础 view
+tags: rails view
+category: rails
 ---
 
 # 在 Rails 项目开发过程中使用视图

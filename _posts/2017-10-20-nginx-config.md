@@ -1,9 +1,9 @@
 ---
 layout: post
 title: nginx config
-tags:   nginx 
+tags:   nginx config
 category:  nginx
----  
+---
 
 
 
@@ -12,14 +12,14 @@ category:  nginx
 
 ## open gzip
 ```
-# nano /etc/nginx/nginx.conf 
+# nano /etc/nginx/nginx.conf
 
 gzip_vary on;
 gzip_proxied any;
 gzip_comp_level 6;
 gzip_buffers 16 8k;
 gzip_http_version 1.1;
-gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript  image/jpeg image/gif image/png 
+gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript  image/jpeg image/gif image/png
 application/octet-stream text/html;
 ```
 

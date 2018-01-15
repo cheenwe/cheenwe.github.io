@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  seaweedfs
-tags: server filesystem 分布式文件系统
-category: filesystem
+tags: server seaweedfs filesystem 分布式文件系统
+category: seaweedfs
 ---
 
 # seaweedfs

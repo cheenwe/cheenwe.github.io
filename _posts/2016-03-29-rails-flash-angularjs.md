@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 在 AngularJS 中显示 Rails Flash中消息
-tags: rails angularjs
+tags: rails angularjs flash
 categories: ruby
 ---
 

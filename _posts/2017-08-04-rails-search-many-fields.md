@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 解决 Where 多条件查询
-tags:   rails
+tags:   rails where
 category:  rails
 ---
 

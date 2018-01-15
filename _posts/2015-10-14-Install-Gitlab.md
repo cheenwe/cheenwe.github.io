@@ -1,9 +1,7 @@
 ---
 layout: post
 title: 安装GitLab
-tags:
-  - gitlab
-  - 服务器
+tags: gitlab 源码安装
 category: gitlab
 ---
 

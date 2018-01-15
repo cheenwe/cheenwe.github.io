@@ -25,3 +25,7 @@ categories: server
     sudo ufw delete allow 80/tcp  #删除 80 端口的tcp协议许可
 
     sudo ufw allow 6881:6999/tcp  #许可一定范围端口 6881 – 6999 (torrent)
+
+
+## 关闭redhat防火墙
+>systemctl stop firewalld

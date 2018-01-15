@@ -1,16 +1,16 @@
 ---
 layout: post
 title: ip digital interchange
-tags:   ip 
-category:  ruby 
+tags:   ip  ip转数字
+category:  ruby
 ---
 
 
 
 
-#  IP地址数字相互转换
+# IP地址数字相互转换
 
-项目中需要存储设备的 IP 地址, 以我的理解直接存储 string 类型的字段, 直接读写很便利, 
+项目中需要存储设备的 IP 地址, 以我的理解直接存储 string 类型的字段, 直接读写很便利,
 但是项目有 c++ 程序部分, 数据库创建的为 integer 类型的字段. 涉及到需要把 ip 地址 和数字的互转, 方法记录如下:
 
 ## IP -> 数字

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ubuntu 下升级 nginx
-tags: ubuntu nginx
+tags: ubuntu nginx upgrade
 categories: nginx
 ---
 

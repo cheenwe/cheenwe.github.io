@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Rails项目使用UUID
-tags: uuid rails postgres
+tags: uuid rails postgresql
 category: rails
 ---
 

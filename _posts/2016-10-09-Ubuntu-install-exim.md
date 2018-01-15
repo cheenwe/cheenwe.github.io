@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ubuntu下配置exim服务器
-tags: mail
+tags: ubuntu mail exim
 category: server
 ---
 

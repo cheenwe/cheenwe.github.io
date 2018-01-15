@@ -1,7 +1,7 @@
 ---
 layout: post
 title: actioncable部署记录
-tags: rails
+tags: rails actioncable nginx
 category: 服务器
 ---
 

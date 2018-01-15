@@ -1,8 +1,8 @@
 ---
 layout: post
 title: AWS上Ubunt系统添加VPN
-tags: 服务器 VPN
-category: 服务器
+tags: 服务器 VPN pptpd
+category: vpn
 ---
 
 记录在AWS上安装搭建VPN,Mac及iPhone测试可成功使用,Linux Mint 无法链接.

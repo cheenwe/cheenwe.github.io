@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 字符串处理
-tags:  ruby
+tags:  ruby char
 category:  ruby
 ---
 

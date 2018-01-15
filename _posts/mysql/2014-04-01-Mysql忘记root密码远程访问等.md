@@ -1,8 +1,8 @@
 ---
 layout: post
 title: MySQL忘记root密码
-tags: MySQL 服务器 数据库
-categories: MySQL
+tags: MySQL mysql 忘记密码 数据库
+categories: mysql
 ---
 　
 

@@ -1,8 +1,8 @@
 ---
 layout: post
-title: MySQL 操作记录
-tags: MySQL 数据库
-categories: MySQL
+title: MySQL 优化 记录
+tags: MySQL mysql 优化
+categories: mysql
 ---
 
 

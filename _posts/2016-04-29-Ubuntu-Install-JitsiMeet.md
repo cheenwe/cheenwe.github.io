@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ubuntu 源码安装 Jitsi Meet
-tags: java sdk
+tags: ubuntu install jitsi meet java
 category: java
 ---
 

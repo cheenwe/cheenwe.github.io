@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Puma install errors
-tags:   puma 
-category:  gems
+tags:  rails gem puma
+category:  rails
 ---
 
 
@@ -22,7 +22,7 @@ mini_ssl.c:4:10: fatal error: 'openssl/bio.h' file not found
 ...
 An error occurred while installing puma (2.6.0), and Bundler cannot continue.
 Make sure that `gem install puma -v '2.6.0'` succeeds before bundling.
-``` 
+```
 
 解决
 
@@ -33,7 +33,7 @@ bundle install
 
 
 
-or  install  libssl-dev 
+or  install  libssl-dev
 >sudo apt-get install python-pip python-dev libffi-dev libssl-dev libxml2-dev libxslt1-dev libjpeg8-dev zlib1g-dev
 
 2017 10.20

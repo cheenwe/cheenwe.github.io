@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 使用 SSH Secure Shell Client 连接  Ubuntu 报错
-tags:   ssh
+tags:   ssh secure
 category:  ssh
 ---
 

@@ -1,15 +1,11 @@
 ---
 layout: post
 title: Rails 批量查询处理数据
-tags: rails基础
+tags: rails 分批检索 find_in_batches
 category: rails
 ---
 
-
-# Rails 批量查询处理数据 find_in_batches
-
 在某些情况下需要对大量的数据进行处理，可以使用 find_in_batches 方法进行处理
-
 
 
 ## 调用

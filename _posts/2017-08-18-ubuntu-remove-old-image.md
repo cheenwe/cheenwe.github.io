@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ubuntu Boot 空间不足
-tags:   ubuntu
+tags:   ubuntu boot
 category:  ubuntu
 ---
 

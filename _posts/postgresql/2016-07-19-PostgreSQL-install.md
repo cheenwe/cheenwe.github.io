@@ -1,7 +1,7 @@
 ---
 layout: post
 title: PostgreSQL 安装
-tags: postgresql
+tags: postgresql 安装
 category: postgresql
 ---
 
@@ -9,6 +9,13 @@ category: postgresql
 环境： Ubuntu 14.04
 
 ## 安装依赖包:
+
+
+## Add PG sources
+```bash
+echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" | sudo tee -a /etc/apt/sources.list.d/pgdb.list
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+```
 
 ```bash
 sudo apt-get install -y postgresql postgresql-client libpq-dev postgresql-contrib
@@ -18,6 +25,8 @@ sudo apt-get install -y postgresql postgresql-client libpq-dev postgresql-contri
 
 ```bash
 sudo -u postgres psql -d template1 -c "CREATE USER root CREATEDB;"
+
+#sudo su postgres -c "createuser -d -R -S $USER"
 ```
 
 ## 从模板中创建数据库并授予权限

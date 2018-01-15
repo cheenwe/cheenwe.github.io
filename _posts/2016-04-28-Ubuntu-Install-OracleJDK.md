@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ubuntu 下安装 Oracle JDK
-tags: java sdk
+tags: ubuntu install java sdk
 category: java
 ---
 

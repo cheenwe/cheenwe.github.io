@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Git commit message 规范
-tags: git
+tags: git commit规范 提交规范
 categories: git
 ---
 

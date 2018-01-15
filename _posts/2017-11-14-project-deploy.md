@@ -339,7 +339,7 @@ esac
  关闭redhat防火墙
  systemctl stop firewalld
  最好也关闭windows防火墙
- 键入服务器ip地址，查看是否能访问数金平台以及是否能注册。
+ 键入服务器ip地址，查看是否能访问系统以及是否能注册。
  如果ok，部署则ok！
 
 ```

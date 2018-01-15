@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 如何构建优质代码
-tags: coding
-categories: coding
+tags: coding dry 构建优质代码
+categories: reading
 ---
 
 

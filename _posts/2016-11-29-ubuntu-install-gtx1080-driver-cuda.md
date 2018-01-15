@@ -1,11 +1,11 @@
 ---
 layout: post
 title: Ubuntu 安装NVDGTX1080驱动及CUDA
-tags: mysql
-category:  mysql windows
+tags: ubuntu gtx1080 cuda
+category:  nvidia
 ---
 
-安装步骤
+## 安装步骤
 
 参考：
 
@@ -205,6 +205,21 @@ Q ?= @
 
 
 
+## 更新完显卡驱动后登录界面进入死循环, 输入密码无法登录…
+
+```sh
+CTRL+ALT+F1
+
+sudo apt remove nvidia-*
+sudo apt autoremove
+sudo nvidia-uninstall
+sudo reboot
+#重新安装显卡驱动
+
+```
+
+
+
 
 
 
@@ -247,21 +262,3 @@ alias nvidia nvidia_current_updates
 alias nouveau off
 alias lbm-nouveau off
 
-
-
-
-
-
-
-## 更新完显卡驱动后登录界面进入死循环, 输入密码无法登录…
-
-```sh
-CTRL+ALT+F1
-
-sudo apt remove nvidia-*
-sudo apt autoremove
-sudo nvidia-uninstall
-sudo reboot
-#重新安装显卡驱动
-
-```

@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 软件版本阶段说明
-tags: git
-categories: git
+tags: 版本 版本命名规范 版本号命名 版本号管理
+categories: 版本号
 ---
 
 [语义化版本 2.0.0](http://semver.org/lang/zh-CN/)

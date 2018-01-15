@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 升级node.js到最新稳定版
-tags: nodejs update
+tags: nodejs upgrade
 category: nodejs
 ---
 

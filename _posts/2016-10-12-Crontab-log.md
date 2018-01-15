@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ubuntu查看crontab运行日志
-tags: cron
+tags: cron log
 category: server
 ---
 

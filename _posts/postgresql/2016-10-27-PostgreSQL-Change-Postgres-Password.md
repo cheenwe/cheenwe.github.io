@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 修改 postgresql 密码
-tags: postgresql sql
+tags: postgresql 修改密码
 category: postgresql
 ---
 

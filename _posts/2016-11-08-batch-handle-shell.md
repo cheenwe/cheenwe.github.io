@@ -10,7 +10,7 @@ category: shell
 ## 批量拷贝目录下图片并重命名
 
 ```sh
-#!/bin/zsh
+#!/bin/bash
 for files in `find /home/chenwei/Pictures/system/fatigues/attachments/   -name "*.jpg"`
 do
   # 指定后缀名
@@ -24,7 +24,7 @@ do
 done
 ```
 
-- Rails 复制文件脚本 
+- Rails 复制文件脚本
 ```ruby
 Heartbeat.where('created_at > ?', Time.now - 4.hour).with_location.each do |record|
   FileUtils.cp(record.file.path, "/root/backup/1124/#{record.id}.jpg")

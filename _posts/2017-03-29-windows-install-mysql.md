@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Window 安装 MySQL步骤
-tags: mysql
-category:  mysql windows
+tags: windows install mysql
+category:  mysql
 ---
 
 

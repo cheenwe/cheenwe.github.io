@@ -1,14 +1,14 @@
 ---
 layout: post
 title: 安装 nokogiri gem 报错
-tags:   rails gem
-category:  rails 
+tags:   rails nokogiri ERROR
+category:  rails
 ---
 
 
 # 安装 nokogiri gem 报错
 把rails 升级到5.1.2后， nokogiri gem 报错， 日志信息如下：
- 
+
 ```shell
 Gem::Ext::BuildError: ERROR: Failed to build gem native extension.
 
@@ -28,7 +28,7 @@ mac上 libxml2 和 pkg-config 均安装
 
 查看安装信息
 
->brew info libxml2 
+>brew info libxml2
 
 最终解决方法:
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Redis 安装及配置 sockets 连接
-tags: redis
+tags: redis socket config
 category: redis
 ---
 

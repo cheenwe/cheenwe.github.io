@@ -2,7 +2,7 @@
 layout: post
 title: Ubuntu 安装QT报错解决
 tags: ubuntu qt
-category:  ubuntu
+category:  qt
 ---
 
 1. 安装qt linux 出现错误You are missing the OpenGL include files. Install the mesa-common-dev package，

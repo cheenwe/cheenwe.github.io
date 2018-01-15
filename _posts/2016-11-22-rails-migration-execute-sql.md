@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Migration 执行 SQL 语句
-tags: rails
-category: rails基础 migration
+tags: rails migration
+category: rails
 ---
 
 # Migration 执行 SQL 语句

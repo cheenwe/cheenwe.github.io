@@ -1,9 +1,7 @@
 ---
 layout: post
 title:  rails unscoped 作用域位置的影响
-tags:
-  - unscoped
-  - rails
+tags: rails scope unscoped
 category: rails
 ---
 

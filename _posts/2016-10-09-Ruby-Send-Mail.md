@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 发送邮件脚本
-tags: mail
+tags: shell sendmail
 category: server shell
 ---
 

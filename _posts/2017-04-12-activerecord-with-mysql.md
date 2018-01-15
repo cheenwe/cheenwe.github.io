@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Activerecord 连 MySQL
-tags: rails mysql
-category:  rails mysql
+tags: activerecord mysql
+category:  rails
 ---
 
 在写操作数据库脚本的时候使用Rails感觉有点太重了，研究了下只使用 activerecord连MySQL，记录如下：

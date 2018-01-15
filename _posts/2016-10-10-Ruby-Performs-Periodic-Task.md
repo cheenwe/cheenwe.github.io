@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Ruby 中执行周期性任务
-tags: mail
+title: Rails 中执行周期性任务
+tags: rails whenever  sidetiq
 category: server
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ruby 面试题目
-tags: ruby
+tags: ruby 题目
 categories: ruby
 ---
 

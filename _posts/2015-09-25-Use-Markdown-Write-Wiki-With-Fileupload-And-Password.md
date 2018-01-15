@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 使用Markdown写WIKI支持文件上传及简单密码验证
-tags: Markdown wiki  gollum
+tags: markdown wiki  gollum
 category: wiki
 ---
 

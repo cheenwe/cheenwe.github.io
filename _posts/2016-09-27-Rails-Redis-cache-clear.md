@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Rails项目中Redis 清除缓存
-tags: redis cache
+tags: redis cache clear
 category: redis
 ---
 

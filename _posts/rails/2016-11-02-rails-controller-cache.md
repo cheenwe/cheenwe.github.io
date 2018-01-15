@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Rails Controller 缓存
-tags: rails基础
+tags: rails controller cache
 category: rails
 ---
 

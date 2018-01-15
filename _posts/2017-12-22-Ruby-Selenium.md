@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Ruby With Selenium
-tags:    ruby test
-category:   ruby test
+tags:    ruby test selenium
+category:   ruby
 ---
 
 Selenium 是什么？一句话，自动化测试工具。它支持各种浏览器，包括 Chrome，Safari，Firefox 等主流界面式浏览器，如果你在这些浏览器里面安装一个 Selenium 的插件，那么便可以方便地实现Web界面的测试。

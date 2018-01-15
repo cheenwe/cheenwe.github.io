@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ubuntu设置允许root用户登录
-tags: ssh
+tags: ssh root login
 category: server
 ---
 

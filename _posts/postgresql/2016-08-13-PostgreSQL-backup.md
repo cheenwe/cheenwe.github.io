@@ -1,7 +1,7 @@
 ---
 layout: post
 title: PostgreSQL 备份及恢复
-tags: postgresql
+tags: postgresql 备份 恢复
 category: postgresql
 ---
 
