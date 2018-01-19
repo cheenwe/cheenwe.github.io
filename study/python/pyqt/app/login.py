@@ -1,41 +1,49 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from db import Db
 from main import Ui_MainWindow
-from signup import Ui_Dialog
+from signup import Ui_Signup
 
 
-class Ui_Dialog2(object):
+class Ui_Login(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.setFixedSize(597, 356)
+        Dialog.setFixedSize(600, 300)
 
-        self.label = QtWidgets.QLabel(Dialog)
-        self.label.setGeometry(QtCore.QRect(130, 160, 131, 21))
-        self.label.setObjectName("label")
-        self.label_2 = QtWidgets.QLabel(Dialog)
-        self.label_2.setGeometry(QtCore.QRect(130, 190, 151, 21))
-        self.label_2.setObjectName("label_2")
+        self.label_name = QtWidgets.QLabel(Dialog)
+        self.label_name.setGeometry(QtCore.QRect(130, 160, 131, 21))
+        self.label_name.setObjectName("label_name")
+
+        self.label_password = QtWidgets.QLabel(Dialog)
+        self.label_password.setGeometry(QtCore.QRect(130, 200, 151, 21))
+        self.label_password.setObjectName("label_password")
+
         self.txtUsername = QtWidgets.QLineEdit(Dialog)
         self.txtUsername.setGeometry(QtCore.QRect(300, 160, 191, 27))
         self.txtUsername.setObjectName("txtUsername")
+
         self.txtPassword = QtWidgets.QLineEdit(Dialog)
         ################## make the password invisible ############
         self.txtPassword.setEchoMode(QtWidgets.QLineEdit.Password)
         ###########################################################
-        self.txtPassword.setGeometry(QtCore.QRect(300, 190, 191, 27))
+        self.txtPassword.setGeometry(QtCore.QRect(300, 200, 191, 27))
         self.txtPassword.setObjectName("txtPassword")
+
         self.btnLogin = QtWidgets.QPushButton(Dialog)
         self.btnLogin.setGeometry(QtCore.QRect(210, 250, 71, 41))
         self.btnLogin.setObjectName("btnLogin")
+
         #################### Login Button funtion #######################
         self.btnLogin.clicked.connect(self.loginCheck)
         #################################################################
+
         self.btnSignup = QtWidgets.QPushButton(Dialog)
         self.btnSignup.setGeometry(QtCore.QRect(290, 250, 81, 41))
         self.btnSignup.setObjectName("btnSignup")
+
         #################### SignUp Button #############################
         self.btnSignup.clicked.connect(self.signupButton)
         ################################################################
+
         self.label_Heading = QtWidgets.QLabel(Dialog)
         self.label_Heading.setGeometry(QtCore.QRect(150, 90, 381, 51))
         self.label_Heading.setObjectName("label_Heading")
@@ -46,12 +54,12 @@ class Ui_Dialog2(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.label.setText(_translate("Dialog", "UserName:"))
-        self.label_2.setText(_translate("Dialog", "Password:"))
-        self.btnLogin.setText(_translate("Dialog", "Login"))
-        self.btnSignup.setText(_translate("Dialog", "SignUp"))
-        self.label_Heading.setText(_translate("Dialog", "Student Login Form"))
+        Dialog.setWindowTitle(_translate("Dialog", "XXX系统"))
+        self.label_name.setText(_translate("Dialog", "用户名:"))
+        self.label_password.setText(_translate("Dialog", "密码:"))
+        self.btnLogin.setText(_translate("Dialog", "登录"))
+        self.btnSignup.setText(_translate("Dialog", "注册"))
+        self.label_Heading.setText(_translate("Dialog", "登录页"))
 
     def welcomePage(self):
         self.homWindow = QtWidgets.QMainWindow()
@@ -82,7 +90,7 @@ class Ui_Dialog2(object):
 
     def signupButton(self):
         self.signDialog = QtWidgets.QDialog()
-        self.ui = Ui_Dialog()
+        self.ui = Ui_Signup()
         self.ui.setupUi(self.signDialog)
         self.signDialog.show()
 
@@ -95,7 +103,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog2()
+    ui = Ui_Login()
     ui.setupUi(Dialog)
     Dialog.show()
     sys.exit(app.exec_())

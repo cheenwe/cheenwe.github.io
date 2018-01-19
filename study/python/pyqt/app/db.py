@@ -9,15 +9,14 @@ class Db:
 
         self.connection.execute("CREATE TABLE IF NOT EXISTS clients(id      INTEGER  PRIMARY KEY   AUTOINCREMENT, name    TEXT, phone   TEXT, age     INTEGER, remark  TEXT)")
 
-        self.connection.execute("CREATE TABLE IF NOT EXISTS users(name TEXT NOT NULL,email TEXT, password TEXT)")
+        self.connection.execute("CREATE TABLE IF NOT EXISTS users(id INTEGER  PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, email TEXT, password TEXT)")
         self.connection.commit()
 
-    def insertTable(self,name,user,email,password):
+    def insertTable(self,name,email,password):
         print(name)
-        print(user)
         print(email)
         print(password)
-        self.connection.execute("INSERT INTO users VALUES(?,?,?,?)",(name,email,password))
+        self.connection.execute("INSERT INTO users(name,email,password) VALUES(?,?,?)",(name,email,password))
         self.connection.commit()
 
 

@@ -2,7 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from db import Db
 
 
-class Ui_Dialog(object):
+class Ui_Signup(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.setFixedSize(638, 441)
@@ -11,15 +11,15 @@ class Ui_Dialog(object):
         # self.label.setGeometry(QtCore.QRect(110, 190, 151, 31))
         # self.label.setObjectName("label")
 
-        self.label_2 = QtWidgets.QLabel(Dialog)
-        self.label_2.setGeometry(QtCore.QRect(110, 260, 151, 31))
-        self.label_2.setObjectName("label_2")
-        self.label_3 = QtWidgets.QLabel(Dialog)
-        self.label_3.setGeometry(QtCore.QRect(110, 300, 171, 31))
-        self.label_3.setObjectName("label_3")
-        self.label_4 = QtWidgets.QLabel(Dialog)
-        self.label_4.setGeometry(QtCore.QRect(110, 230, 161, 31))
-        self.label_4.setObjectName("label_4")
+        self.label_password = QtWidgets.QLabel(Dialog)
+        self.label_password.setGeometry(QtCore.QRect(110, 260, 151, 31))
+        self.label_password.setObjectName("label_password")
+        self.label_password2 = QtWidgets.QLabel(Dialog)
+        self.label_password2.setGeometry(QtCore.QRect(110, 300, 171, 31))
+        self.label_password2.setObjectName("label_password2")
+        self.label_email = QtWidgets.QLabel(Dialog)
+        self.label_email.setGeometry(QtCore.QRect(110, 230, 161, 31))
+        self.label_email.setObjectName("label_email")
         # self.txtUsername = QtWidgets.QLineEdit(Dialog)
         # self.txtUsername.setGeometry(QtCore.QRect(290, 190, 221, 27))
         # self.txtUsername.setObjectName("txtUsername")
@@ -52,9 +52,9 @@ class Ui_Dialog(object):
         self.label_5.setGeometry(QtCore.QRect(110, 150, 151, 31))
         self.label_5.setObjectName("label_5")
 
-        self.label_6 = QtWidgets.QLabel(Dialog)
-        self.label_6.setGeometry(QtCore.QRect(110, 150, 151, 31))
-        self.label_6.setObjectName("label_6")
+        self. label_name = QtWidgets.QLabel(Dialog)
+        self. label_name.setGeometry(QtCore.QRect(110, 150, 151, 31))
+        self. label_name.setObjectName(" label_name")
 
         self.txtName = QtWidgets.QLineEdit(Dialog)
         self.txtName.setGeometry(QtCore.QRect(290, 150, 221, 27))
@@ -90,19 +90,19 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Dialog", " XXX系统"))
 
-        self.label_2.setText(_translate("Dialog", "Password:"))
-        self.label_3.setText(_translate("Dialog", "Repeat Password:"))
-        self.label_4.setText(_translate("Dialog", "Email Address:"))
-        self.btnRegister.setText(_translate("Dialog", "Register"))
-        self.label_Heading.setText(_translate("Dialog", "Create Student Account"))
+        self.label_password.setText(_translate("Dialog", " 密码:"))
+        self.label_password2.setText(_translate("Dialog", "重复密码:"))
+        self.label_email.setText(_translate("Dialog", "邮箱:"))
+        self.btnRegister.setText(_translate("Dialog", "注册"))
+        self.label_Heading.setText(_translate("Dialog", " 账户注册"))
 
-        self.label_6.setText(_translate("Dialog", "Full Name:"))
+        self. label_name.setText(_translate("Dialog", "用户名:"))
 
     def loginPage(self):
         self.loginWindow = QtWidgets.QDialog()
-        self.ui = Ui_Dialog2()
+        self.ui = Ui_Signup2()
         self.ui.setupUi(self.loginWindow)
         self.loginWindow.show()
 
@@ -112,8 +112,8 @@ class Ui_Dialog(object):
 
 
     ############## check if password1 and password2 matches #############
-    def checkPassword(self,password1, password2):
-        return password1 == password2
+    def checkPassword(self,password, password2):
+        return password == password2
 
     ##################### clear fields ##################
     def clearField(self):
@@ -126,7 +126,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
+    ui = Ui_Signup()
     ui.setupUi(Dialog)
     Dialog.show()
     sys.exit(app.exec_())
