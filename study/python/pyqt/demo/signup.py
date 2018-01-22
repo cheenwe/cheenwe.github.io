@@ -19,11 +19,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
 
 from db import Db
-from main import MainPage
-from signup import Ui_SignupWindow
+# from main import MainPage
 
-
-class Ui_LoginWindow(object):
+class Ui_SignupWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(480, 360)
@@ -44,19 +42,20 @@ class Ui_LoginWindow(object):
         self.gridLayout.setContentsMargins(11, 11, 11, 11)
         self.gridLayout.setSpacing(6)
         self.gridLayout.setObjectName("gridLayout")
+        self.btnSignup = QtWidgets.QPushButton(self.layoutWidget)
+        self.btnSignup.setObjectName("btnSignup")
+
+        self.btnSignup.clicked.connect(self.signupCheck)
+
+
+        self.gridLayout.addWidget(self.btnSignup, 3, 0, 1, 1)
         self.password = QtWidgets.QLineEdit(self.layoutWidget)
         self.password.setWhatsThis("")
         self.password.setInputMethodHints(QtCore.Qt.ImhHiddenText|QtCore.Qt.ImhNoAutoUppercase|QtCore.Qt.ImhNoPredictiveText|QtCore.Qt.ImhSensitiveData)
         self.password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.password.setClearButtonEnabled(True)
         self.password.setObjectName("password")
-        self.gridLayout.addWidget(self.password, 1, 0, 1, 1)
-        self.btnLogin = QtWidgets.QPushButton(self.layoutWidget)
-        self.btnLogin.setObjectName("btnLogin")
-
-        self.btnLogin.clicked.connect(self.loginBtnClick)
-
-        self.gridLayout.addWidget(self.btnLogin, 2, 0, 1, 1)
+        self.gridLayout.addWidget(self.password, 2, 0, 1, 1)
         self.username = QtWidgets.QLineEdit(self.layoutWidget)
         self.username.setToolTip("")
         self.username.setWhatsThis("")
@@ -66,12 +65,15 @@ class Ui_LoginWindow(object):
         self.username.setClearButtonEnabled(True)
         self.username.setObjectName("username")
         self.gridLayout.addWidget(self.username, 0, 0, 1, 1)
-        self.btnRegister = QtWidgets.QPushButton(self.centralWidget)
-        self.btnRegister.setGeometry(QtCore.QRect(120, 250, 261, 32))
-        self.btnRegister.setObjectName("btnRegister")
-
-
-        self.btnRegister.clicked.connect(self.registerBtnClick)
+        self.email = QtWidgets.QLineEdit(self.layoutWidget)
+        self.email.setToolTip("")
+        self.email.setWhatsThis("")
+        self.email.setAccessibleName("")
+        self.email.setAccessibleDescription("")
+        self.email.setAutoFillBackground(False)
+        self.email.setClearButtonEnabled(True)
+        self.email.setObjectName("email")
+        self.gridLayout.addWidget(self.email, 1, 0, 1, 1)
 
         MainWindow.setCentralWidget(self.centralWidget)
         self.statusBar = QtWidgets.QStatusBar(MainWindow)
@@ -88,53 +90,35 @@ class Ui_LoginWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "登录界面"))
+        self.btnSignup.setText(_translate("MainWindow", "注    册"))
         self.password.setStatusTip(_translate("MainWindow", " 请输入密码"))
         self.password.setPlaceholderText(_translate("MainWindow", "密码"))
-        self.btnLogin.setText(_translate("MainWindow", "登录"))
         self.username.setStatusTip(_translate("MainWindow", "请输入用户名"))
         self.username.setPlaceholderText(_translate("MainWindow", "账户名"))
-        self.btnRegister.setText(_translate("MainWindow", "注册账号"))
+        self.email.setStatusTip(_translate("MainWindow", "请输入邮箱"))
+        self.email.setPlaceholderText(_translate("MainWindow", "邮箱"))
         self.menuBar.setWhatsThis(_translate("MainWindow", "loginPage"))
 
-
-    def loginBtnClick(self):
+    def signupCheck(self):
         username = self.username.text()
         password = self.password.text()
-        getDb = Db()
-        result = getDb.loginCheck(username,password)
-        if(result):
-            self.showMainPage()
-            self.clearField()
-            print(result)
+        email = self.email.text()
+        if self.checkFields(username,email,password):
+            self.showMessage("Error", "All fields must be filled")
         else:
-            print("password wrong")
-            self.showMessage("Warning","Invalid Username and Password")
-
-    def registerBtnClick(self):
-        print("registerBtnClick")
-        # self.showRegisterPage()
-        self.signupDialog = QtWidgets.QMainWindow()
-        self.ui = Ui_SignupWindow()
-        self.ui.setupUi(self.signupDialog)
-        self.signupDialog.show()
-
-    def showRegisterPage(self):
-        self.signupWindow = QtWidgets.QMainWindow()
-        self.ui = Ui_SignupWindow()
-        # self.ui.initUI()
-        self.ui.setupUi(self.signupWindow)
-
-    def showMainPage(self):
-        self.mainWindow = QtWidgets.QMainWindow()
-        self.ui = MainPage()
-        # self.ui.initUI()
-        self.ui.setupUi(self.mainWindow)
-        # self.homWindow.show()
-
+            getDb = Db()
+            result = getDb.insertUser(username,email,password)
+            self.showMessage("Success","Registration successul")
+            self.clearField()
 
     def clearField(self):
         self.username.setText(None)
         self.password.setText(None)
+        self.email.setText(None)
+
+    def checkFields(self,username,email,password):
+        if(username=="" or email == "" or password== ""):
+            return True
 
     def showMessage(self,title,msg):
         msgBox = QMessageBox()
@@ -148,8 +132,15 @@ if __name__ == '__main__':
 
     app = QApplication(sys.argv)
     MainWindow = QMainWindow()
-    ui = Ui_LoginWindow()
+    ui = Ui_SignupWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+
+    # app = QApplication(sys.argv)
+    # MainWindow = QMainWindow()
+    # ui = Ui_SignupWindow()
+    # ui.setupUi(MainWindow)
+    # # MainWindow.show()
+    # sys.exit(app.exec_())
 

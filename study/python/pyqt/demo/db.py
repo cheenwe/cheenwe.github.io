@@ -11,7 +11,7 @@ class Db:
         self.connection.commit()
 
     def insertClient(self,name,phone,age,remark):
-        self.connection.execute("INSERT INTO clients(name,phone,age,remark) VALUES(?,?,?)",(name,phone,age,remark))
+        self.connection.execute("INSERT INTO clients(name,phone,age,remark) VALUES(?,?,?,?)",(name,phone,age,remark))
         self.connection.commit()
 
     def insertUser(self,name,email,password):
