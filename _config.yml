@@ -22,7 +22,8 @@ baidu_tongji_id: "e5ffc49003a8ce5cec5c267ebf0172ca"
 
 comment_client_id: "51bf94ce166ab21b605b"
 comment_client_secret: "ac9e946ee16ddeb914212f37269a1bfacdf93246"
-comment_repo: "cheenwe.github.io"
+comment_user: "cheenwe"
+comment_repo: "comment"
 
 
 defaults:
