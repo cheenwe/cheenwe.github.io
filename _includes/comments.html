@@ -4,11 +4,11 @@
 <script>
 var gitment = new Gitment({
   // id: '页面 ID', // 可选。默认为 location.href
-  owner: "#{{ site.github_username }}",
-  repo: "#{{ site.comment_repo }}",
+  owner: "{{ site.github_username }}",
+  repo: "{{ site.comment_repo }}",
   oauth: {
-    client_id: "#{{ site.comment_client_id }}",
-    client_secret: "#{{ site.comment_client_secret }}",
+    client_id: "{{ site.comment_client_id }}",
+    client_secret: "{{ site.comment_client_secret }}",
   },
 })
 gitment.render('container')
