@@ -53,7 +53,17 @@ method：  加密方式, 推荐"aes-256-cfb"
 
 保存，退出。
 
+为 VPN 打开  端口 8388
 
 ## 客户端
 
 <https://github.com/shadowsocks>
+
+
+# Install IPsec For iphone
+
+ubuntu server
+
+>wget https://git.io/vpnsetup -O vpnsetup.sh && sudo sh vpnsetup.sh
+
+为 VPN 打开 UDP 端口 500 和 4500
