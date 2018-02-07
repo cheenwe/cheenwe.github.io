@@ -1,11 +1,13 @@
 ---
 layout: post
-title: Python locale error: unsupported locale setting
+title: Python 报错记录
 tags:    python error
 category:   python
 ---
 
-新购了台阿里云服务器, 在使用 pip 安装包的时候, 报 locale.Error, 解决如下:
+
+
+新购了台阿里云服务器, 在使用 pip 安装包的时候, 报 `Python locale error: unsupported locale setting`, 解决如下:
 
 
 ```sh
