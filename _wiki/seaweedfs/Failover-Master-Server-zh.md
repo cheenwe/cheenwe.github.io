@@ -16,11 +16,11 @@ This section is a quick way to start 3 master servers and 3 volume servers. All 
 本部分是启动3个主服务器和3个卷服务器的快速方法。 全做完了！
 
 ```bash
-weed server -master.port=9333 -dir=./1 -volume.port=8080 \ 
+weed server -master.port=9333 -dir=./1 -volume.port=8080 \
   -master.peers=localhost:9333,localhost:9334,localhost:9335
-weed server -master.port=9334 -dir=./2 -volume.port=8081 \ 
+weed server -master.port=9334 -dir=./2 -volume.port=8081 \
   -master.peers=localhost:9333,localhost:9334,localhost:9335
-weed server -master.port=9335 -dir=./3 -volume.port=8082 \ 
+weed server -master.port=9335 -dir=./3 -volume.port=8082 \
   -master.peers=localhost:9333,localhost:9334,localhost:9335
 ```
 
@@ -87,8 +87,8 @@ master 2: 192.168.100.172
 master 3: 192.168.100.2
 
 主 1:
-weed master -port=9333 -mdir=./1 -ip=192.168.100.117 
-weed volume -dir=./1 -port=8080 -mserver=192.168.100.117:9333 -ip=192.168.100.117 
+weed master -port=9333 -mdir=./1 -ip=192.168.100.117
+weed volume -dir=./1 -port=8080 -mserver=192.168.100.117:9333 -ip=192.168.100.117
 
 主 2:
 weed master -port=9333 -mdir=./2 -peers=192.168.100.117:9333  -ip=192.168.100.172
@@ -98,14 +98,17 @@ weed volume -dir=./2 -port=8080 -mserver=192.168.100.172:9333 -ip=192.168.100.17
 weed master -port=9333 -mdir=./3 -peers=192.168.100.117:9333  -ip=192.168.100.2
 weed volume -dir=./3 -port=8080 -mserver=192.168.100.2:9333 -ip=192.168.100.2
 
- 
+
 关闭　weed
 
 kill -9 $(ps aux | grep weed |  grep -v grep | awk '{print $2}') #关闭进程标示为: weed 的服务
 
 
+curl -X POST http://192.168.100.219:9334/dir/assign
+
+
 上传文件
-curl -F file=@/tmp/1.jpg http://localhost:9333/submit
+curl -F file=@/Users/chenwei/1\(00000\).jpeg  http://192.168.100.219:9333/submit
 
 
 alias s1='ssh chenwei@192.168.100.172'

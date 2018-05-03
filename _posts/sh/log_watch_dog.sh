@@ -17,15 +17,15 @@
 RED="\\033[31m"
 BLACK="\\033[0m"
 POS="\\033[60G"
-date=`date '+%-%m-%d'`
+date=`date '+%Y-%m-%d'`
 now=`date '+%Y-%m-%d %H:%M:%S'`
 
 SLEEP_TIME=3
 APP_PATH=`pwd`
-WATCH_APP='log.sh'
-WATCH_FLAG='log.sh'
+WATCH_APP='crm_start'
+WATCH_FLAG='crm_start'
 
-APP_NAME='watch_dog_log.sh'
+APP_NAME='crm_start'
 APP_LOG_FILE="${APP_PATH}/log/${APP_NAME}.${date}.log"
 
 # get log file
@@ -56,3 +56,19 @@ do
     fi
     sleep $SLEEP_TIME
 done
+
+
+
+# #!/bin/sh
+# cd $(cd `dirname $0`; pwd)
+
+# while [ 0 -lt 1 ]
+# do
+#     ret=`ps aux | grep "crm_start" |grep -v grep | wc -l`
+#     if [ $ret -eq 0 ]; then
+#    ./crm_start
+#     fi
+
+#     sleep 20;
+# done
+
