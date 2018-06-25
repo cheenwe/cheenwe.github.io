@@ -15,7 +15,7 @@
 # # # # # # # # END INIT INFO # # # # # # # # # # # # # # #
 
 
-current_file_path="/file/projects/projects/share/chejian/车检现场数据库/苏州车管所/zip/12/"
+current_file_path="/file/projects/projects/share/chejian/zip/12/"
 
 i=1
 for shname in `ls $current_file_path`

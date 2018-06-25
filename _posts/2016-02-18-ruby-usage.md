@@ -28,6 +28,16 @@ category: ruby
 
 ## 字符串处理
 
+### 补位
+```
+ "11".rjust(4, "0")
+#=> "0011"
+
+"11".ljust(4, "0")
+#=> "1100"
+
+```
+
 ### 连接
 > "a"+"b"*3 #=> "abbb"
 
@@ -195,3 +205,66 @@ end
 解决:
 >    add_index :item_contacters, [:itemable_id, :itemable_type, :contacter_id],
           :unique => true, :name => 'item_contacters_index'
+
+
+
+## 统计数组或哈希中不同元素的个数
+
+```ruby
+str='a,b,c,a,c,d'
+
+counter = Hash.new(0)
+
+str.split(',').each { |val| counter[val]+=1 }
+
+puts counter
+```
+
+
+```ruby
+    counter = Hash.new(0)
+
+    check_infos = eval("@check_infos.#{params[:search]}.map(&:reason)")
+
+    results = check_infos.uniq
+
+    check_infos.each { |val| counter[val]+=1 }
+
+    arr = []
+    results.each do |r|
+      if  r != "通过"
+      arr << {label: r, value:counter[r] }
+      end
+    end
+
+    render :json => {
+      :headcode => 200,
+      :message =>"ok",
+      data: arr,
+    }, :status => 200
+```
+
+
+## Rails 缓存
+
+```ruby
+    #  缓存机制, 先读缓存值,
+    #  -> 不存在: 去数据库查询
+    #  -> 存在:  直接使用
+
+    start_at = Date.parse(params[:start_at]).beginning_of_day rescue (Date.today.beginning_of_day)
+    end_at = Date.parse(params[:end_at]).end_of_day rescue   (Date.today.end_of_day)
+
+    if Rails.cache.read("check_sums-#{start_at}-#{end_at}").nil?
+      @vehicle_checks = VehicleCheck.includes(:check_infos).where(["created_at > ? AND created_at < ?", start_at, end_at])
+      @check_sums = {
+        :passed_total => @vehicle_checks.passed.size,
+        :total => @vehicle_checks.size
+      }
+      Rails.cache.write("check_sums-#{start_at}-#{end_at}", @check_sums, expires_in: Settings.cache_seconds.seconds)
+    else
+      @check_sums = Rails.cache.read("check_sums-#{start_at}-#{end_at}")
+    end
+```
+
+
