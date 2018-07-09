@@ -27,7 +27,7 @@ State or Province Name (full name) [Some-State]:New York #省份
 Locality Name (eg, city) []:NYC  #城市
 Organization Name (eg, company) [Internet Widgits Pty Ltd]:Awesome Inc #公司名称
 Organizational Unit Name (eg, section) []:   #部门名称
-Common Name (e.g. server FQDN or YOUR name) []: www.example.com                  
+Common Name (e.g. server FQDN or YOUR name) []: www.example.com
 Email Address []: admin@example.com  #管理员邮箱
 ```
 生成之后，在CSR那个框框里面填入 server.csr 文件的内容。
@@ -52,7 +52,7 @@ server.crt 生成的服务器证书。
 然后有这些文件，我们可以配置nginx服务了。
 
 
-## Ubuntu服务器 
+## Ubuntu服务器
 
 ### 生成nginx的配置文件：
 
@@ -84,6 +84,7 @@ server {
 
   location / {
       proxy_set_header Host $host;
+      proxy_set_header X-Real-ip $remote_addr;
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header X-Forwarded-Proto https;
       proxy_redirect off;
@@ -131,6 +132,7 @@ server {
 
   location / {
       proxy_set_header Host $host;
+      proxy_set_header X-Real-ip $remote_addr;
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header X-Forwarded-Proto https;
       proxy_redirect off;
@@ -163,3 +165,12 @@ server {
   server_name server_name;
   rewrite     ^   https://$server_name$request_uri? permanent;
 }
+
+
+## rails 获取 nginx 代理后的 请求IP
+
+> request.env["HTTP_X_REAL_IP"]
+
+nginx 中需要添加一行 ：
+
+      proxy_set_header X-Real-ip $remote_addr;
