@@ -40,4 +40,19 @@ function travFolder(){
 
 dir="/file/projects/projects/share/"
 travFolder $dir
-traverse_dir(TRAVERSE_PATH)
+
+## 当前目录下文件重命名
+dir=$(eval pwd)
+newext="jpg"
+i=1
+for file in $(ls $dir )
+do
+    name=$(ls $file | cut -d. -f1)
+    echo $name
+    i=`expr $i + 1`;
+    #echo $i
+
+    mv $file ${i}.$newext
+done
+
+echo "change name done!"
