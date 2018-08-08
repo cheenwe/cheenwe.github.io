@@ -1,3 +1,9 @@
+#! -coding:utf8 -*-
+# pip install bs4 pyquery selenium -i http://pypi.douban.com/simple  --trusted-host pypi.douban.com
+# # for mac
+# wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_mac64.zip
+# sudo cp ~/Downloads/chromedriver /usr/local/bin
+
 from selenium import webdriver
 import time
 import re
@@ -34,7 +40,7 @@ def view_page(num, data):
 
 				write_file(a)
 
-def openurl(url, page):
+def open_web_url(url, page):
 	browser = webdriver.Chrome()  # 打开浏览器
 	browser.get(url)  # 进入相关网站
 
@@ -66,4 +72,4 @@ def openurl(url, page):
 	browser.quit()
 
 url = 'http://srh.bankofchina.com/search/operation/search.jsp'
-openurl(url, 688)
+open_web_url(url, 688)
