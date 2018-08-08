@@ -28,6 +28,45 @@ sudo docker run -p 8001:8001  -v jenkins_home:/tmp/jenkins jenkins/jenkins:lts
 ```
 
 
+
+
+## New install docker
+
+```shell
+sudo apt-get remove docker docker-engine docker.io
+sudo rm -rf /var/lib/docker/
+
+sudo apt-get update
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo apt-key fingerprint 0EBFCD88
+
+
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+
+
+sudo apt-get update
+
+sudo apt-get install docker-ce
+
+# or select version
+# apt-cache madison docker-ce
+# sudo apt-get install docker-ce=<VERSION>
+
+docker -v
+```
+
+## New uninstall docker
+
+```
+sudo apt-get purge docker-ce
+sudo rm -rf /var/lib/docker
+```
+
 # ubuntu install jenkins
 
 This is the Debian package repository of Jenkins to automate installation and upgrade. To use this repository, first add the key to your system:
