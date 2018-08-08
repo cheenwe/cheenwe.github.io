@@ -39,3 +39,17 @@ sudo apt-get install libpcre3 libpcre3-dev zlib1g-dev libssl-dev build-essential
   # >nano /usr/local/nginx/conf/nginx.conf
 
   # include /home/deploy/web_server/config/nginx.conf
+
+
+# 配置代理 mysql 转发
+
+./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-http_realip_module --with-http_flv_module --with-http_mp4_module --with-http_gzip_static_module --with-stream --with-stream_ssl_module
+
+stream {
+   server {
+        listen 23456;
+        proxy_connect_timeout 1s;
+        proxy_timeout 3s;
+        proxy_pass 127.0.0.1:3306;
+   }
+}

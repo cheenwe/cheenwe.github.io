@@ -1,0 +1,170 @@
+<body> 
+<center> 
+<h1>Create A Bingo Card</h1> 
+<table> 
+    <tr> 
+        <th>B</th> 
+        <th>I</th> 
+        <th>N</th> 
+        <th>G</th> 
+        <th>O</th> 
+    </tr> 
+    <tr> 
+        <td id="square0">&nbsp;</td> 
+        <td id="square5">&nbsp;</td> 
+        <td id="square10">&nbsp;</td> 
+        <td id="square14">&nbsp;</td> 
+        <td id="square19">&nbsp;</td> 
+    </tr> 
+    <tr> 
+        <td id="square1">&nbsp;</td> 
+        <td id="square6">&nbsp;</td> 
+        <td id="square11">&nbsp;</td> 
+        <td id="square15">&nbsp;</td> 
+        <td id="square20">&nbsp;</td> 
+    </tr> 
+    <tr> 
+        <td id="square2">&nbsp;</td> 
+        <td id="square7">&nbsp;</td> 
+        <td id="free">Free</td> 
+        <td id="square16">&nbsp;</td> 
+        <td id="square21">&nbsp;</td> 
+    </tr> 
+    <tr> 
+        <td id="square3">&nbsp;</td> 
+        <td id="square8">&nbsp;</td> 
+        <td id="square12">&nbsp;</td> 
+        <td id="square17">&nbsp;</td> 
+        <td id="square22">&nbsp;</td> 
+    </tr> 
+    <tr> 
+        <td id="square4">&nbsp;</td> 
+        <td id="square9">&nbsp;</td> 
+        <td id="square13">&nbsp;</td> 
+        <td id="square18">&nbsp;</td> 
+        <td id="square23">&nbsp;</td> 
+    </tr> 
+</table> 
+<p><a href="./3.1.html" id="reload">Click here</a>to create a new card</p> 
+</center> 
+</body> 
+
+<style type="text/css"> 
+body { 
+    background-color:#FFF; 
+    color:black; 
+    font-size:20px; 
+    font-family:"Lucida Grande",Verdana,Arial,Helvetica,sans-serif; 
+    } 
+h1,th { 
+    font-family:Georgia, "Times New Roman", Times, serif; 
+    } 
+h1{ 
+    font-size:28px; 
+    } 
+table { 
+    border-collapse:collapse; 
+    } 
+th , td { 
+    padding:10px; 
+    border:2px solid #666; 
+    text-align:center; 
+    width:20% 
+    } 
+#free, .pickedBG { <!--中间的空格和点击后表格的样式-->
+    background-color: #f66; 
+} 
+ 
+.winningBG { 
+    background-image: url(images/1.gif); 
+} 
+</style> 
+
+
+<script type="text/javascript"> 
+    window.onload = initAll; 
+    var usedNums = new Array(76);<!--设置标记数组，一个数字对应一个元素--> 
+     
+    function initAll(){ 
+        document.getElementById("reload").onclick = anotherCard; 
+        newCard(); 
+        } 
+         
+    function newCard(){ 
+        for(var i=0;i<24;i++){ 
+            setSquare(i); 
+            } 
+        } 
+     
+    function setSquare(thisSquare){             <!--向表格填充数字，形参为表格序号-->
+        var currSquare = "square" + thisSquare; <!--获得方格的id名-->
+        var colPlace = new Array(0,0,0,0,0,1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4); 
+        var colBasis = colPlace[thisSquare] * 15; 
+        var newNum; 
+         
+        do{ 
+            newNum = colBasis + getNewNum()+1; 
+            }while(usedNums[newNum]); <!--找出没被标记的元素，防止出现重复数字--> 
+            usedNums[newNum] = true; 
+            document.getElementById(currSquare).innerHTML = newNum; 
+            document.getElementById(currSquare).className = ""; 
+            document.getElementById(currSquare).onmousedown = toggleColor; 
+        }<!--end of setSquare--> 
+         
+    function toggleColor(evt){                <!--鼠标按下事件处理函数-->
+        if(evt){<!--W3c标准--> 
+            var thisSquare = evt.target; 
+            } 
+        else{<!--Microsoft标准--> 
+            var thisSquare = window.event.srcElement; 
+            } 
+        if(thisSquare.className == ""){ <!--如果没有定义类，那么为格子添加类-->
+            thisSquare.className = "pickedBG"; 
+            } 
+        else{            <!--如果按错再按一下便能恢复-->
+            thisSquare.className = ""; 
+            } 
+        checkWin(); 
+        }<!--end of toggleColor--> 
+         
+    function getNewNum(){ <!--获取15以内的随机数字，并取整-->
+        return Math.floor(Math.random()*15); 
+        } 
+         
+    function anotherCard(){ 
+        for(var i=1;i<usedNums.length;i++){ 
+            usedNums[i]=false; 
+            } 
+        newCard(); 
+        return false;<!--停止对用户单击的处理，这样就不会加载href指向的页面--> 
+        } 
+ 
+    function checkWin(){ <!--检验是否获胜>
+        var winningOption = -1; 
+        var setSquares = 0;<!----> 
+        var winners = new Array(31,992,15360,507904,541729,557328,1083458,2162820,4329736,8519745,8659472,16252928); 
+         
+        for(var i=0;i<24;i++){ 
+            var currSquare = "square"+i; 
+            if(document.getElementById(currSquare).className != ""){ 
+                document.getElementById(currSquare).className = "pickedBG"; 
+                setSquaressetSquares = setSquares | Math.pow(2,i); 
+                } 
+            } 
+             
+        for(var i=0;i<winners.length;i++){ 
+            if((winners[i] & setSquares) == winners[i]){ 
+                winningOption = i; 
+                } 
+            }  
+         
+        if(winningOption > -1){ 
+            for(var i=0;i<24;i++){ 
+                if(winners[winningOption] & Math.pow(2,i)){ 
+                    currSquare = "square" + i; 
+                    document.getElementById(currSquare).className = "winningBG"; 
+                    } 
+                } 
+            } 
+        } 
+</script> 

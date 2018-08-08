@@ -199,3 +199,15 @@ EOF
 ## 获取软连接相对路径
 BASE_DIR=dirname $(readlink $0)
 
+
+
+## ./configure: error: SSL modules require the OpenSSL library.
+```
+#ubuntu下解决办法:
+
+apt-get install openssl libssl-dev
+
+
+# centos
+yum -y install openssl openssl-devel
+```

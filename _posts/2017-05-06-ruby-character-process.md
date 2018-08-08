@@ -22,7 +22,18 @@ end
 
 ```
 
-生成40位随机字符串
+## 生成40位随机字符串
 
->SecureRandom.urlsafe_base64(30).tr('_-', 'xx')
+```ruby
+SecureRandom.urlsafe_base64(30).tr('_-', 'xx')
+```
 
+## shell 生成随机字符串
+
+>cat /dev/urandom | strings -n 5 |head -n 1
+
+
+其中5表示字符串的字符数，1表示要生成多少行字符。
+
+
+> cat /dev/urandom | tr -dc A-Za-np-z1-9 | head -c 6

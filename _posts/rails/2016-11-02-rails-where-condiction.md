@@ -13,7 +13,7 @@ category: rails
 
 - 单条件
 
->User.where("name LIKE ?", "%#{search}%")
+>User.where("name LIKE ?", "%#{search}%") #查询包含某个字段
 
 - 数组查询
 

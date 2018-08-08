@@ -15,5 +15,5 @@ tree –help
 查看当前第3级的目录和文件
 
 ```
-tree -L 3 >tree.txt
+tree -L 3 >tree.txtw
 ```

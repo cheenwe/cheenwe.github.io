@@ -31,15 +31,15 @@ category: java
 
 ### 下载安装 JDK
 
->sudo apt-get install oracle-java7-installer
+>sudo apt-get install oracle-java8-installer
 
 ### 设置为默认 （如果未安装其他版本 JDK，可跳过此步骤）
->sudo apt-get install oracle-java7-set-defaul
+>sudo apt-get install oracle-java8-set-defaul
 
 ### 设置环境变量
 #在/etc/profile文件末尾加入 JDK :
 ```
-echo 'export JAVA_HOME=/usr/lib/jvm/java-7-oracle' >> /etc/profile
+echo 'export JAVA_HOME=/usr/lib/jvm/java-8-oracle' >> /etc/profile
 echo 'export JRE_HOME=${JAVA_HOME}/jre' >> /etc/profile
 echo 'export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib' >> /etc/profile
 echo 'export PATH=${JAVA_HOME}/bin:$PATH' >> /etc/profile
@@ -48,7 +48,7 @@ echo 'export PATH=${JAVA_HOME}/bin:$PATH' >> /etc/profile
 ### 设置默认 JDK 版本
 
 ```
-update-alternatives --install /usr/bin/java java /usr/lib/jvm/java-7-oracle/bin/java 300
+update-alternatives --install /usr/bin/java java /usr/lib/jvm/java-8-oracle/bin/java 300
 update-alternatives --config java
 ```
 
