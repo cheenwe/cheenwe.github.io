@@ -12,8 +12,8 @@
 
 #		添加用户
 #=== start ====
-username=chenwei
-password=chenwei0.0
+username=user
+password=user
 
 sudo useradd $username
 echo -e "$password\n$password" |sudo passwd $username
@@ -31,7 +31,7 @@ echo ""
 
 #	 重置密码
 #=== start ====
-password=emdata@2018
+password=123
 echo -e "$password\n$password" |sudo passwd user
 
 #=== end ====

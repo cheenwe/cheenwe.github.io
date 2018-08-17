@@ -156,7 +156,14 @@ Df命令是linux系统以磁盘分区为单位查看文件系统，可以加上�
 
 
 ## 文件同步
+
 >rsync -avz --progress ubuntu@192.168.100.9:/var/www/web_server .
+
+rsync -avz --progress chenwei@192.168.30.40:/data1/dataset/ .
+
+rsync -avz --progress chenwei@192.168.100.229:/home/ubuntu/projects/  .
+
+
 
 源文件夹  目的文件夹
 
