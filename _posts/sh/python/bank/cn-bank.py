@@ -1,4 +1,4 @@
-#! -coding:utf8 -*-
+w#! -coding:utf8 -*-
 # pip install bs4 pyquery selenium -i http://pypi.douban.com/simple  --trusted-host pypi.douban.com
 # # for mac
 # wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_mac64.zip

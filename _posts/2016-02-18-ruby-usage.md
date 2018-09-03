@@ -268,3 +268,29 @@ puts counter
 ```
 
 
+## 获取当前文件绝对路径
+
+    require 'pathname'
+    root_path = Pathname.new(File.dirname(__FILE__)).realpath
+
+
+## 读 yaml 文件内容
+    # config.yml
+    ## file_path: "xxxx"
+
+    require 'yaml'
+    data = YAML.load_file("#{root_path}/config.yml")
+    p data["file_path"]
+
+
+
+## gem source
+
+    gem sources --add https://gems.ruby-china.com/ --remove https://ruby.taobao.org/
+    sudo gem install bundler
+    bundle config mirror.https://ruby.taobao.org https://gems.ruby-china.com
+
+
+## bundler config
+
+     nano ~/.bundle/config

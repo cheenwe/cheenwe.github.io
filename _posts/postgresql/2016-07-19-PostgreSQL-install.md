@@ -72,3 +72,44 @@ sudo -u root -H psql -d ran_dev
 ```bash
 ran_dev> \q
 ```
+
+
+## 修改PostgreSQL数据库默认用户postgres的密码
+
+PostgreSQL数据库创建一个postgres用户作为数据库的管理员，密码随机，所以需要修改密码，方式如下：
+
+1. 登录PostgreSQL
+
+		sudo -u postgres psql
+
+
+2. 修改登录PostgreSQL密码
+
+		ALTER USER postgres WITH PASSWORD 'postgres';
+
+## PostgreSQL 允许远程访问设置方法
+1.修改pg_hba.conf文件，配置用户的访问权限（#开头的行是注释内容）：
+
+		host  all    all    192.168.1.0/24    md5
+		#表示允许网段192.168.1.0上的所有主机使用所有合法的数据库用户名访问数据库，并提供加密的密码验证。
+
+2.修改postgresql.conf文件，将数据库服务器的监听模式修改为监听所有主机发出的连接请求。
+
+		listen_addresses=’localhost’
+
+
+## 用户授权
+
+	sudo -u postgres psql
+	grant all on database crm_db to root;
+
+	#取消
+	revoke all on database crm_db from root;
+
+
+
+## 修改密码
+
+
+		alter user ubuntu with password 'ubuntu';
+

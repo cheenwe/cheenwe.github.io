@@ -218,3 +218,41 @@ apt-get install openssl libssl-dev
 # centos
 yum -y install openssl openssl-devel
 ```
+
+
+## 查看网络io
+> nload  -DH
+
+
+## 设置 dns 地址
+
+    sudo nano /etc/resolv.conf
+
+-add this
+
+    nameserver 114.114.114.114
+
+
+## 查看当前文件夹下文件夹大小
+
+    sudo du -h --max-depth=1
+
+
+## ubuntu Trash ‘s location
+
+    ~/.local/share/Trash/
+
+## 一键杀死多个进程
+
+    run_app='dashboard'
+    ps aux |grep $run_app |awk '{print $2}'|xargs kill -s 9
+
+
+## 批量替换当前目录下文件中账户和密码
+
+      #修改 real_user 为你数据库 用户
+    real_user=root
+      #修改 real_password 为你数据库 密码
+    real_password=root
+
+    grep -Ilr 3306  ./ | xargs -n1 -- sed -i 's/root:@/$real_user:$real_password@/g'

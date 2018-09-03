@@ -1,3 +1,39 @@
+##== default
+
+server {
+  server_name 192.168.101.101;
+  listen 80;
+  root /home/ubuntu/chenwei/project/homeland/public;
+
+  location ^~ /assets/ {
+    gzip on;
+    expires max;
+    add_header Cache-Control public;
+  }
+
+  try_files $uri/index.html $uri @unicorn;
+  location @unicorn {
+
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_redirect off;
+    #proxy_pass http://unicorn;
+    proxy_pass http://localhost:3001;
+}
+
+  error_page 500 502 503 504 /500.html;
+  client_max_body_size 4G;
+  keepalive_timeout 10;
+}
+
+
+
+
+
 #======= 静态文件
 server{
     listen 80;

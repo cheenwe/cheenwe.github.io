@@ -39,3 +39,7 @@ bundle config build.nokogiri --use-system-libraries
 bundle install
 
 ```
+
+## ubuntu
+
+	sudo apt-get install libxslt-dev libxml2-dev  zlib1g-dev  cmake

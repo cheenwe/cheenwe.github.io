@@ -1,8 +1,12 @@
 # install golang
 
-PACKAGE_NAME="1.9.2"
+PACKAGE_NAME="1.10.3"
 
-wget https://dl.gocn.io/golang/$PACKAGE_NAME/go$PACKAGE_NAME.linux-amd64.tar.gz
+wget https://studygolang.com/dl/golang/go$PACKAGE_NAME.linux-amd64.tar.gz
+
+#wget https://dl.gocn.io/golang/$PACKAGE_NAME/go$PACKAGE_NAME.linux-amd64.tar.gz
+# wget https://dl.google.com/go/go$PACKAGE_NAME.linux-amd64.tar.gz
+
 
 sudo tar -C /usr/local -zxvf go$PACKAGE_NAME.linux-amd64.tar.gz
 

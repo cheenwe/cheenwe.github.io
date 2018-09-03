@@ -5,9 +5,7 @@
 #  author      : chenwei
 #  version     : 0.0.1
 #  created     : 2018.01.16
-#  description : 车架号VIN（车辆识别代码）信息查询, 读取 txt中 vin 并检索信息存储到 txt中
-#                涉及: 文件读写, http 请求等.
-#                阿里云购买接口: https://market.aliyun.com/products/57002002/cmapi016152.html?spm=5176.10695662.1996646101.searchclickresult.995fc3agWKqFr#sku=yuncode1015200005
+#  description : 车架号VIN（车辆识别代码）信息查询
 #
 #  usage       :
 #                python3 vin_search.py

@@ -20,26 +20,58 @@
 require 'fileutils'
 
 # 配置A 目录 路径:
-dir_A = "/data/source/result/noglass_1/mark"
+dir_A = "/home/data/mark"
 
 # 配置B 目录 路径:
-dir_B = "/data/source/user18/noglass_1"
+dir_B = "/home/data/json"
 
 # 配置A 目录  处理完成后路径:
-aim_A = "/data/source/result/noglass_1_ok"
+aim_A = "/home/data/json_ok"
 
 Dir.foreach(dir_A) do |file|
     if file !="." and file !=".." and file != '.DS_Store'
 
-        puts "read " + file
+        # puts "read " + file
 
-        source_name =  + "dir_B/#{file}"
+        checkd_name = "#{dir_B}/#{file}.json"
+        dist_name =  "#{aim_A}/"
 
-        if File.exists? source_name
-          # FileUtils.cp source_name, dist_name
-          p " "*20 + name + "exists"
+        if File.exists? checkd_name
+          FileUtils.cp checkd_name, dist_name
+          # p " "*20 + name + "exists"
         end
     end
 end
 
+
+
+
+
+
+
+
+
+require 'fileutils'
+
+# 配置A 目录 路径:
+dir_A = "/home/data/mark"
+
+# 配置B 目录 路径:
+dir_B = "/home/data/json"
+
+
+Dir.foreach(dir_A) do |file|
+    if file !="." and file !=".." and file != '.DS_Store'
+
+        source_name =  + "#{dir_B}/#{file}.json"
+
+        # puts "read " + file
+
+        if File.exists? source_name
+          FileUtils.cp source_name, "#{dir_B}_new"
+        else
+          p source_name
+        end
+    end
+end
 

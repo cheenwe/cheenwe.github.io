@@ -1,7 +1,3 @@
-## ubuntu Trash ‘s location
-
- ~/.local/share/Trash/
-
 
 
 
@@ -102,4 +98,141 @@ su deploy
 
 
 
-## Falcon+ 监控报警
+## Ubuntu Falcon+ 监控报警
+
+
+  #安装 golang
+
+PACKAGE_NAME="1.10.3"
+wget https://studygolang.com/dl/golang/go$PACKAGE_NAME.linux-amd64.tar.gz
+
+sudo tar -C /usr/local -zxvf go$PACKAGE_NAME.linux-amd64.tar.gz
+mkdir -p ~/go/src
+echo "export GOPATH=$HOME/go" >> ~/.bashrc
+echo "export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin" >> ~/.bashrc
+source ~/.bashrc
+go version
+
+
+
+  # 导入数据库
+
+sudo apt install redis-server mysql-server
+
+cd /tmp/ && git clone https://github.com/open-falcon/falcon-plus.git
+cd /tmp/falcon-plus/scripts/mysql/db_schema/
+
+echo -e "$passwd" |smbpasswd -a $1 -s
+
+mysql -h 127.0.0.1 -u root -p < 1_uic-db-schema.sql
+mysql -h 127.0.0.1 -u root -p < 2_portal-db-schema.sql
+mysql -h 127.0.0.1 -u root -p < 3_dashboard-db-schema.sql
+mysql -h 127.0.0.1 -u root -p < 4_graph-db-schema.sql
+mysql -h 127.0.0.1 -u root -p < 5_alarms-db-schema.sql
+
+rm -rf /tmp/falcon-plus/
+
+
+
+  # 安装 falcon 后端
+
+version=v0.2.1
+
+mkdir -p ~/falcon/falcon-plus
+cd ~/falcon/falcon-plus
+
+wget https://github.com/open-falcon/falcon-plus/releases/download/$version/open-falcon-$version.tar.gz
+
+tar -zxf open-falcon-$version.tar.gz
+
+cd ~/falcon/falcon-plus
+
+  #修改 real_user 为你数据库 用户
+real_user=root
+  #修改 real_password 为你数据库 密码
+real_password=root
+
+grep -Ilr 3306  ./ | xargs -n1 -- sed -i 's/root:@/$real_user:$real_password@/g'
+
+
+
+  # 安装 falcon 前端
+
+
+sudo apt-get install -y python-virtualenv slapd ldap-utils libmysqld-dev build-essential python-dev libldap2-dev libsasl2-dev libssl-dev
+
+
+cd ~/falcon/falcon-plus
+
+git clone https://github.com/open-falcon/dashboard.git
+
+cd ~/falcon/falcon-plus/dashboard
+
+virtualenv ./env
+
+./env/bin/pip install -r pip_requirements.txt -i https://pypi.douban.com/simple
+
+  #dashboard的配置文件为： 'rrd/config.py'，请根据实际情况修改
+
+  ## API_ADDR 表示后端api组件的地址
+  API_ADDR = "http://127.0.0.1:8080/api/v1"
+
+  ## 根据实际情况，修改PORTAL_DB_*, 默认用户名为root，默认密码为""
+  ## 根据实际情况，修改ALARM_DB_*, 默认用户名为root，默认密码为""
+
+
+
+
+# 使用python处理selenium中的xpath定位元素的模糊匹配问题
+
+
+## 用contains，寻找页面中style属性值包含有sp.gif这个关键字的所有div元素,其中@后面可以跟该元素任意的属性名。
+
+self.driver.find_element_by_xpath('//div[contains(@style,"sp.gif")]').click()
+
+## 用start-with，寻找style属性以position开头的div元素,其中@后面可以跟该元素任意的属性名。
+
+self.driver.find_element_by_xpath('//div[start-with(@style,"position")]').click()
+
+## 用Text，直接查找页面当中所有的退出二字，经常用于纯文字的查找。
+
+self.driver.find_element_by_xpath('//*[text()="退出"]').click()
+
+## 用于知道超链接上显示的部分或全部文本信息
+
+self.driver.find_element_by_xpath('//a[contains(text(), "退出")]').click()
+
+
+
+
+
+
+
+
+
+
+在公司为了使用RTX，专门安装了一个XP的虚拟机，但是这个也不方便，每天得开个虚拟机，并且别人给你发的消息你很多时候不能立马看到。
+所以准备在Linux搞个RTX，这样就能解决我的问题。
+
+
+下面说一下安装的步骤，以及一些问题的解决方法：
+
+1、安装windows的软件，第一件事当然是安装个wine
+如果是Ubuntu，直接：
+
+$sudo apt-get install wine
+2、下载winetricks脚本
+
+    wget  http://kegel.com/wine/winetricks
+
+利用winetricks脚本安装一些RTX需要的windows的组件
+
+    sh winetricks msxml3 gdiplus riched20 riched30 ie6 vcrun6 vcrun2005sp1
+3、安装RTX
+从RTX官网下载RTX客户端，
+
+    wget http://dldir1.qq.com/foxmail/rtx/rtxclient2015formal.exe
+
+然后安装。
+4.安装之后的RTX有个问题，就是名字的前两个字是乱码，需要配置一下wine来解决这个问题。
+在菜单中选择wine->configure wine打开wine configure的对话框，选择函数库tab,在新增函数库顶替中选择oleaut32添加，然后重新启动RTX皆可。
