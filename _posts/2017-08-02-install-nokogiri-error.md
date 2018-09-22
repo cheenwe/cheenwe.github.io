@@ -40,6 +40,13 @@ bundle install
 
 ```
 
+
+```
+sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+xcode-select --install
+gem install nokogiri -v '1.8.1'
+```
+
 ## ubuntu
 
 	sudo apt-get install libxslt-dev libxml2-dev  zlib1g-dev  cmake
