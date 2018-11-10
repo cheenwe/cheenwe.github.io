@@ -63,16 +63,6 @@ category:  ubuntu
 
 > sudo vgchange -ay /dev/old
 
-```
-  WARNING: Running as a non-root user. Functionality may be unavailable.
-  /run/lvm/lvmetad.socket: connect failed: Permission denied
-  WARNING: Failed to connect to lvmetad. Falling back to internal scanning.
-  /run/lock/lvm/V_old:aux: open failed: Permission denied
-  Can't get lock for old
-  Cannot process volume group old
-```
-
-挂载. 激活lvm分区
 
 5. 挂载
 > sudo mount /dev/old/root /mnt/
