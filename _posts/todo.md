@@ -106,14 +106,15 @@ su deploy
 PACKAGE_NAME="1.10.3"
 wget https://studygolang.com/dl/golang/go$PACKAGE_NAME.linux-amd64.tar.gz
 
+
+#scp user@192.168.30.30:~/project/go1.10.3.linux-amd64.tar.gz .
+
 sudo tar -C /usr/local -zxvf go$PACKAGE_NAME.linux-amd64.tar.gz
 mkdir -p ~/go/src
 echo "export GOPATH=$HOME/go" >> ~/.bashrc
 echo "export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin" >> ~/.bashrc
 source ~/.bashrc
 go version
-
-
 
   # 导入数据库
 
@@ -122,16 +123,15 @@ sudo apt install redis-server mysql-server
 cd /tmp/ && git clone https://github.com/open-falcon/falcon-plus.git
 cd /tmp/falcon-plus/scripts/mysql/db_schema/
 
-echo -e "$passwd" |smbpasswd -a $1 -s
+passwd="root"
+mysql -u root -p$passwd < 1_uic-db-schema.sql
+mysql -u root -p$passwd < 2_portal-db-schema.sql
+mysql -u root -p$passwd < 3_dashboard-db-schema.sql
+mysql -u root -p$passwd < 4_graph-db-schema.sql
+mysql -u root -p$passwd < 5_alarms-db-schema.sql
 
-mysql -h 127.0.0.1 -u root -p < 1_uic-db-schema.sql
-mysql -h 127.0.0.1 -u root -p < 2_portal-db-schema.sql
-mysql -h 127.0.0.1 -u root -p < 3_dashboard-db-schema.sql
-mysql -h 127.0.0.1 -u root -p < 4_graph-db-schema.sql
-mysql -h 127.0.0.1 -u root -p < 5_alarms-db-schema.sql
-
+cd 
 rm -rf /tmp/falcon-plus/
-
 
 
   # 安装 falcon 后端
@@ -152,8 +152,8 @@ real_user=root
   #修改 real_password 为你数据库 密码
 real_password=root
 
-grep -Ilr 3306  ./ | xargs -n1 -- sed -i 's/root:@/$real_user:$real_password@/g'
 
+grep -Ilr 3306  ./ | xargs -n1 -- sed -i 's/root:@/$real_user:$real_password@/g'
 
 
   # 安装 falcon 前端
@@ -236,3 +236,25 @@ $sudo apt-get install wine
 然后安装。
 4.安装之后的RTX有个问题，就是名字的前两个字是乱码，需要配置一下wine来解决这个问题。
 在菜单中选择wine->configure wine打开wine configure的对话框，选择函数库tab,在新增函数库顶替中选择oleaut32添加，然后重新启动RTX皆可。
+
+
+
+
+
+## linux下使用cpu并发解压缩来加快速度
+
+pigz是支持并行的gzip,默认用当前逻辑cpu个数来并发压缩，无法检测个数的话，则并发8个线程
+
+>sudo apt install pigz 
+
+### 打包
+
+>tar --use-compress-program=pigz -cvpf 0918.tgz ./20180918/
+
+### 解包
+
+> tar --use-compress-program=pigz -xvpf package.tgz -C ./package
+
+
+
+

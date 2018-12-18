@@ -35,38 +35,6 @@ done
 
 
 
-
-
-root_folder="/data/20180817-01"
-
-folder="$root_folder/0.任务集/" #处理前的文件夹名
-new_folder="$root_folder/1.任务分配/" #处理后的文件夹名
-
-max_folder_id=12 #平均分配文件夹个数, 需要分到12个文件夹, 这里填的数字应该为11
-copy_size=2 #每次复制到文件夹个数, 需要分到一个文件夹10个文件, 这里填的数字应该为9
-
-for i in {1..`expr $max_folder_id + 1`}
-do
-    eval "mkdir -p  $new_folder$i"
-done
-
-i=1
-folder_id=1
-for line in `ls $folder`
-do
-    if [ $i -gt $copy_size ]; then
-        i=0
-        if [ $folder_id -gt $max_folder_id ]; then
-            folder_id=0
-        fi
-        folder_id=`expr $folder_id + 1`
-    fi
-    eval "cp  $folder$line  $new_folder$folder_id/"
-    i=`expr $i + 1`
-done
-
-
-
 # 平均分配文件到文件夹
 
 root_folder="/data/suanfa/gaochao/down"

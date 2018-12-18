@@ -256,3 +256,78 @@ yum -y install openssl openssl-devel
     real_password=root
 
     grep -Ilr 3306  ./ | xargs -n1 -- sed -i 's/root:@/$real_user:$real_password@/g'
+
+##  按文件大小排序 
+
+    ll -Sh 
+ 
+
+## 按文件修改时间排序显示
+
+    ll -rt 
+
+
+    ls -lt  #时间最近的在前面
+
+
+
+##  设置ls -l命令中显示的日期格式
+
+修改/etc/profile文件，在文件内容末尾加入
+
+    export TIME_STYLE='+%Y-%m-%d %H:%M:%S'
+
+执行如下命令，使你修改后的/etc/profile文件配置内容生效
+
+
+
+
+
+## 文件读写个数限制 
+
+>echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+
+
+## 快速修改服务器账户密码
+
+```
+user='user'
+password="123456"
+echo -e "$password\n$password" |sudo passwd  $user  
+
+```
+
+
+
+## 禁用及解禁账号
+
+
+```
+sudo usermod -L username 
+sudo usermod -U username #解禁 
+
+```
+
+
+## 将目录下文件生成list
+
+>find "/data/suanfa/result/0/img/" -name "*.jpg" >1.list     
+
+
+
+## 文件读写个数限制
+
+>echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+
+
+## 挂载glusterfs 
+
+> sudo mount -t glusterfs -o xlator-option=*dht.use-readdirp=no,use-readdirp=no,xlator-option=*md-cache.force-readdirp=no node1:/data1 /home/data_beifen/
+
+
+
+## 解决pip install 时locale.Error: unsupported locale setting
+
+
+    export LC_ALL=C
+    locale

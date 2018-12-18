@@ -291,6 +291,69 @@ puts counter
     bundle config mirror.https://ruby.taobao.org https://gems.ruby-china.com
 
 
-## bundler config
+## read file by line
 
-     nano ~/.bundle/config
+
+```
+File.open(down_file,"r") do |file|
+  while line  = file.gets
+    file_name  = line.split('/data/').last.delete('\"').chomp #打印出文件内容
+    p file_name
+    # if @oks.include?(file_name)
+    # else
+    #   p line
+    # end
+  end
+end
+```
+
+## remove repeat
+
+
+```
+
+
+arr =[]
+Crm::Contacter.find_in_batches(batch_size: 1000).each do |list|
+  list.each do |contacter|
+    conts = Crm::Contacter.where(phone: contacter.phone)
+    total = conts.size
+    if total > 1
+      uids = conts.map { |e| e.id  }
+      arr  << {:"#{contacter.phone}" => uids}
+    end
+  end
+end
+
+
+
+
+res = []
+phones = []
+ss.each do |i|
+  unless phones.include?(i.keys[0].to_s)
+    phones << i.keys[0].to_s
+    res << i
+  end
+end
+
+
+
+f = open("#{Rails.root}/tmp/a.csv","a")
+
+f.puts "phone, name, client_name,manager, created_at, updated_at \n"
+
+res.each do |i|
+  phone = i.keys[0].to_s
+  i.values.flatten.each do |j|
+    contacter = Crm::Contacter.find(j) rescue ''
+    if contacter.present?
+      p " #{phone rescue ''}, #{contacter.name rescue ''}, #{contacter.client.name rescue ''}, #{contacter.the_manager.cname rescue ''}, #{contacter.created_at.to_date rescue ''}, #{contacter.updated_at.to_date}"
+    end
+  end
+end
+
+f.close()
+
+```
+

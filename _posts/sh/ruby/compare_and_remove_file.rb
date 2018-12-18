@@ -20,10 +20,10 @@
 require 'fileutils'
 
 # 配置A 目录 路径:
-dir_A = "/data/source/result/noglass_2_bak/mark"
+dir_A = "/data/suanfa/gaochao/up/20181127_vtm_signature/1201/result/1201/mark"
 
 # 配置B 目录 路径:
-dir_B = "/data/source/user18/noglass_2"
+dir_B = "/data/suanfa/gaochao/up/20181127_vtm_signature/1201"
 
 # 配置A 目录  处理完成后路径:
 #aim_A = "/data/source/result/noglass_1_ok"
