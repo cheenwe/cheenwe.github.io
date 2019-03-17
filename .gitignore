@@ -12,4 +12,5 @@ package.json
 *.log
 *.out
 *.db
+*.so
 __pycache__
