@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include "MakeLic.h"
 
 using namespace std;
 
@@ -12,60 +13,80 @@ bool has_contain(const string &main_str, const string &str)
 {
     string::size_type idx;
 
-    idx = main_str.find(str);   //在a中查找b.
-    if (idx == string::npos) //不存在。
+    idx = main_str.find(str); //在a中查找b.
+    if (idx == string::npos)  //不存在。
         return false;
     else
         return true;
 }
 
 //string split 字符串分割
-vector<string> split(const string &in, const string &delim)
+vector<string> split(const string &str, const string &delim)
 {
-    stringstream tran(in.c_str());
-    vector<string> out;
+    vector<string> res;
+    if ("" == str)
+        return res;
+    //先将要切割的字符串从string类型转换为char*类型
+    char *strs = new char[str.length() + 1]; //不要忘了
+    strcpy(strs, str.c_str());
 
-    if (has_contain(in, delim))
+    char *d = new char[delim.length() + 1];
+    strcpy(d, delim.c_str());
+
+    char *p = strtok(strs, d);
+    while (p)
     {
-        string tmp;
-        out.clear();
-        while (std::getline(tran, tmp, *(delim.c_str())))
-        {
-            out.push_back(tmp);
-        }
-        return out;
+        string s = p;    //分割得到的字符串转换为string类型
+        res.push_back(s); //存入结果数组
+        p = strtok(NULL, d);
     }
-    else{
-        // string jjjjj;
-        // tran >> out;
-        out.push_back(in.c_str());
-        return out;
-    }
+    return res;
 }
 
+static string getCurrentDateStr()
+{
+    time_t t = time(NULL);
+    char ch[64] = {0};
+    strftime(ch, sizeof(ch) - 1, "%Y-%m-%d", localtime(&t)); //年-月-日 时-分-秒
+    return ch;
+}
 
-// 2019-01-02 3 MachineID  MachineSN
+// UUID=GPU-b6ba1ccf-79b3-6ce8-3a4e-af132aadda96
+// SN=0119010200005-00:50:c2:41:94:e2
+
+//file Gpuid Mac  2019-01-02 3
 
 int main(int argc, char *argv[])
 {
-    // std::cout << "hello, world" << std::endl;
-    std::cout << "size: " << argc << std::endl;    //参数个数
-    std::cout << "run : " << argv[0] << std::endl;  //和shell相同， 第一个参数是运行命令行本身
+    cout << " ===========  start :" << argv[0] << "  参数: " << argc << " =========== " << endl;
+    cout << "file: " << argv[1] << endl;
+    cout << "GPUID: " << argv[2] << endl;
+    cout << "mac: " << argv[3] << endl;
+    cout << "date: " << argv[4] << endl;
+    cout << "num: " << argv[5] << endl;
+    // cout << "input1: " << argv[4] << endl;
+    // cout << "input2: " << argv[4] << endl;
+    cout << " =========== end =========== " << endl;
 
-    std::cout << "input1: " << argv[1] << std::endl;
+    string start_at = getCurrentDateStr();
 
-    string input_date = argv[1];
-    string input_year = argv[2];
-    string input_MachineID = argv[3];
-    string input_MachineSN = argv[4];
-
-    string start_at = "2019-01-02";
-
-    if (input_date != "")
+    // 判断输入是否是日期
+    if (has_contain(argv[4], "-"))
     {
-        start_at = input_date;
+        start_at = argv[4];
     }
-    else{
+    else
+    {
+        cout << ">>>>>>>>>>>>>" << start_at  << endl;
+    }
+
+    // 判断输入是否是年
+    if (argv[5] != "")
+    {
+        cout << argv[5] << endl;
+    }
+    else
+    {
         cout << ">>>>>>>>>>>>>" << endl;
     }
 
@@ -78,40 +99,45 @@ int main(int argc, char *argv[])
     int StartTimeyear = atoi(date_str[0].c_str());
     int StartTimemonth = atoi(date_str[1].c_str());
     int StartTimeday = atoi(date_str[2].c_str());
+    int year_num = atoi(argv[3]) ;
 
-    // StartTimeyear=2017
-    // StartTimemonth=4
-    // StartTimeday=16
-    // EndTimeyear=2022
-    // EndTimemonth=5
-    // EndTimeday=29
-    // Version=1.0.0.3
-    // UUID=GPU-b6ba1ccf-79b3-6ce8-3a4e-af132aadda96
-    // SN=0119010200005-00:50:c2:41:94:e2
-    // LicID=1
+    int EndTimeyear = StartTimeyear + year_num;
+
+    cout << StartTimeyear << endl;
+    cout << EndTimeyear << endl;
 
     // char ID[64];
     // strcpy(ID, "GPU-b6ba1ccf-79b3-6ce8-3a4e-af132aadda96xxxxxxxxxxxxxxxxxxxxxxx");
 
-    // LIC_TIME ts;
-    // ts.dwYear = 2019;
-    // ts.dwMonth = 3;
-    // ts.dwDay = 17;
-    // ts.dwHour = 17;
-    // ts.dwMinute = 7;
-    // ts.dwSecond = 25;
+    LIC_TIME stime;
+    stime.dwYear = StartTimeyear;
+    stime.dwMonth = StartTimemonth;
+    stime.dwDay = StartTimeday;
+    stime.dwHour = 24;
+    stime.dwMinute = 0;
+    stime.dwSecond = 0;
 
-    // LicDara lcD;
-    // lcD.tCur = ts;
-    // lcD.tEnd = ts;
-    // lcD.tStart = ts;
+    LIC_TIME etime;
+    etime.dwYear = EndTimeyear;
+    etime.dwMonth = StartTimemonth;
+    etime.dwDay = StartTimeday;
+    etime.dwHour = 24;
+    etime.dwMinute = 0;
+    etime.dwSecond = 0;
 
-    // strcpy(lcD.szLicID, "1");
-    // strcpy(lcD.szMachineID, "GPU-b6ba1ccf-79b3-6ce8-3a4e-af132aadda96");
-    // strcpy(lcD.szMachineSN, "0118050200009-00:50:c2:40:14:a4");
-    // strcpy(lcD.szVersion, "1.0.0.3");
+    LicDara lcD;
+    lcD.tCur = stime;
+    lcD.tStart = stime;
+    lcD.tEnd = etime;
 
-    // char *license = "XXX.txt";
+    strcpy(lcD.szLicID, "1");
+    strcpy(lcD.szMachineID, argv[2]);
+    strcpy(lcD.szMachineSN, argv[3]);
+    strcpy(lcD.szVersion, "1.0.0.3");
+
+    char *license = argv[0];
+
+    // MakeLic(license, lcD);
 
     return 0;
 }
