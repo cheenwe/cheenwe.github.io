@@ -106,3 +106,66 @@ server {
                 proxy_pass http://api/api;
         }
 }
+
+
+
+
+
+
+
+
+server {
+  server_name iot.shaee.cn;
+  listen 443;
+  root  /root/project/istar/public;
+
+  ssl_certificate  /root/project/cert/1540158928481.pem;
+  ssl_certificate_key  /root/project/cert/1540158928481.key;
+  ssl_session_timeout 5m;
+  ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+  ssl_prefer_server_ciphers on;
+
+  location ^~ /assets/ {
+    gzip on;
+    expires max;
+    add_header Cache-Control public;
+  }
+
+  try_files $uri/index.html $uri @unicorn;
+  location @unicorn {
+
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $https_host;
+    proxy_redirect off;
+    proxy_pass http://unicorn;
+}
+
+  error_page 500 502 503 504 /500.html;
+  client_max_body_size 4G;
+  keepalive_timeout 10;
+}
+
+
+server {
+    listen 443;
+    server_name iot.shaee.cn;
+
+    ssl on;
+    root  /root/project/istar/public;
+    ssl_certificate   /root/cert/qa/214291217330163.pem;
+    ssl_certificate_key  /root/cert/qa/214291217330163.key;
+    ssl_session_timeout 5m;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_prefer_server_ciphers on;
+
+    location @unicorn {
+
+      proxy_pass http://unicorn;
+    }
+}
