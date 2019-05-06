@@ -93,6 +93,10 @@ category: linux
 0 1 * * * /home/root/mysqlbackup.sh
 
 
+每分钟执行一次
+    */1 * * * * /usr/local/nginx/html/backup_db.sh
+
+
 ## 设置开机启动脚本执行
   Ubuntu开机之后会执行/etc/rc.local文件中的脚本
 
@@ -162,6 +166,28 @@ Df命令是linux系统以磁盘分区为单位查看文件系统，可以加上�
 rsync -avz --progress chenwei@192.168.30.40:/data1/dataset/ .
 
 rsync -avz --progress chenwei@192.168.100.229:/home/ubuntu/projects/  .
+
+
+sudo apt-get install rsync
+
+## 删除大量小文件
+
+rsync --delete-before -d -a -H -v --progress --stats /tmp /your_need_delete_files
+
+or
+
+rsync --delete-before -d /tmp /your_need_delete_files
+ 
+
+## 删除大件
+
+rsync  --delete-before -d --progess --stats /tmp /your_need_delete_folder
+
+
+## 同步文件
+
+rsync -avz top20 ubuntu@192.168.70.122:/data/public/testtop20/
+
 
 
 

@@ -148,3 +148,8 @@ mount -vl -t ext3 /dev/sdb1 /backup  挂载文件系统/显示标签
 Filesystem            Size  Used Avail Use% Mounted on
 /dev/sda1             139G  121G   12G  92% /
 /dev/sdb1             924G   90G  834G   11% /backup
+
+
+
+
+
