@@ -1,11 +1,12 @@
 ---
 layout: post
-title: [oracle] 安装及配置
+title: win7 oracle 安装及配置
 tags:    oracle 
 category:   oracle
 ---
 
-## 安装
+
+
 ### win7安装oracle 32位版本
 
 
@@ -36,7 +37,7 @@ required for OUI
 
 
 
-## 数据部 oracle 
+## 数据用 oracle 
 
 >192.168.100.200
 
