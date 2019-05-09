@@ -38,8 +38,8 @@ defaults:
 
 
 
-url: "https://www.cheenwe.cn"
-imgrepo: "https://www.cheenwe.cn/static/img"
+url: "https://cheenwe.cn"
+imgrepo: "https://cheenwe.cn/static/img"
 
 # url: "http://127.0.0.1:4000"
 # imgrepo: "http://127.0.0.1:4000/static/img"
