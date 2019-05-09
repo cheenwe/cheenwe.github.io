@@ -9,7 +9,7 @@ kramdown:
 
 paginate: 10
 paginate_path: ":num"
-baseurl: "https://cheenwe.cn"
+baseurl: ""
 
 title: "cheenwe的博客"
 email: "cxhyun@126.com"
