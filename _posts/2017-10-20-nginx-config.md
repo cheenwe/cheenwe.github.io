@@ -106,3 +106,12 @@ server {
 }
 
 ```
+
+
+
+## nginx修改版本号
+
+     sudo nano /etc/nginx/nginx.conf 
+
+     # 解开注释
+     server_tokens  off;

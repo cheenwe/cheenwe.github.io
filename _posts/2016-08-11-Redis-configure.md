@@ -48,3 +48,44 @@ config.cache_store = :redis_store, { path: '/var/run/redis/redis.sock', db: 1}, 
 
 config.session_store :redis_store, { servers: { path: '/var/run/redis/redis.sock', db: 1 } }
 ```
+
+
+## 连接
+
+```sh
+redis-cli -s /var/run/redis/redis.sock
+
+del cache:gitlab:rack::attack:allow2ban:ban:ip #删除 gitlab  Rack_Attack blacklist ip
+```
+
+## 设置密码
+
+1. 初始化Redis密码：
+
+编辑redis.conf配置文件，找到requirepass参数，这个就是配置redis访问密码的参数:
+
+    # requirepass foobared  
+
+    去掉注释修改为 requirepass redis123；
+
+   （Ps:需重启Redis才能生效）
+
+2. 不重启Redis设置密码（临时的，当服务器重启了密码必须重设）：
+
+```sh
+
+redis-cli 
+config set requirepass Password #密码 Password
+# OK
+
+```
+
+## 取消密码
+
+```sh
+# OK
+auth Password
+config set requirepass ""
+```
+
+
