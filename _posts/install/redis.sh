@@ -35,3 +35,10 @@ sudo rm -R $PACKAGE_NAME
 
 rm $PACKAGE_NAME.tar.gz
 
+
+
+
+
+sudo add-apt-repository ppa:chris-lea/redis-server
+sudo apt-get update
+sudo apt-get install redis-server

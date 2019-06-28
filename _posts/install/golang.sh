@@ -20,3 +20,17 @@ go version
 # 工程中自动下载的库存放于$HOME/go/bin下
 
 
+
+
+
+
+
+
+# Remove former Go installation folder
+sudo rm -rf /usr/local/go
+
+curl --remote-name --progress https://storage.googleapis.com/golang/go1.10.3.linux-amd64.tar.gz
+
+sudo tar -C /usr/local -xzf go1.10.3.linux-amd64.tar.gz
+sudo ln -sf /usr/local/go/bin/{go,godoc,gofmt} /usr/local/bin/
+rm go1.10.3.linux-amd64.tar.gz
