@@ -83,8 +83,9 @@ config set requirepass Password #密码 Password
 ## 取消密码
 
 ```sh
-# OK
+# 验证密码,
 auth Password
+# 取消密码
 config set requirepass ""
 ```
 

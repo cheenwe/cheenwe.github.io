@@ -9,32 +9,35 @@ categories: mysql
 ## Mysql忘记root密码解决方案
 包含 MySql 5.7
 
-### KILL掉系统里的MySQL进程；
+### KILL掉系统里的MySQL进程;
 
-### 用以下命令启动MySQL，以不检查权限的方式启动；
+### 用以下命令启动MySQL，以不检查权限的方式启动;
 >mysqld_safe -skip-grant-tables &
 
 或者 (MySql 5.7):
 >sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+
+或者 (mariadb):
+>sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
+
 
 在 [mysqld]下添加
 >skip-grant-tables
 
 ### 进入管理命令行,修改密码
 >mysql -u root
-Welcome to the MySQL monitor.  Commands end with ; or \g.
 
 >use mysql
 
->update mysql.user set password=PASSWORD('root'） where User='root'；
+>update mysql.user set password=PASSWORD('root'） where User='root';
 
-或者（MySql 5.7）：
->update mysql.user set authentication_string=password('root') where user='root' and Host = 'localhost';
+或者（MySql 5.7/mariadb）：
 
->flush privileges；
-
->quit
-
+```
+update mysql.user set authentication_string=password('root') where user='root' and Host = 'localhost';
+flush privileges;
+quit
+```
 
 ## 修改完root密码后。 phpmyadmin 无法登录
 

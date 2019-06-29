@@ -5,48 +5,45 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until the script has finished.
 while true; do -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-#update the system
-apt-get update
 
-echo "安装 依赖 软件"
-apt-get install git-core curl wget zlib1g zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev openssl  libcurl4-openssl-dev python-software-properties libffi-dev libmysqlclient-dev zsh  libreadline6 libreadline6-dev  libxslt-dev autoconf automake libtool imagemagick libmagickwand-dev   libpcre3-dev language-pack-zh-hans libevent-dev
+# echo "安装 oh my zsh "
+# sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-echo "安装 oh my zsh "
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+## 修改阿里云PIP源
+echo "修改阿里云PIP源"
 
-echo "导入rvm key"
-gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+mkdir ~/.pip
+cat > ~/.pip/pip.conf << EOF
 
-echo "安装rvm"
-curl -L https://get.rvm.io | bash -s stable
+[global]
+trusted-host=mirrors.aliyun.com
+index-url=https://mirrors.aliyun.com/pypi/simple/
 
-source ~/.rvm/scripts/rvm
+EOF
 
-echo "source ~/.rvm/scripts/rvm" >> ~/.zshrc
-echo "plugins=(git bundler osx rake ruby rails z)" >> ~/.zshrc
+## 修改阿里云软件源
+echo "修改阿里云软件源"
 
-echo -n "替换淘宝镜像"
-sed -i 's!cache.ruby-lang.org/pub/ruby!ruby.taobao.org/mirrors/ruby!' $rvm_path/config/db
+mv /etc/apt/sources.list /etc/apt/sources.list.bak
 
-echo "用 RVM 安装 Ruby 环境"
-rvm install 2.2.0
+cat >/etc/apt/sources.list << EOF
 
-echo "设置 Ruby 版本"
-rvm install 2.2.0
+deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
 
-echo "用 RVM 安装 Ruby 环境"
-rvm 2.2.0 --default
+deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
 
-echo "安装 Bundler"
-gem install bundler
+deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
 
-echo "安装 Bundler"
-bundle config mirror.https://rubygems.org https://ruby.taobao.org
+deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
 
-echo "用 RVM 安装 Ruby 环境"
-rvm install 2.2.0
+deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
 
-echo "安装 Rails 环境"
-gem install rails
+EOF
 
 
+sudo apt-get update
