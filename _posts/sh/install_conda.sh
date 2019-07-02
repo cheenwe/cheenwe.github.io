@@ -7,7 +7,7 @@ bash Anaconda2-2019.03-Linux-x86_64.sh
 
 
 
-
+scp chewnei@192.168.30.29:/disk4/data/chenwei/files/Anaconda2-2019.03-Linux-x86_64.sh .
 
 
 

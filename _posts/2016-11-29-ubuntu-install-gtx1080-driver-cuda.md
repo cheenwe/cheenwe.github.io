@@ -225,10 +225,21 @@ sudo reboot
 
 
 
-- other
+#### fatal error: hdf5.h: No such file or directory 
 
 sudo updatedb
 locate  hdf5.h
+
+```
+INCLUDE_DIRS:=$(PYTHON_INCLUDE)/usr/local/include
+然后在后面加上"serial"的包含目录，即：
+INCLUDE_DIRS:=$(PYTHON_INCLUDE)/usr/local/include/usr/include/hdf5/serial/
+接着需要更改相应的"Makefile"文件，找到
+LIBRARIES+=glog gflags protobuf boost_system boost_filesystem m hdf5_hl hdf5
+更改最后两项为：
+LIBRARIES+=glog gflags protobuf boost_system boost_filesystem m hdf5_serial_hl hdf5_serial
+```
+
 
 
 ## install fcitx
