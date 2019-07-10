@@ -202,15 +202,12 @@ self.driver.find_element_by_xpath('//*[text()="退出"]').click()
 
 self.driver.find_element_by_xpath('//a[contains(text(), "退出")]').click()
 
+ 
 
 
 
 
-
-
-
-
-
+ 
 在公司为了使用RTX，专门安装了一个XP的虚拟机，但是这个也不方便，每天得开个虚拟机，并且别人给你发的消息你很多时候不能立马看到。
 所以准备在Linux搞个RTX，这样就能解决我的问题。
 

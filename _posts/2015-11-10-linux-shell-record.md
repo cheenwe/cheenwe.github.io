@@ -357,3 +357,15 @@ sudo usermod -U username #解禁
 
     export LC_ALL=C
     locale
+
+## 配置时区
+    
+    dpkg-reconfigure tzdata
+
+
+
+## 重启 vmware docker
+
+    for i in docker ps -a|grep vmware|awk '{print $1}'; do docker restart $i; done
+
+

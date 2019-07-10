@@ -76,3 +76,14 @@ def conn_sql():
 ```
 
 
+## Oracle 分页
+```
+SELECT * FROM 
+(
+SELECT A.*, ROWNUM RN 
+FROM (SELECT * FROM TABLE_NAME) A 
+WHERE ROWNUM <= 40
+)
+WHERE RN >= 21
+
+```

@@ -134,7 +134,10 @@ if __name__ == '__main__':
     for row in reader:
         file_name  = check_file(row)
         img_url = row[7]
-        remotepath = img_url.split(ftp_host+":"+ftp_prot)[1]
+        # remotepath = img_url.split(ftp_host+":"+str(ftp_prot))[1]
+
+        remotepath =  "/"+"/".join(img_url.split("/")[3:])
+
         new_file_name = os.path.join(download_path, file_name)
         print(str(i) +"处理中...., 路径: "+remotepath)
         if i > 1:

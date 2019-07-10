@@ -113,3 +113,27 @@ external_url 'hostname1'
 ```console
 external_url='192.168.1.49'
 ```
+
+
+
+## gitlab 抢救记录
+
+1. install ubuntu 
+2. install git step 
+3. install postgresql 9.4 
+4. rsync git repost...
+5. import data...
+
+```
+sudo -u postgres psql ALTER USER git WITH PASSWORD 'git';
+
+ALTER DATABASE gitlabhq_production OWNER TO git;
+
+sudo -u git -H bundle exec rake gitlab:import:repos RAILS_ENV=production
+
+sudo -u git -H bundle exec rake gitlab:env:info RAILS_ENV=production
+
+sudo -u git -H RAILS_ENV=production bin/background_jobs start
+
+sudo -u git -H bundle exec rake gitlab:check RAILS_ENV=production
+```
