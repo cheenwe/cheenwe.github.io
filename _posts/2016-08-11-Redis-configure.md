@@ -90,3 +90,25 @@ config set requirepass ""
 ```
 
 
+
+```
+
+
+1. 输入:  locate redis.conf
+显示出具体 redis.conf 位置, 如: /etc/redis/redis.conf
+2. 修改配置文件:  vi /etc/redis/redis.conf
+3. 输入: /rename-command 
+4. 输入 i
+5. 将 该行前面的 # 删除
+6. 按 esc 键
+7. 输入 /requirepass 找到 # requirepass foobared  
+8. 输入 i
+9. 去掉 # 
+9. 将该行修改为 requirepass Rpa2019 
+10. 重启 redis 服务,  输入: ps aux |grep redis  
+ 会显示: redis     1408  ... (1408 为进程号, 以实际为准)
+11. 输入: kill -9 1408 
+
+12. 开启服务: /usr/local/bin/redis-server ./redis.conf  &
+
+```

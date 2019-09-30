@@ -7,6 +7,18 @@ category: java
 
 
 # Ubuntu 下安装 Oracle JDK
+
+- openjdk
+
+```
+sudo apt-get update
+sudo apt-get install openjdk-8-jdk
+java -version
+
+```
+
+- OracleJDK
+
 先执行如下命令看是否安装了OpenJDK，如果已经安装，会显示java的信息。
 
 >java -version

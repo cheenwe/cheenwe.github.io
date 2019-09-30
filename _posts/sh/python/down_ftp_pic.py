@@ -40,6 +40,7 @@ def ftpconnect(host, username, password):
     port = ftp_prot
     ftp.connect(host, port, timeout) # 连接FTP服务器
     ftp.login(username,password) # 登录
+    return ftp
 
 headers = {
 'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'
