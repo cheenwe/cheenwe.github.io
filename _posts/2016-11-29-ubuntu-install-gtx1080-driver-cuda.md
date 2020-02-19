@@ -86,9 +86,8 @@ sudo cp cuda/include/cudnn.h /usr/local/cuda/include/ #复制头文件
 
 sudo cp cuda/lib64/lib* /usr/local/cuda/lib64/
 
-
+# 这里需要注意版本号
 		cd /usr/local/cuda/lib64/ && sudo rm -rf libcudnn.so libcudnn.so.6 #删除原有动态文件
-
 
 		sudo ln -s libcudnn.so.6.0.21 libcudnn.so.6
 
