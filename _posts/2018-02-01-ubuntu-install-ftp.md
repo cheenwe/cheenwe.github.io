@@ -17,7 +17,7 @@ category:   ftp
 
 ```
 #这些设置系统默认是开启的，可以不管
-listen=NO
+listen=YES
 listen_ipv6=YES
 dirmessage_enable=YES
 use_localtime=YES
@@ -32,6 +32,10 @@ anonymous_enable=NO
 local_enable=YES
 #是否开启写模式，YES为开启
 write_enable=YES
+
+#使用utf8
+utf8_filesystem=YES
+
 #新建文件权限，一般设置为022，那么新建后的文件的权限就是777-022=755
 local_umask=022
 
@@ -52,8 +56,20 @@ chroot_list_file=/etc/vsftpd.chroot_list
 allow_writeable_chroot=YES
 
 #设置ftp根目录的位置,这个文件我们稍后自己创建
-local_root=/var/myftp
+local_root=/home/ftp
 ```
 ## 重启
 
 >sudo /etc/init.d/vsftpd restart
+
+
+
+## 创建ftp用户
+
+```
+sudo mkdir /home/ftp
+sudo useradd -d /home/ftp -s /bin/bash ftp
+sudo passwd ftp
+
+```
+

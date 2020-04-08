@@ -1,6 +1,45 @@
 
 
 
+## Ubuntu18修改hostname重启后恢复原始设置的解决方法
+
+
+在Ubuntu 16.04及多数Linux版本中，如需要修改hostname，直接修改/etc/hostname文件即可。
+但是在Ubuntu 18.04及18.10中，修改/etc/hostname文件后，重启电脑就会恢复原始的设置。
+
+
+原因：
+Ubuntu在新版中默认安装了cloud-init工具，是一个自动化的云服务工具。
+当系统启动时，cloud-init会从nova metadata服务或config drive中获取metadata，完成包括但不限于下面的定制化工作：
+1.设置default locale
+2.设置hostname
+3.添加ssh keys到.ssh/authorized_keys
+4.设置用户密码
+5.配置网络
+6.安装软件包
+
+
+
+
+
+解决方法：
+sudo vim /etc/cloud/cloud.cfg
+找到preserve_hostname: false这行，把false改成true。
+作用是保存用户修改的hostname值，不重新从云端同步hostname。
+
+
+然后就可修改hostname了。附上修改的3种方法（任意一种均可修改）：
+1.输入命令（旧版）
+sudo hostname myHostname #这里的myHostname就是修改的名字
+
+2.输入命令（新版）
+sudo hostnamectl set-hostname myHostname #这里的myHostname就是修改的名字
+
+3.修改/etc/hostname文件中的值
+sudo vim /etc/hostname
+
+
+修改后重启电脑。
 
 
 
@@ -255,3 +294,17 @@ pigz是支持并行的gzip,默认用当前逻辑cpu个数来并发压缩，无�
 
 
 
+
+
+
+## 报错
+
+### kernel:NMI watchdog: BUG: soft lockup - CPU#8 stuck for 26s
+
+跑大量高负载程序，造成cpu soft lockup
+
+```
+#nano /etc/sysctl.conf
+
+kernel.watchdog_thresh=30
+```

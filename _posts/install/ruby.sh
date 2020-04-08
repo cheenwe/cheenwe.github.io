@@ -1,34 +1,26 @@
-# install ruby
-
-PACKAGE_NAME="ruby-2.4.2"
-
-wget https://cache.ruby-china.org/pub/ruby/2.4/$PACKAGE_NAME.tar.gz
-
-tar -zxf $PACKAGE_NAME.tar.gz
-
-cd $PACKAGE_NAME
-
-./configure --disable-install-rdoc
-
-make
-
-sudo make prefix=/usr/local install
-
-## make uninstall #remove
-USER=(echo `whoami`)
-sudo chown $USER /usr/local/bin #注意修改用户名
-
-sudo chown -R $USER /usr/local/lib/ruby/gems/　#注意修改用户名
-
-sudo chmod -R 777 /usr/local/lib/ruby/gems/2.4.0
+# Ubuntu 14.04 (Trusty) or newer
 
 
-## 编译　openssl
-sudo chmod -R 777 ruby-2.4.2/ext/openssl/
+sudo apt-get install software-properties-common
+sudo apt-add-repository ppa:brightbox/ruby-ng
+sudo apt-get update
+sudo apt-get install -y ruby2.5 ruby2.5-dev
 
-cd ruby-2.4.2/ext/openssl/
 
-ruby extconf.rb --with-openssl-include=/usr/local/openssl/include/ --with-openssl-lib=/usr/local/openssl/lib
+# Ubuntu 12.04 (Precise) or older
 
-## 注意用户名
-sudo ln -s /home/em/ruby-2.4.2/include/ /
+
+sudo apt-get install python-software-properties
+sudo apt-add-repository ppa:brightbox/ruby-ng
+sudo apt-get update
+sudo apt-get install -y ruby2.3 ruby2.3-dev
+
+
+
+
+# ruby-switch
+sudo apt-get install ruby-switch
+
+ruby-switch --list
+
+sudo ruby-switch --set ruby2.3

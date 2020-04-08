@@ -27,3 +27,14 @@ rsync  --delete-before -d --progess --stats /tmp /your_need_delete_folder
 
 rsync -avz top20 ubuntu@192.168.70.122:/data/public/testtop20/
 
+
+## 同步文件时排除文件夹
+
+rsync -rltvz  --exclude-from=1.txt --progress   chenwei@v.xx.cn:/home/ubuntu/chenwei/project/license/ .
+
+```
+#1.txt
+public/uploads/
+log/*
+tmp/*
+```

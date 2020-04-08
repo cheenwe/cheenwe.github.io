@@ -12,7 +12,7 @@ category: java
 
 ```
 sudo apt-get update
-sudo apt-get install openjdk-8-jdk
+sudo apt install openjdk-11-jdk-headless 
 java -version
 
 ```
@@ -20,6 +20,7 @@ java -version
 - OracleJDK
 
 先执行如下命令看是否安装了OpenJDK，如果已经安装，会显示java的信息。
+
 
 >java -version
 
@@ -31,7 +32,7 @@ java -version
 
 ### 添加add-apt-repository工具
 
->sudo apt-get install -y python-software-properties software-properties-common
+>sudo apt-get install -y software-properties-common
 
 ### 添加 PPA repository 到系统
 

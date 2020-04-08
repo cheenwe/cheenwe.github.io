@@ -1,5 +1,23 @@
 ## 安装 slurm
 
+安装前必须保证软件源一致，建议使用 清华软件源；
+```
+# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+
+# 预发布软件源，不建议启用
+# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
+
+```
+
 配置好 hostname ,定义好节点名称, 然后在主节点安装 mysql 及对应的 slurm 管理节点软件, 在各个节点安装 slurm 软件
 
 ## 主节点
@@ -14,7 +32,7 @@ scp  /etc/munge/munge.key compute03:/etc/munge/ #同步 key
 
  #安装软件
 
-sudo apt-get remove slurmctld munge slurmctld slurmdbd
+sudo apt-get remove slurmctld  slurmdbd slurmd
 
 
 
@@ -27,7 +45,8 @@ dpkg -l |grep ^rc|awk '{print $2}' |sudo xargs dpkg -P
 apt-cache search slurm*
 
 mysql
-sudo apt-get install slurmctld munge slurmctld slurmdbd
+
+sudo apt-get install slurmdbd slurmctld slurmd
 
 
 管理节点:  slurmdbd slurmctld slurmd
@@ -62,18 +81,18 @@ systemctl status slurmd
 
 ## install mysql
 use mysql;
-create user 'slurm_new'@'%' identified by 'slurm_new';
+create user 'slurm'@'%' identified by 'slurm';
 
-GRANT ALL PRIVILEGES ON *.* TO 'slurm_new'@'%' IDENTIFIED BY 'slurm_new' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'slurm'@'%' IDENTIFIED BY 'slurm' WITH GRANT OPTION;
 
-sudo service  mysql restart
-grant all privileges  on *.* to slurm@localhost identified by "slurm";
+# sudo service  mysql restart
+# grant all privileges  on *.* to slurm@localhost identified by "slurm";
 flush privileges;
 
 
-mysql -uslurm_new -p -h192.168.30.32 -P3306
+mysql -uslurm -p -h192.168.30.32 -P3306
 
-mysql -uslurm_new -p -h192.168.30.32 -P3306
+mysql -uslurm -p -h192.168.30.32 -P3306
 
 
 2. 安装SLURM
@@ -141,3 +160,54 @@ munge -n |ssh compute02 unmunge
 munge -n |ssh headnode unmunge
 remunge
 ```
+
+
+
+
+sacctmgr modify account set Description=aiaaaa where Names=ai
+
+
+
+
+sacctmgr modify account set Description=aiaaaa where Names=ai
+
+sacctmgr modify user set Partitions=v100 where Names=yaoguang
+
+
+
+Partitions=
+
+modify account     - (set options) DefaultQOS=, Description=,       
+                            Fairshare=, GrpTRESMins=, GrpTRESRunMins=,       
+                            GrpTRES=, GrpJobs=, GrpMemory=, GrpNodes=,     
+                            GrpSubmitJob=, GrpWall=, MaxTRESMins=, MaxTRES=,
+                            MaxJobs=, MaxNodes=, MaxSubmitJobs=, MaxWall=, 
+                            Names=, Organization=, Parent=, and QosLevel=  
+                            RawUsage= (with admin privileges only)         
+                            (where options) Clusters=, DefaultQOS=,        
+                            Descriptions=, Names=, Organizations=,         
+                            Parent=,Priority= and QosLevel=               
+
+
+
+
+ modify user        - (set options) AdminLevel=, DefaultAccount=,    
+                            DefaultQOS=, DefaultWCKey=, Fairshare=,        
+                            MaxTRESMins=, MaxTRES=, MaxJobs=, MaxNodes=,   
+                            MaxSubmitJobs=, MaxWall=, NewName=,            
+                            and QosLevel=,                                 
+                            RawUsage= (with admin privileges only)         
+                            (where options) Accounts=, AdminLevel=,        
+                            Clusters=, DefaultAccount=, Names=,            
+                            Partitions=, Priority= and QosLevel= 
+
+
+
+
+
+## error 报错
+
+### fatal: Can not recover assoc_usage state, incompatible version, got 8704 need >= 7680 <= 8192, start with '-i' to ignore this
+
+
+遇到版本不一致， 以前装的版本和现在不一致。以前的版本停止的地方，会在 StateSaveLocation 对应的目录生成历史， 删除该目录中文件即可

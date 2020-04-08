@@ -9,3 +9,5 @@ echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | sudo tee 
 sudo apt-get update
 
 sudo apt-get install elasticsearch
+
+sudo service elasticsearch start

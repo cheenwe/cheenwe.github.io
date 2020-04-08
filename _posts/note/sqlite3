@@ -1,0 +1,10 @@
+## sqlite3
+
+sudo apt install sqlite libsqlite3-dev
+
+sqlite3 development.sqlite3
+
+
+### 解决 sqlite3 数据库中记录删除后,文件依然很大的问题
+
+vacuum;

@@ -13,4 +13,5 @@ package.json
 *.out
 *.db
 *.so
+*.save
 __pycache__

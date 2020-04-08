@@ -5,240 +5,223 @@ tags: ubuntu gtx1080 cuda
 category:  nvidia
 ---
 
-## 安装步骤
-
-参考：
-
-http://yangcha.github.io/GTX-1080/
-
-http://www.voidcn.com/blog/autocyz/article/p-6172072.html
-
->sudo apt-get install build-essential  cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev cmake-gui
+# ubuntu 16.04 gtx1080 配置 cuda caffee 环境
 
 
-把文件全部拷贝到 主目录下
+	# 全部安装文件在 smb://192.168.100.229/00.共享软件/00-2018-ubuntu-gt1080-install-cuda-caffe
 
-1.  安装 NVIAID 驱动
+	# 重装 N 次系统后经验总结。 注意安装系统版本，
+
+	# 参考 https://blog.csdn.net/yhaolpz/article/details/71375762
+
+	# - write by chenwei 20180724
+
+## 1.安装依赖
+
+		sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler liblapacke-dev checkinstall
+
+		sudo apt-get install --no-install-recommends libboost-all-dev
+
+		sudo apt-get install libopenblas-dev liblapack-dev libatlas-base-dev
+
+		sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
+
+		sudo apt-get install git cmake build-essential
 
 
-pressing Ctrl + Alt + F1
+## 2.禁用 nouveau
+
+		sudo nano /etc/modprobe.d/blacklist-nouveau.conf
+
+		# copy
+			blacklist nouveau option nouveau modeset=0
+
+		sudo update-initramfs -u
+
+## 3.配置环境变量
+ # 在文件 ~/.bashrc 最后加入以下两行内容：
+
+		sudo echo 'export LD_LIBRARY_PATH=/usr/lib/
+		x86_64-linux-gnu:$LD_LIBRARY_PATH' >> ~/.bashrc
+
+		sudo echo 'export LD_LIBRARY_PATH=/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH' >> ~/.bashrc
 
 
->sudo service lightdm stop
+## 安装 CUDA 8.0
+		sudo service lightdm stop
+
+		 # Ctrl + Alt + F1 进入文本模式，输入帐号密码登录
+
+		sudo bash installcuda
 
 
->sudo nano /etc/modprobe.d/disable-nouveau.conf
+		 #执行此命令约1分钟后会出现 0%信息，此时长按空格键让此百分比增长，直到100%，然后按照提示操作即可，先输入 accept ，然后让选择是否安装 nvidia 驱动，这里的选择对应第5步开头，若未安装则输入 “y”，若确保已安装正确驱动则输入“n”。
 
-copy this
+		 #剩下的选择则都输入“y”确认安装或确认默认路径安装，开始安装，此时若出现安装失败提示则可能为未关闭桌面服务或在已安装 nvidia 驱动的情况下重复再次安装 nvidia 驱动，安装完成后输入重启命令重启：
+
+		 #确保安装后没有报错
+
+
+ #在 ~/.bashrc 文件最后加入以下两行并保存：
+
+		sudo echo 'export PATH=/usr/local/cuda-8.0/bin:$PATH' >> ~/.bashrc
+
+		sudo echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
+
+		source ~/.bashrc
+
+## 验证 CUDA 8.0 是否安装成功
+
+		cd /usr/local/cuda-8.0/samples/1_Utilities/deviceQuery
+
+		sudo make
+
+		./deviceQuery
+
+
+## 安装 cudnn
+ #解压 cudnn-8.0-linux-x64-v6.0.tgz , 出现 cuda 目录
+
+sudo cp cuda/include/cudnn.h /usr/local/cuda/include/ #复制头文件
+
+sudo cp cuda/lib64/lib* /usr/local/cuda/lib64/
+
+
+		cd /usr/local/cuda/lib64/ && sudo rm -rf libcudnn.so libcudnn.so.6 #删除原有动态文件
+
+
+		sudo ln -s libcudnn.so.6.0.21 libcudnn.so.6
+
+		sudo ln -s  libcudnn.so.6 libcudnn.so
+
+		#sudo ln -s libcudnn.so.5.1.5 libcudnn.so.5 #生成软衔接
+
+		locate libcudnn.so
+
+		nvcc -V
+
+
+## 安装opencv3.2
+		 #解压并进入目录
+
+		mkdir build # 创建编译的文件目录
+
+		cd build
+
+		cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ..
+
+		make -j64 #编译
+
+		sudo make install #安装
+
+		pkg-config --modversion opencv
+
+
+## 安装 caffe
+	#解压并进入目录
+
 
 ```
-blacklist nouveau optiond nouveau modeset=0
+pip install pip -U
+sudo pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
+for req in $(cat requirements.txt); do sudo pip install $req; done
 ```
 
-then run
+		sudo nano  /usr/local/cuda/include/host_config.h
 
->sudo update-initramfs -u
+ #将
+		#error-- unsupported GNU version! gcc versions later than 5.0 are not supported!
 
-after reboot and your computer start with lower display
+ #改为
+		//#error-- unsupported GNU version! gcc versions later than 5.0 are not supported!
 
->sudo chmod a+x NVIDIA-Linux-x86_64-367.44.run
+		make all -j64
 
->sudo ./NVIDIA-Linux-x86_64-367.44.run
 
+		make runtest -j8 #结果 pass 才成功
 
+		sudo apt-get install ffmpeg
 
-2. 安装  cuda_8.0.27_linux.run
+## 安装 pycaffe notebook 接口环境
 
->sudo ./cuda_8.0.27_linux.run --override  --tmpdir=/tmp/cuda
+		sudo apt-get install python-numpy python-pip python-dev   python-scipy  gfortran
 
+		sudo make pycaffe -j8
 
- ！！ 提示是否重新安装 NVIDIA  → 否
+		sudo echo export PYTHONPATH="~/caffe/python" >> ~/.bashrc
 
+		 #进入 caffee 目录下 python 文件夹
 
+		cd caffe/python
 
-3. 安装 opencv 3.1
+		sudo pip install ipython==3.2.1
 
->sudo cmake-gui
+		for req in $(cat requirements.txt); do sudo pip install $req; done
 
-选择opencv 源代码 解压的目录
+		sudo pip install -r requirements.txt
 
-选中左下角 config 按钮 → finsh
+		 # 安装成功的，都会显示Requirement already satisfied, 没有安装成功的，先apt remove xxx 卸载,再安装。
 
-下载  ippicv_linux_20151201.tgz  会很慢， 需要拷贝到   /opencv-3.1.0/3rdparty/ippicv/downloads/
+		 #安装 jupyter ：#
 
->cp  ippicv_linux_20151201.tgz  opencv-3.1.0/3rdparty/ippicv/downloads/linux-808b791a6eac9ed78d32a7666804320e/ippicv_linux_20151201.tgz
->sudo chmod 777 opencv-3.1.0/3rdparty/ippicv/downloads/linux-808b791a6eac9ed78d32a7666804320e/ippicv_linux_20151201.tgz
+		sudo pip install jupyter
 
-记得选中 WITH_FFMPEG
 
->cd builds
->sudo make -j32
->sudo make install -j32
+		 # Cannot uninstall 'pyzmq'. It is
 
+		sudo apt remove python-zmq
 
 
-4. 安装 caffe
+		 #安装完成后运行 notebook :
 
-sudo apt-get install -y build-essential cmake git pkg-config  libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler  libatlas-base-dev libboost-all-dev  libgflags-dev libgoogle-glog-dev liblmdb-dev   python-pip  sudo  python-dev  python-numpy python-scipy
+		jupyter notebook
 
+		 # 或
 
->git clone https://github.com/BVLC/caffe.git  //从github上git caffecd caffe //打开到刚刚git下来的caffe
->sudo cp Makefile.config.example Makefile.config   //将Makefile.config.example的内容复制到Makefile.config
+		ipython notebook
 
 
-Makefile.config config
+## 安装cuda报错
 
-```
-## Refer to http://caffe.berkeleyvision.org/installation.html
-# Contributions simplifying and improving our build system are welcome!
+### cuda missing recommended library libGLU.so
 
-# cuDNN acceleration switch (uncomment to build with cuDNN).
-# USE_CUDNN := 1
+		sudo apt-get install freeglut3-dev build-essential libx11-dev libxmu-dev libxi-dev libgl1-mesa-glx libglu1-mesa libglu1-mesa-dev
 
-# CPU-only switch (uncomment to build without GPU support).
-# CPU_ONLY := 1
 
-# uncomment to disable IO dependencies and corresponding data layers
-# USE_OPENCV := 0
-# USE_LEVELDB := 0
-# USE_LMDB := 0
+### ImportError: cannot import name main when running pip
 
-# uncomment to allow MDB_NOLOCK when reading LMDB files (only if necessary)
-# You should not set this flag if you will be reading LMDBs with any
-# possibility of simultaneous read and write
-# ALLOW_LMDB_NOLOCK := 1
+		nano /usr/bin/pip
 
-# Uncomment if you're using OpenCV 3
- OPENCV_VERSION := 3
 
-# To customize your choice of compiler, uncomment and set the following.
-# N.B. the default for Linux is g++ and the default for OSX is clang++
-# CUSTOM_CXX := g++
+		from pip import __main__
+		if __name__ == '__main__':
+				sys.exit(__main__._main())
 
-# CUDA directory contains bin/ and lib/ directories that we need.
-CUDA_DIR := /usr/local/cuda
-# On Ubuntu 14.04, if cuda tools are installed via
-# "sudo apt-get install nvidia-cuda-toolkit" then use this instead:
-# CUDA_DIR := /usr
 
-# CUDA architecture setting: going with all of them.
-# For CUDA < 6.0, comment the *_50 lines for compatibility.
-CUDA_ARCH := -gencode arch=compute_20,code=sm_20 \
-    -gencode arch=compute_20,code=sm_21 \
-    -gencode arch=compute_30,code=sm_30 \
-    -gencode arch=compute_35,code=sm_35 \
-    -gencode arch=compute_50,code=sm_50 \
-    -gencode arch=compute_50,code=compute_50
 
-# BLAS choice:
-# atlas for ATLAS (default)
-# mkl for MKL
-# open for OpenBlas
-BLAS := atlas
-# Custom (MKL/ATLAS/OpenBLAS) include and lib directories.
-# Leave commented to accept the defaults for your choice of BLAS
-# (which should work)!
-# BLAS_INCLUDE := /path/to/your/blas
-# BLAS_LIB := /path/to/your/blas
 
-# Homebrew puts openblas in a directory that is not on the standard search path
-# BLAS_INCLUDE := $(shell brew --prefix openblas)/include
-# BLAS_LIB := $(shell brew --prefix openblas)/lib
 
-# This is required only if you will compile the matlab interface.
-# MATLAB directory should contain the mex binary in /bin.
-# MATLAB_DIR := /usr/local
-# MATLAB_DIR := /Applications/MATLAB_R2012b.app
 
-# NOTE: this is required only if you will compile the python interface.
-# We need to be able to find Python.h and numpy/arrayobject.h.
-PYTHON_INCLUDE := /usr/include/python2.7 \
-    /usr/lib/python2.7/dist-packages/numpy/core/include
-# Anaconda Python distribution is quite popular. Include path:
-# Verify anaconda location, sometimes it's in root.
-# ANACONDA_HOME := $(HOME)/anaconda
-# PYTHON_INCLUDE := $(ANACONDA_HOME)/include \
-    # $(ANACONDA_HOME)/include/python2.7 \
-    # $(ANACONDA_HOME)/lib/python2.7/site-packages/numpy/core/include \
+# install cuda9 cudnn7.0
 
-# Uncomment to use Python 3 (default is Python 2)
-# PYTHON_LIBRARIES := boost_python3 python3.5m
-# PYTHON_INCLUDE := /usr/include/python3.5m \
-#                 /usr/lib/python3.5/dist-packages/numpy/core/include
+		sudo ./cuda_9.0.176_384.81_linux.run --no-opengl-libs --override
 
-# We need to be able to find libpythonX.X.so or .dylib.
-PYTHON_LIB := /usr/lib
-# PYTHON_LIB := $(ANACONDA_HOME)/lib
+		sudo echo 'export PATH=/usr/local/cuda-9.0/bin:$PATH' >> ~/.bashrc
+		sudo echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
 
-# Homebrew installs numpy in a non standard path (keg only)
-# PYTHON_INCLUDE += $(dir $(shell python -c 'import numpy.core; print(numpy.core.__file__)'))/include
-# PYTHON_LIB += $(shell brew --prefix numpy)/lib
+		source ~/.bashrc
 
-# Uncomment to support layers written in Python (will link against Python libs)
-# WITH_PYTHON_LAYER := 1
+		sudo cp cudnn7.0/include/cudnn.h /usr/local/cuda/include/ #复制头文件
+		sudo cp cudnn7.0/lib64/lib* /usr/local/cuda/lib64/
 
-# Whatever else you find you need goes here.
-INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial
-LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu/hdf5/serial
+		cd /usr/local/cuda/lib64/ && sudo rm -rf libcudnn.so libcudnn.so.7 #删除原有动态文件
+		sudo ln -s libcudnn.so.7.0.5   libcudnn.so.7
+		sudo ln -s  libcudnn.so.7 libcudnn.so
 
-# If Homebrew is installed at a non standard location (for example your home directory) and you use it for general dependencies
-# INCLUDE_DIRS += $(shell brew --prefix)/include
-# LIBRARY_DIRS += $(shell brew --prefix)/lib
+		locate libcudnn.so
 
-# Uncomment to use `pkg-config` to specify OpenCV library paths.
-# (Usually not necessary -- OpenCV libraries are normally installed in one of the above $LIBRARY_DIRS.)
-# USE_PKG_CONFIG := 1
-
-# N.B. both build and distribute dirs are cleared on `make clean`
-BUILD_DIR := build
-DISTRIBUTE_DIR := distribute
-
-# Uncomment for debugging. Does not work on OSX due to https://github.com/BVLC/caffe/issues/171
-# DEBUG := 1
-
-# The ID of the GPU that 'make runtest' will use to run unit tests.
-TEST_GPUID := 0
-
-# enable pretty build (comment to see full commands)
-Q ?= @
-```
-
-
-
-## 更新完显卡驱动后登录界面进入死循环, 输入密码无法登录…
-
-```sh
-CTRL+ALT+F1
-
-sudo apt remove nvidia-*
-sudo apt autoremove
-sudo nvidia-uninstall
-sudo reboot
-#重新安装显卡驱动
-
-```
-
-
-
-
-
-
-
-
-#### fatal error: hdf5.h: No such file or directory 
-
-sudo updatedb
-locate  hdf5.h
-
-```
-INCLUDE_DIRS:=$(PYTHON_INCLUDE)/usr/local/include
-然后在后面加上"serial"的包含目录，即：
-INCLUDE_DIRS:=$(PYTHON_INCLUDE)/usr/local/include/usr/include/hdf5/serial/
-接着需要更改相应的"Makefile"文件，找到
-LIBRARIES+=glog gflags protobuf boost_system boost_filesystem m hdf5_hl hdf5
-更改最后两项为：
-LIBRARIES+=glog gflags protobuf boost_system boost_filesystem m hdf5_serial_hl hdf5_serial
-```
+		nvcc -V
 
 
 

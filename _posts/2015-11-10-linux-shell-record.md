@@ -369,3 +369,27 @@ sudo usermod -U username #解禁
     for i in docker ps -a|grep vmware|awk '{print $1}'; do docker restart $i; done
 
 
+## 判断目录存在
+
+```
+path='/home'
+if [ -d ${path} ];then
+  echo "exist!"
+else
+  echo "not exist!"
+fi
+```
+
+## 判断文件存在
+
+```
+file="/tmp/1.txt"
+if [ -f ${file} ];then
+  echo 'exist!'
+else
+  echo 'not exist!'
+fi
+
+```
+
+    -eq   等于/ -ne    不等于/ -gt    大于/ -lt    小于/ -le    小于等于/ -ge   大于等于/ -z    空串/ =    两个字符相等/ !=    两个字符不等/ -n    非空串

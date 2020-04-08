@@ -1,0 +1,145 @@
+ # Tengine
+
+## OpenResty 还是 tengine 比较好
+
+如果公司业务比较大，流量大，比较注重稳定性和性能建议用 tengine, 不过 tengine 就是淘宝自己在维护。
+
+毕竟 Openresty 是社区的东西泛用性还是比公司产品好。
+
+tengine 的特性跟调优肯定是优先满足阿里的，openresty 则必须考虑社区大家的一般性
+
+
+## tengine新特性
+## 监控系统的负载和资源占用从而对系统进行保护
+
+
+编译sysguard模块 configure [--with-http_sysguard_module | --with-http_sysguard_module=shared] --with-http_sysguard_module选项，sysguard模块将被静态编译到tengine中 --with-http_sysguard_module=shared, sysguard模块将被编译成动态文件，采用动态模块的方式添加到tengine中 
+
+```
+server {
+    sysguard on;
+    sysguard_mode or;
+
+    sysguard_load load=10.5 action=/loadlimit;
+    sysguard_cpu usage=20 period=3s action=/cpulimit;
+    sysguard_mem swapratio=20% action=/swaplimit;
+    sysguard_mem free=100M action=/freelimit;
+    sysguard_rt rt=0.01 period=5s action=/rtlimit;
+
+    location /loadlimit {
+        return 503;
+    }
+
+    location /swaplimit {
+        return 503;
+    }
+
+    location /freelimit {
+        return 503;
+    }
+
+    location /rtlimit {
+        return 503;
+    }
+
+    location /cpulimit {
+        return 503;
+    }
+}
+
+```
+
+### 自动去除空白字符和注释从而减小页面的体积
+
+```
+该模块用于删除 html ， 内嵌 javascript 和 css 中的注释以及重复的空白符。
+location / {
+    trim on;
+    trim_js on;
+    trim_css on;
+}
+
+```
+
+
+### 组合多个CSS、JavaScript文件的访问请求变成一个请求；
+
+```
+http://example.com/??style1.css,style2.css,foo/style3.css?v=102234
+
+
+location /static/css/ {
+    concat on;
+    concat_max_files 20;
+}
+
+location /static/js/ {
+    concat on;
+    concat_max_files 30;
+}
+
+```
+
+### 统计Tengine的运行状况
+
+```
+http {
+
+    req_status_zone server "$host,$server_addr:$server_port" 10M;
+    req_status_zone_add_indicator server $limit;
+
+    server {
+        location /us {
+            req_status_show;
+            req_status_show_field req_total $limit;
+        }
+
+        set $limit 0;
+
+        if ($arg_limit = '1') {
+            set $limit 1;
+        }
+
+        req_status server;
+    }
+}
+```
+
+### 一致性hash模块
+
+```
+
+#http://tengine.taobao.org/document_cn/http_upstream_consistent_hash_cn.html
+
+worker_processes  1;
+
+http {
+    upstream test {
+        consistent_hash $request_uri;
+
+        server 127.0.0.1:9001 id=1001 weight=3;
+        server 127.0.0.1:9002 id=1002 weight=10;
+        server 127.0.0.1:9003 id=1003 weight=20;
+    }
+}
+```
+
+### h2 未测通
+
+```
+http {
+    server {
+        listen 443 http2;
+        server_name www.taobao.com;
+        ......
+    }
+
+    server {
+        listen 443;
+        server_name www.tmall.com;
+        #针对"www.tmall.com"关闭HTTP2
+        http2 off;
+        ......
+    }
+}
+```

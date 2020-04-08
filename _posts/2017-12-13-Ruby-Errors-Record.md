@@ -24,3 +24,12 @@ File.open('1.html', "w:UTF-8") do |f|
 end
 ```
 
+
+
+## rails不能在model中使用type作为字段名的解决办法
+
+
+ActiveRecord::SubclassNotFound (The single-table inheritance mechanism failed to locate the subclass: 'G6'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite Cy::Photo.inheritance_column to use another column for that information.)
+
+
+在相关model中加入`self.inheritance_column = nil`即可，如：

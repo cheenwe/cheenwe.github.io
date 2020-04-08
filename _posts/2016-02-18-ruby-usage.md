@@ -357,3 +357,9 @@ f.close()
 
 ```
 
+
+## Rails 定时任务
+
+    crontab -e
+
+    * * * * * /bin/bash -l -c cd /home/ubuntu/workspace/project/smbmanage && bundle exec bin/rails runner -e development Work::Summary.new.send_mail

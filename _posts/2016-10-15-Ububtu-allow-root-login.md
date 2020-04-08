@@ -12,9 +12,14 @@ category: server
 
 > sudo passwd root
 
+```
+password="root"
+echo -e "$password\n$password" |sudo passwd root
+```
+
 ## 修改 ssh  允许 root 登陆
 
->sudo nano /etc/ssh/ssh_config
+>sudo nano /etc/ssh/sshd_config
 
 修改
 
@@ -24,3 +29,11 @@ category: server
 ## 重启 ssh 服务
 
 >sudo service ssh restart
+
+
+
+
+```
+echo 'PermitRootLogin  yes' >> /etc/ssh/sshd_config
+sudo service  ssh restart
+```

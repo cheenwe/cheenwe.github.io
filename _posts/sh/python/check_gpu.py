@@ -4,7 +4,7 @@
 import os, sys
 import  requests
 
-host_ip="192.168.50.69:3000/"
+host_ip="192.168.50.75:4001/"
 
 #cmd ="ssh "+ sys.argv[1]  +" nvidia-smi -q | grep 'Gpu' | cut -d ':'  -f 2|awk '{print $1}'"
 
@@ -46,7 +46,7 @@ def check_free_gpu(cmd):
 def new_cmd(pc):
     return "ssh "+ pc  +" nvidia-smi -q | grep 'Gpu' | cut -d ':'  -f 2|awk '{print $1}'"
 
-for ip in "192.168.30.31", "192.168.30.32", "192.168.30.33", "192.168.30.40":
+for ip in "compute01", "compute02", "compute03", "192.168.30.40":
     cmd = new_cmd(ip)
     res = check_free_gpu(cmd)
     print(ip, res)
