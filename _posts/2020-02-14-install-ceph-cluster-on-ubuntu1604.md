@@ -6,8 +6,8 @@ tags: MariaDB  Galera Cluster
 categories: ceph
 ---
 
+本文简要介绍在Ubuntu 16.04服务器上安装和构建Ceph集群。
 
->本文简要介绍在Ubuntu 16.04服务器上安装和构建Ceph集群。
 
 ## 介绍
 

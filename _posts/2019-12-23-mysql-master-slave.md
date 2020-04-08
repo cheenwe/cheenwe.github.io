@@ -1,6 +1,6 @@
 ---
 layout: post
-title: MySQL 自从配置
+title: MySQL 主从配置
 tags:  mysql
 category:  mysql
 ---
