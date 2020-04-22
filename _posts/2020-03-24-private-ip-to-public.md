@@ -25,16 +25,15 @@ ssh chenwei@localhost -p 3029
 
 
 
-
-
 ## 内网端口映射
 
 ### 外网主机配置监听端口可以绑定到任意其他ip
 
 sudo nano /etc/ssh/sshd_config
 
-```
 添加
+
+```
 GatewayPorts yes
 ```
 
@@ -52,6 +51,4 @@ autossh -M 3019 -NfR 0.0.0.0:3009:localhost:87 chenwei@v.emdata.cn
 将 内网的87 端口映射到外网 3009 端口上
 
 这里 -M 后面任意填写一个可用端口即可，-N 代表只建立连接，不打开shell ，-f 代表建立成功后在后台运行，-R 代表指定端口映射。
-
-
-将本地的 80映射到 8001
+ 

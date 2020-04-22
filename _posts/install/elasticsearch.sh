@@ -11,3 +11,16 @@ sudo apt-get update
 sudo apt-get install elasticsearch
 
 sudo service elasticsearch start
+
+
+
+
+
+
+
+
+
+
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.6.2-amd64.deb
+
+sudo dpkg -i elasticsearch-7.6.2-amd64.deb

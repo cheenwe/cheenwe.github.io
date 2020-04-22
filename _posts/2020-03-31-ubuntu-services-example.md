@@ -15,6 +15,9 @@ category:  ubuntu
  
 ## 简单的示例
 
+
+nano /lib/systemd/system/xx.service 
+
 ```
 [Unit]
 Description=Check GPU INFO by chenwei   # 服务描述
@@ -30,6 +33,27 @@ Restart=on-failure                      # 在什么情况下会自动重启
 
 [Install]
 WantedBy=multi-user.target  
+```
+
+
+```
+[Unit]
+Description=Advanced key-value store
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/local/redis/bin/redis-server /usr/local/redis/etc/redis.conf
+ExecStop=/bin/kill -s TERM $MAINPID
+PIDFile=/var/run/redis_6379.pid
+Restart=always
+RestartSec=5s
+Restart=on-failure
+
+
+[Install]
+WantedBy=multi-user.target
+Alias=redis.service
 ```
 
 ## nginx 示例

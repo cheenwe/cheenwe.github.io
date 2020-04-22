@@ -1,4 +1,11 @@
+## ubuntu 字体变成楷体解决
+    
+    sudo apt-get remove fonts-arphic-ukai fonts-arphic-uming
 
+或者
+
+    sudo apt-get install font-manager
+    sudo font-manager
 
 
 ## Ubuntu18修改hostname重启后恢复原始设置的解决方法
