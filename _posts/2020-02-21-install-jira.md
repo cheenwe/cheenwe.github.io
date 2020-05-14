@@ -5,8 +5,13 @@ tags: jira
 category:  pm 
 ---
 
+JIRA: 项目与事务跟踪工具，被广泛应用于缺陷跟踪、客户服务、需求收集、流程审批、任务跟踪、项目跟踪和敏捷管理等工作领域。
 
-- openjdk
+Confluence: 专业的企业知识管理与协同软件，可以用于构建企业wiki。
+
+本文介绍 Jira / Confluence 安装及破解步骤.
+
+## 环境准备,安装 openjdk
 
 ```
 sudo apt-get update
@@ -14,7 +19,6 @@ sudo apt-get install openjdk-8-jdk
 java -version
 
 ```
-
 
 ## Jira 安装
 

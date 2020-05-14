@@ -13,6 +13,16 @@ sudo apt-get install -y grafana
 
 
 
+
+
+### new 2020.05
+sudo apt-get install -y adduser libfontconfig1
+wget https://dl.grafana.com/oss/release/grafana_6.7.3_amd64.deb
+sudo dpkg -i grafana_6.7.3_amd64.deb
+
+
+
+
 ### Start the server with systemd
 # To start the service and verify that the service has started:
 

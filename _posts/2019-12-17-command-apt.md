@@ -7,7 +7,7 @@ category: ubuntu
 
 ## 下载缓存路径
 
-    /var/cache/apt/archives]
+    /var/cache/apt/archives
 
 
 ##  下载安装包  

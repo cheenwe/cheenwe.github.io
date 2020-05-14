@@ -1,5 +1,4 @@
 ---
-
 layout: post
 title: 在Ubuntu 16.04上安装Ceph存储集群
 tags: MariaDB  Galera Cluster

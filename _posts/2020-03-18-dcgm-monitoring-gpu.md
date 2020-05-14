@@ -2,7 +2,7 @@
 layout: post
 title: 基于 DCGM 监控 GPU 服务器
 tags:  hpc 
-category: hpc
+category: hpc monitor
 ---
 
 本文基于 DCGM 监控 GPU 服务器信息, 并通过 prometheus 实时采集数据到 Grafana 中以图表的样式显示.

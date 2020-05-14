@@ -1,0 +1,287 @@
+nvidia-docker run -it -d ngc.em.io/nvidia/cuda:9.0-base-ubuntu16.04 #  启动一个 docker
+
+docker ps -a # 查看正在运行的docker
+
+docker exec -it 67ad40c339ff bash # 进入 docker 中
+
+# 启动容器、停止容器、删除容器
+docker start container_id
+docker stop container_id
+docker rm container_id
+
+# 复制文件到容器中
+docker cp -rf /xxxx   67ad40c339ff:/home/xxx
+
+# 复制容器中文件到主机
+docker cp -rf  67ad40c339ff:/home/xxx /xxxx
+
+
+
+Docker镜像的打包和上传
+
+
+
+nvidia-docker run -it -d ngc.em.io/nvidia/cuda:9.0-base-ubuntu16.04 #  启动一个 docker
+
+
+
+docker ps -a # 查看正在运行的docker
+
+
+
+docker exec -it 67ad40c339ff bash # 进入 docker 中
+
+
+
+# 启动容器、停止容器、删除容器
+
+docker start container_id
+
+docker stop container_id
+
+docker rm container_id
+
+
+
+# 复制文件到容器中
+
+docker cp -rf /xxxx   67ad40c339ff:/home/xxx
+
+
+
+# 复制容器中文件到主机
+
+docker cp -rf  67ad40c339ff:/home/xxx /xxxx
+
+
+
+## docker 命令记录
+
+开：
+
+docker start docker_name
+
+关：
+
+docker stop docker_name
+
+删：
+
+docker rm -f  docker_name
+
+
+
+1. 开启
+
+docker run -it -d http://xxxx/name:tag
+
+2. 运行
+
+docker exec -it xxx bash
+
+3.  提交
+
+docker commit xxx http://xxx/name:tag
+
+4. 标签
+
+docker tag xxxx http://xxx/name:tag
+
+5. 拉取
+
+docker pull http://xxx/name:tag
+
+6. 推送
+
+docker push http://xxx/name:tag
+
+## 修改源
+
+打开/etc/default/docker文件（需要sudo权限），在文件的底部加上一行。
+
+
+
+DOCKER_OPTS="--registry-mirror=https://registry.docker-cn.com"
+
+然后，重启 Docker 服务。
+
+
+
+
+
+##ngc
+
+nvidia官方容器仓库，约每月更新一次
+
+docker login ngcv.io
+
+用户名： 生成token
+
+密码：hash串
+
+
+
+
+
+
+
+1.     通过镜像仓库查看镜像是否存在
+
+登录页面：http://192.168.30.31:80 输入用户名/密码后可以看到
+
+
+
+2.     如果数据仓库中镜像存在
+
+docker pull 192.168.30.31:80/xxxxxxxx
+
+
+
+3.     如果需要的镜像在数据仓库中不存在，则需要下载
+
+docker search 名字
+
+输入后会搜索公共镜像仓库中存在此名字相关的镜像
+
+docker pull 名字
+
+   根据搜索到的名字可以下载镜像
+
+   官方的tf，caffe等镜像可以在ngc的网站中下载
+
+4.     镜像存在后，通过镜像创建容器
+
+
+
+示例：docker run -i -t --runtime=nvidia --name=newimage -p 31022:22 -p 31023:5000 -v /home/nfsdir:/home/nfsdir  --network bridge   xxxxxxxxxx   bash
+
+
+
+--runtime为使用nvidia的驱动
+
+--name为容器的名字
+
+-p为端口映射，把容器内部的端口映射到物理机
+
+-v 为把容器内部的目录映射到物理机上
+
+--network 为选择的网络，通过docker network ls 可以看到存在的网络
+
+xxxxxx为镜像的名字
+
+bash为通过bash登录容器
+
+docker run可以跟很多参数，可以根据实际情况进行调整
+
+
+
+5.     同时通过命令也可以进入创建的容器，run命令中跟了bash就不需要再通过命令进入。
+
+docker exec –ti 容器名字  bash
+
+docker inspect 容器名字 ，可以看到容器的详细信息
+
+6.     进入容器后，就可以对容器中进行和物理机一样的操作
+
+docker cp 文件 容器名字:目录
+
+可以把需要的文件拷贝到容器中
+
+7.     对容器的修改完成后，就可以对容器进行保存为镜像
+
+docker commit 容器的名字  镜像的名字：版本号
+
+8.     通过镜像可以再启动容器，容器中就包含了所有修改的内容。
+
+
+
+9.     将最终修改完成的镜像保存到镜像仓库中，就可以供所有用户进行使用
+
+
+
+docker login 192.168.30.31:80 输入用户名/密码,登录过就可以直接上传，不用反复登录
+
+docker tag 镜像名字 192.168.30.32:80/hyperai/xxxxxxx
+
+docker push 192.168.30.32:80/hyperai/xxxxxxx
+
+
+
+
+
+
+
+
+
+
+
+ssh user@192.168.30.31 123456
+
+
+sudo docker image list
+
+sudo docker ps -a
+
+sudo docker rm "CONTAINER ID "
+
+<!-- sudo docker network ls -->
+
+<!-- sudo docker run -ti --name=mxnet 192.168.30.31:80/hyperai/mxnet_v18.07-py2:latest bash -->
+
+
+sudo docker run -ti --name=mxnet 192.168.30.31:80/hyperai/mxnet_v18.07--sklearn-py2:latest bash
+
+pip install scipy
+pip install sklearn
+pip install scikit-image
+
+pip list
+
+exit
+
+sudo docker commit mxnet 192.168.30.31:80/hyperai/mxnet_v18.07--sklearn-py2:sklearn
+
+
+sudo docker tag 192.168.30.31:80/hyperai/mxnet_v18.07--sklearn-py2:sklearn  192.168.30.31:80/hyperai/mxnet_v18.07--sklearn-py2:latest
+
+
+sudo docker push 192.168.30.31:80/hyperai/mxnet_v18.07--sklearn-py2:latest
+
+
+
+
+
+
+
+  125  sudo docker ps -a
+
+  127  sudo docker images
+
+  128  sudo docker pull zt.em-data.com.cn/admin/test
+
+  129  sudo docker pull zt.em-data.com.cn/admin/test:least
+
+  130  sudo docker ps -a
+
+  131  sudo docker images
+
+  132  sudo docker run -it -d cf0f3ca922e0
+
+  133  sudo docker exec -it 1c7ae939a8613c854fb21692a0c76ec1cc8fd32f3f6553a4abac505966bbccba bash
+
+  134  sudo docker ps -a
+
+  135  sudo docker tag 1c7ae939a861  zt.em-data.com.cn/admin/test:chenwei
+
+  136  sudo docker commit 861  zt.em-data.com.cn/admin/test:chenwei
+
+  137  sudo docker commit 22e0  zt.em-data.com.cn/admin/test:chenwei
+
+  138  sudo docker commit 1c7ae939a861  zt.em-data.com.cn/admin/test:chenwei
+
+  139  sudo docker push  zt.em-data.com.cn/admin/test:chenwei
+
+  140  sudo docker commit 1c7ae939a861  zt.em-data.com.cn/admin/chenwei:least
+
+  141  sudo docker push  zt.em-data.com.cn/admin/chenwei:least
+

@@ -94,3 +94,37 @@ systemctl --failed  #启动失败服务列表
 
 
 sudo update-rc.d nginx defaults #开机时启动
+
+
+
+
+
+nano /lib/systemd/system/wssh.service 
+
+
+
+
+
+### wssh
+ 
+file=/lib/systemd/system/wssh.service 
+mv $file $file.bak
+cat <<EOF >>$file
+
+[Unit]
+Description=Web SSH server by chenwei.  pip install webssh
+Wants=network-online.target           
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=wssh
+ExecReload=/bin/kill -HUP $MAINPID    
+RestartSec=5s                         
+Restart=on-failure                    
+
+[Install]
+WantedBy=multi-user.target  
+
+EOF
+cat $file

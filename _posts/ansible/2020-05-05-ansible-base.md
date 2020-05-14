@@ -1,5 +1,14 @@
-# ansible
+---
+layout: post
+title: Ansible 基础
+tags: ansible
+category: ansible
+---
 
+
+## Ansible 基础
+
+### 1. 安装 Ansible
 
 ## install 
 
@@ -18,14 +27,20 @@ pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
 pip install ansible
 
+```
+
 ###  2.change root password
 
+```
 username=root
 password=root
 echo -e "$password\n$password" |passwd $username
  
+```
+
 ### 3.allow root login
 
+```
 ssh_file="/etc/ssh/sshd_config"
 
 echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
@@ -33,18 +48,22 @@ echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
 service ssh restart
 
 
+```
+
 ### 4.change ansible host 
 
 
+```
 cat <<EOF >>/etc/ansible/hosts
-
-127.0.0.1
+192.168.30.29
 192.168.30.51
-
 EOF
+
+```
 
 ### 5.generate ssh key
 
+```
 ssh-keygen 
 
 
@@ -53,9 +72,11 @@ ssh-keygen
 ssh-copy-id 127.0.0.1
 ssh-copy-id 192.168.30.51
 
+```
 
 ### 6.test ping
 
+```
 ansible all -m ping
 
 
@@ -63,10 +84,11 @@ ansible all -m ping
 
 ansible all -m ping -u chenwei
 
+```
 ### 7. run a command
 
+```
 ansible all -a 'df -h'
-
 
 ```
 
@@ -124,4 +146,7 @@ ansible webservers -m git -a "repo=git://foo.example.org/repo.git dest=/srv/myap
 https://github.com/manala
 
 
+```
 ansible-galaxy install manala.zsh 
+
+```
