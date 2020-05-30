@@ -27,7 +27,7 @@ pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
 pip install ansible
 
-```
+``` 
 
 ###  2.change root password
 

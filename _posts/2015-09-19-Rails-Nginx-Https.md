@@ -62,25 +62,41 @@ sudo ln -s /etc/nginx/sites-available/my_web /etc/nginx/sites-enabled
 sudo vi /etc/nginx/sites-available/my_web
 
 ```
+
+
 里面的内容：
 
 ```
 upstream unicorn {
-  server 127.0.0.1:3000 fail_timeout=0;
+  server localhost:4000 fail_timeout=0;
 }
+
 server {
-  listen       443;
-  server_name  yourserver.com;
+    listen       443  ssl http2;
+    server_name  _;
 
-  ssl                  on;
-  ssl_certificate      ~/server.crt;
-  ssl_certificate_key  ~/server.key;
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
 
-  ssl_session_timeout  5m;
+    ssl                  on;
+    ssl_certificate      /etc/nginx/ssl/server.crt;
+    ssl_certificate_key  /etc/nginx/ssl/server.key;
 
-  ssl_protocols  SSLv2 SSLv3 TLSv1;
-  ssl_ciphers  HIGH:!aNULL:!MD5;
-  ssl_prefer_server_ciphers   on;
+    ssl_ciphers 'ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4';
+    ssl_protocols  TLSv1.2 TLSv1.3;
+    ssl_prefer_server_ciphers on;
+    ssl_session_cache  builtin:1000  shared:SSL:10m;
+    ssl_session_timeout  5m;
+
+    ## Real IP Module Config
+    ## http://nginx.org/en/docs/http/ngx_http_realip_module.html
+
+    ## HSTS Config
+    ## https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/
+    add_header Strict-Transport-Security "max-age=31536000";
+    add_header Referrer-Policy strict-origin-when-cross-origin;
+
+
 
   location / {
       proxy_set_header Host $host;
@@ -88,7 +104,9 @@ server {
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header X-Forwarded-Proto https;
       proxy_redirect off;
-      proxy_pass http://127.0.0.1:3000;
+      #proxy_pass http://localhost:4000;
+      proxy_pass http://unicorn;
+
   }
 }
 ```
@@ -110,25 +128,42 @@ sudo service nginx restart
 ```
 sudo nano /etc/nginx/conf.d/my_web_ssl.conf
 ```
+
 里面的内容：
+
 
 ```
 upstream unicorn {
   server localhost:4000 fail_timeout=0;
 }
+
 server {
-  listen       443;
-  server_name  需要修改里面的server_name;
 
-  ssl                  on;
-  ssl_certificate      /root/server.crt;
-  ssl_certificate_key  /root/server.key;
+    listen       443  ssl http2;
+    server_name  _;
 
-  ssl_session_timeout  5m;
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
 
-  ssl_protocols  SSLv2 SSLv3 TLSv1;
-  ssl_ciphers  HIGH:!aNULL:!MD5;
-  ssl_prefer_server_ciphers   on;
+    ssl                  on;
+    ssl_certificate      /etc/nginx/ssl/server.crt;
+    ssl_certificate_key  /etc/nginx/ssl/server.key;
+
+    ssl_ciphers 'ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4';
+    ssl_protocols  TLSv1.2 TLSv1.3;
+    ssl_prefer_server_ciphers on;
+    ssl_session_cache  builtin:1000  shared:SSL:10m;
+    ssl_session_timeout  5m;
+
+    ## Real IP Module Config
+    ## http://nginx.org/en/docs/http/ngx_http_realip_module.html
+
+    ## HSTS Config
+    ## https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/
+    add_header Strict-Transport-Security "max-age=31536000";
+    add_header Referrer-Policy strict-origin-when-cross-origin;
+
+
 
   location / {
       proxy_set_header Host $host;
@@ -136,14 +171,18 @@ server {
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header X-Forwarded-Proto https;
       proxy_redirect off;
-      proxy_pass http://localhost:4000;
+      #proxy_pass http://localhost:4000;
+      proxy_pass http://unicorn;
+
   }
 }
 
 ```
+
 需要修改里面的server_name，服务器开在4000端口，使用http://server_name:3000端口转发到服务器4000端口，保证原来服务继续运行，配置如下：
 
-sudo nano /etc/nginx/conf.d/my_web_http.conf
+    sudo nano /etc/nginx/conf.d/my_web_http.conf
+
 ```
 server {
   listen       3000;
@@ -156,15 +195,15 @@ server {
 
 ### 然后重新启动nginx:
 
- service nginx restart
+    service nginx restart
 
 ## http 跳转 https
 
-server {
-  listen      80;
-  server_name server_name;
-  rewrite     ^   https://$server_name$request_uri? permanent;
-}
+    server {
+      listen      80;
+      server_name server_name;
+      rewrite     ^   https://$server_name$request_uri? permanent;
+    }
 
 
 ## rails 获取 nginx 代理后的 请求IP
