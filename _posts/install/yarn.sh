@@ -6,7 +6,13 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 
 sudo apt-get update && sudo apt-get install yarn
 
+yarn config set registry https://registry.npm.taobao.org
+
 
 # or
 
 curl --location https://yarnpkg.com/install.sh | bash -
+
+
+
+

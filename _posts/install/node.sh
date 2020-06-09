@@ -1,5 +1,5 @@
-# install node v8.x
-curl --location https://deb.nodesource.com/setup_8.x | bash -
+# install node v12.x
+curl --location https://deb.nodesource.com/setup_12.x | bash -
 sudo apt-get install -y nodejs
 
 # install yarn
