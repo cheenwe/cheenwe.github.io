@@ -6,23 +6,25 @@ category: https
 ---
 
 
-##  免费ssl证书认证
 
 
 Let’s Encrypt提供了免费的证书申请服务，同时也提供了官方客户端 Certbot以下为操作步骤教程。官方教程给出了四种常用服务器和不同的Linux、Unix的安装使用方案，可以说是十分的贴心了。
 
+
 更多参见： https://certbot.eff.org/
 
 
-``
+```
 sudo apt-get install -y software-properties-common
 sudo add-apt-repository universe
 sudo add-apt-repository ppa:certbot/certbot
 sudo apt-get update
 sudo apt-get install -y  certbot
-``
+```
 
 - 生成
+
+生成
 
     sudo certbot certonly --webroot
 

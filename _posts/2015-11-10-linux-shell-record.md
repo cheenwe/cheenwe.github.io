@@ -393,3 +393,32 @@ fi
 ```
 
     -eq   等于/ -ne    不等于/ -gt    大于/ -lt    小于/ -le    小于等于/ -ge   大于等于/ -z    空串/ =    两个字符相等/ !=    两个字符不等/ -n    非空串
+
+## 彻底清除history命令历史记录
+
+```
+# 第一步： 删除 .bash_history 文件
+rm -rf ~/.bash_history
+ 
+# 第二步： 清空命令历史记录
+history -c
+
+```
+
+## 执行命令不留痕迹
+
+在命令前加空格
+
+``` 
+ rm -rf ~/.bash_history
+```
+
+## 获取当前分支
+
+    d=`git branch | grep "*"| cut -d" " -f 2`
+    echo $d
+
+
+## shell远程执行
+    
+    ssh user@remoteNode "cd /home ; ls"

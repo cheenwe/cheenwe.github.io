@@ -57,7 +57,7 @@ hwclockfile /etc/adjtime
 
 rtcsync
 
-cmdallow 192.168.1.0/24
+cmdallow 192.168.70.0/24
 ```
 
 ```
@@ -75,7 +75,7 @@ bindcmdaddress - 该指令允许你限制chronyd监听哪个网络接口的命�
 
 ## 使用chronyc命令
 
-你也可以通过运行chronyc命令来修改设置，命令如下：
+你也可以通过运行 chronyc 命令来修改设置，命令如下：
 
 ```
 accheck - 检查NTP访问是否对特定主机可用
@@ -92,3 +92,14 @@ settime - 手动设置守护进程时间
 
 tracking - 显示系统时间信息
 ```
+
+- 检查时间源信息
+
+    chronyc sources -v 
+
+    
+- 检查时间源同步状态
+
+    chronyc sourcestats -v
+
+

@@ -11,9 +11,9 @@ category: server
 
     sudo swapon -s
 
-##  键入以下命令来创建512MB交换文件（1024*512 MB=524288块的大小）：
+##  键入以下命令来创建512MB交换文件（1024*512 MB=524288块的大小）： 2G
 
-    sudo dd if=/dev/zero of=/swapfile1 bs=1024 count=524288
+    sudo dd if=/dev/zero of=/swapfile1 bs=1024 count=20971520
 
 ## 通过创建一个Linux交换区准备交换文件：
 
