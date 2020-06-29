@@ -96,15 +96,6 @@ systemctl --failed  #启动失败服务列表
 sudo update-rc.d nginx defaults #开机时启动
 
 
-
-
-
-nano /lib/systemd/system/wssh.service 
-
-
-
-
-
 ### wssh
  
 file=/lib/systemd/system/wssh.service 
@@ -128,3 +119,108 @@ WantedBy=multi-user.target
 
 EOF
 cat $file
+
+
+
+### issh
+
+		
+ 
+
+```bash
+file=/usr/bin/issh
+mv $file $file.bak
+cat <<EOF >>$file
+
+#!/bin/bash
+autossh -M 10111 -NR 0.0.0.0:11111:localhost:22 pc@1.10sh.cn
+
+
+EOF
+cat $file
+
+chmod +x  $file
+
+file=/lib/systemd/system/issh.service
+mv $file $file.bak
+
+cat <<EOF >>$file
+ 
+[Unit]
+Description=autossh shell to connect to my server by chenwei.  #sudo apt  install autossh
+
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/issh
+ExecReload=/bin/kill -HUP
+RestartSec=5s
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
+
+EOF
+cat $file
+
+
+systemctl enable --now issh.service
+
+systemctl status issh.service
+
+``` 
+
+
+### pweb
+
+使用python 启动一个简单的 http 文件服务
+
+```
+sudo -i
+
+
+file=/home/pweb.sh
+mv $file $file.bak
+cat <<EOF >>$file
+
+
+#!/bin/bash
+python3 -m http.server
+
+EOF
+cat $file
+
+chmod +x  $file
+
+file=/lib/systemd/system/pweb.service
+mv $file $file.bak
+cat <<EOF >>$file
+
+ 
+[Unit]
+Description=Simple python pweb by chenwei.
+
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/home/pweb.sh
+ExecReload=/bin/kill -HUP
+RestartSec=5s
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
+
+EOF
+cat $file
+
+systemctl enable --now pweb.service
+
+systemctl status pweb.service
+```
