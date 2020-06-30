@@ -1,7 +1,7 @@
-sudo apt-get install software-properties-common
+sudo apt-get install -y software-properties-common
 sudo apt-add-repository ppa:ansible/ansible
 sudo apt-get update
-sudo apt-get install ansible
+sudo apt-get install -y ansible
 
 
 git clone git://github.com/ansible/ansible.git --recursive
@@ -18,3 +18,20 @@ sudo pip install paramiko PyYAML Jinja2 httplib2 six
 git pull --rebase
 
 git submodule update --init --recursive
+
+
+
+
+
+
+
+
+## centos
+
+yum -y install epel-release
+yum -y install python-pip
+
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pip -U
+
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+pip install ansible

@@ -23,3 +23,18 @@ if __name__ == '__main__':
     sys.exit(__main__._main())
 
 ```
+
+
+
+
+
+
+
+## centos
+
+yum -y install epel-release
+yum -y install python-pip
+
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pip -U
+
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple

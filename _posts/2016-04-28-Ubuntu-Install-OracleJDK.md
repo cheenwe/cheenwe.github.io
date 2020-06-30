@@ -68,3 +68,16 @@ update-alternatives --config java
 
 
 
+## 离线安装包
+
+链接:https://pan.baidu.com/s/1q5Kci47f4sUQdhDpd0KUIQ  密码:3h7o
+
+
+```
+
+echo 'export JAVA_HOME=/root/jdk1.8.0_231' >> /etc/profile
+echo 'export JRE_HOME=${JAVA_HOME}/jre' >> /etc/profile
+echo 'export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib' >> /etc/profile
+echo 'export PATH=${JAVA_HOME}/bin:$PATH' >> /etc/profile
+
+```

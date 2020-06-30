@@ -1,5 +1,6 @@
-# install node v12.x
-curl --location https://deb.nodesource.com/setup_12.x | bash -
+
+# install node v14.x
+curl --location https://deb.nodesource.com/setup_14.x | bash -
 sudo apt-get install -y nodejs
 
 # install yarn
