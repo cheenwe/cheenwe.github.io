@@ -68,17 +68,16 @@ sudo vi /etc/nginx/sites-available/my_web
 
 ```
 upstream unicorn {
-  server localhost:4000 fail_timeout=0;
+  server unix:///opt/crm/tmp/puma.sock;
 }
 
+
 server {
-    listen       443  ssl http2;
-    server_name  _;
+    listen  443  ssl http2;
 
-    root /var/www/html;
-    index index.html index.htm index.nginx-debian.html;
+    server_name crm.xxxxxx.cn;
+    root /opt/crm/public;
 
-    ssl                  on;
     ssl_certificate      /etc/nginx/ssl/server.crt;
     ssl_certificate_key  /etc/nginx/ssl/server.key;
 
@@ -88,27 +87,55 @@ server {
     ssl_session_cache  builtin:1000  shared:SSL:10m;
     ssl_session_timeout  5m;
 
-    ## Real IP Module Config
-    ## http://nginx.org/en/docs/http/ngx_http_realip_module.html
 
-    ## HSTS Config
-    ## https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/
-    add_header Strict-Transport-Security "max-age=31536000";
-    add_header Referrer-Policy strict-origin-when-cross-origin;
+    location ^~ /uploads/ {
+      root /opt/crm/public/;
+    }
 
 
+    location ^~ /assets/ {
+      gzip on;
+      expires max;
+      add_header Cache-Control public;
+    }
 
-  location / {
-      proxy_set_header Host $host;
-      proxy_set_header X-Real-ip $remote_addr;
+    location / {
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header X-Forwarded-Proto https;
+      proxy_set_header Host $http_host;
+      proxy_set_header   X-Real-IP        $remote_addr;
+      proxy_set_header   X-Forwarded-Host $host;
+      proxy_set_header   X-Forwarded-Server $host;
+      proxy_set_header X-NginX-Proxy true;
+
       proxy_redirect off;
-      #proxy_pass http://localhost:4000;
       proxy_pass http://unicorn;
 
-  }
+    }
+
+    location /cable {
+      proxy_buffering    on; 
+      proxy_pass http://unicorn;
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header   X-Forwarded-Proto https;
+      proxy_set_header Connection "upgrade";
+    }
+
+    error_page 500 502 503 504 /500.html;
+    client_max_body_size 4G;
+    keepalive_timeout 10;
 }
+
+## http 跳转 https
+
+server {
+  listen  80;
+  server_name _;
+
+rewrite  ^   https://crm.xxxxxx.cn$request_uri? permanent;
+}
+
+
 ```
 需要修改里面的server_name
 
@@ -134,20 +161,18 @@ sudo nano /etc/nginx/conf.d/my_web_ssl.conf
 
 ```
 upstream unicorn {
-  server localhost:4000 fail_timeout=0;
+  server unix:///opt/crm/tmp/puma.sock;
 }
 
+
 server {
+    listen  443  ssl http2;
 
-    listen       443  ssl http2;
-    server_name  _;
+    server_name crm.xxxxxx.cn;
+    root /opt/crm/public;
 
-    root /var/www/html;
-    index index.html index.htm index.nginx-debian.html;
-
-    ssl                  on;
-    ssl_certificate      /etc/nginx/ssl/server.crt;
-    ssl_certificate_key  /etc/nginx/ssl/server.key;
+    ssl_certificate      /etc/nginx/ssl/4156042_crm.xxxxxx.cn.pem;
+    ssl_certificate_key  /etc/nginx/ssl/4156042_crm.xxxxxx.cn.key;
 
     ssl_ciphers 'ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4';
     ssl_protocols  TLSv1.2 TLSv1.3;
@@ -155,27 +180,54 @@ server {
     ssl_session_cache  builtin:1000  shared:SSL:10m;
     ssl_session_timeout  5m;
 
-    ## Real IP Module Config
-    ## http://nginx.org/en/docs/http/ngx_http_realip_module.html
 
-    ## HSTS Config
-    ## https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/
-    add_header Strict-Transport-Security "max-age=31536000";
-    add_header Referrer-Policy strict-origin-when-cross-origin;
+    location ^~ /uploads/ {
+      root /opt/crm/public/;
+    }
 
 
+    location ^~ /assets/ {
+      gzip on;
+      expires max;
+      add_header Cache-Control public;
+    }
 
-  location / {
-      proxy_set_header Host $host;
-      proxy_set_header X-Real-ip $remote_addr;
+    location / {
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header X-Forwarded-Proto https;
+      proxy_set_header Host $http_host;
+      proxy_set_header   X-Real-IP        $remote_addr;
+      proxy_set_header   X-Forwarded-Host $host;
+      proxy_set_header   X-Forwarded-Server $host;
+      proxy_set_header X-NginX-Proxy true;
+
       proxy_redirect off;
-      #proxy_pass http://localhost:4000;
       proxy_pass http://unicorn;
 
-  }
+    }
+
+    location /cable {
+      proxy_buffering    on; 
+      proxy_pass http://unicorn;
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header   X-Forwarded-Proto https;
+      proxy_set_header Connection "upgrade";
+    }
+    
+    error_page 500 502 503 504 /500.html;
+    client_max_body_size 4G;
+    keepalive_timeout 10;
 }
+
+## http 跳转 https
+
+server {
+  listen  80;
+  server_name _;
+
+rewrite  ^   https://crm.xxxxxx.cn$request_uri? permanent;
+}
+
 
 ```
 

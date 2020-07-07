@@ -208,3 +208,14 @@ select 1 from std_villages; # 29.6 ms
 select count(*) from std_villages; # 139 ms
 
 ```
+
+
+
+
+
+## mysql 替换指定字符
+
+
+```
+UPDATE permissions SET actions=REPLACE(actions,'edit','edit,update')
+```
