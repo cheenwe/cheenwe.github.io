@@ -37,7 +37,6 @@ ssh-copy-id pc@1.10sh.cn
 file=/usr/bin/issh
 mv $file $file.bak
 cat <<EOF >>$file
-
 #!/bin/bash
 autossh -M 10111 -NR 0.0.0.0:11111:localhost:22 pc@1.10sh.cn
 

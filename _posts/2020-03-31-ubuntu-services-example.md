@@ -98,7 +98,7 @@ sudo update-rc.d nginx defaults #开机时启动
 
 ### wssh
  
-file=/lib/systemd/system/wssh.service 
+file=/lib/systemd/system/myssh.service 
 mv $file $file.bak
 cat <<EOF >>$file
 
@@ -131,8 +131,8 @@ cat $file
 file=/usr/bin/issh
 mv $file $file.bak
 cat <<EOF >>$file
-
 #!/bin/bash
+wssh
 autossh -M 10111 -NR 0.0.0.0:11111:localhost:22 pc@1.10sh.cn
 
 
