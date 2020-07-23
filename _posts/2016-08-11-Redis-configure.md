@@ -90,6 +90,7 @@ config set requirepass ""
 ```
 
 
+## 部署操作步骤
 
 ```
 
@@ -111,4 +112,17 @@ config set requirepass ""
 
 12. 开启服务: /usr/local/bin/redis-server ./redis.conf  &
 
+```
+
+
+## 关闭写硬盘
+
+
+```
+#save 900 1
+#save 300 10
+#save 60 10000
+
+
+save ''         
 ```

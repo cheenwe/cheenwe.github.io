@@ -5,24 +5,8 @@ tags: prometheus
 category: monitor
 ---
 
-在 ubuntu系统中使用 Prometheus 采集数据并通过 Grafana 实时展示结果
+在 ubuntu系统中使用 Prometheus 采集数据并通过 Grafana 实时展示结果, 
 
-
-
- 
-- 所需包下载: 
-
-链接:https://pan.baidu.com/s/1vxvcGH0SSXelc7koPBiISg  密码:x63h
-
-或
-
-https://github.com/prometheus/node_exporter/tags
-
-https://github.com/prometheus/prometheus/tags
-
-
-
-## 安装 Prometheus 及 node_exporter
 
 Prometheus 用于归集 node_exporter 采集的数据, 开放 9090 端口, 多台机器只需要部署一个即可
 
@@ -37,21 +21,46 @@ sudo apt install prometheus
 通过 apt 安装的版本旧, 很多监控项均无法开启, 建议使用最新官网包安装, 步骤如下:
 
 
+
+
+
+ 
+- 所需包下载: 
+ 
+https://github.com/prometheus/node_exporter/tags
+
+https://github.com/prometheus/prometheus/tags
+
+
+
+
+wget https://github.com/prometheus/prometheus/releases/download/v2.19.2/prometheus-2.19.2.linux-amd64.tar.gz 
+
+wget https://github.com/prometheus/node_exporter/releases/download/v1.0.1/node_exporter-1.0.1.linux-amd64.tar.gz
+
+
+
+## 安装 Prometheus 及 node_exporter
+
+
 - 安装最新版 prometheus 及 node_exporter
 
 ```
-tar -zxf node_exporter-1.0.0-rc.0.linux-amd64.tar.gz
+sudo -i
 
-tar -zxf prometheus-2.18.1.linux-amd64.tar.gz
+tar -zxf node_exporter-1.0.1.linux-amd64.tar.gz
 
-mv prometheus-2.18.1.linux-amd64 /opt/prometheus
+tar -zxf prometheus-2.19.2.linux-amd64.tar.gz
 
-mv node_exporter-1.0.0-rc.0.linux-amd64/node_exporter /opt/prometheus/
+mv prometheus-2.19.2.linux-amd64 /opt/prometheus
+
+mv node_exporter-1.0.1.linux-amd64/node_exporter /opt/prometheus/
 
 ```
 
 
 - 添加系统服务
+
 
 ```
 cat <<EOF >>/lib/systemd/system/prometheus-node-exporter.service
@@ -85,7 +94,7 @@ Documentation=https://prometheus.io/docs/introduction/overview/
 
 [Service]
 Type=simple
-ExecStart=/opt/prometheus/prometheus
+ExecStart=/opt/prometheus/prometheus --config.file=/opt/prometheus/prometheus.yml --web.listen-address=:9090
 ExecReload=/bin/kill -HUP $MAINPID    
 RestartSec=5s                         
 Restart=on-failure                    

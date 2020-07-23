@@ -36,3 +36,33 @@ sudo systemctl enable grafana-server.service
 sudo update-rc.d grafana-server defaults
 
 
+
+
+
+
+
+
+
+## for centos
+
+
+
+file=/etc/yum.repos.d/grafana.repo
+mv $file $file.bak
+cat <<EOF >>$file
+
+[grafana]
+name=grafana
+baseurl=https://packages.grafana.com/oss/rpm
+repo_gpgcheck=1
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.grafana.com/gpg.key
+sslverify=1
+sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+
+EOF
+
+
+
+sudo yum install -y grafana

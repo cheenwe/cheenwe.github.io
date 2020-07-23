@@ -219,3 +219,11 @@ select count(*) from std_villages; # 139 ms
 ```
 UPDATE permissions SET actions=REPLACE(actions,'edit','edit,update')
 ```
+
+
+## 只导出表结构
+
+
+```
+mysqldump --single-transaction --opt -d demo -u root -proot > ms.sql
+```

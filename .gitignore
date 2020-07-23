@@ -15,3 +15,7 @@ package.json
 *.so
 *.save
 __pycache__
+*.tar
+*.gz
+*.zip
+*.rar
