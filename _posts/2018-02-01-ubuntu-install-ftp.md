@@ -68,7 +68,7 @@ local_root=/home/ftp
 
 ```
 sudo mkdir /home/ftp
-sudo useradd -d /home/ftp -s /bin/bash ftp
+sudo useradd -d /home/ftp -s /bin/false -g ftp ftp
 sudo passwd ftp
 
 ```

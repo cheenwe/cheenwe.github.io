@@ -28,7 +28,7 @@ uname -a
 ```bash
 
 sudo apt-mark hold linux-image-4.4.0-21-generic
-sudo apt-mark hold linux-image-extra-4.4.0-21-generic
+sudo apt-mark hold linux-modules-extra-4.4.0-21-generic
 ```
 
 ##  　重启内核更新
@@ -37,5 +37,5 @@ sudo apt-mark hold linux-image-extra-4.4.0-21-generic
 
 
 sudo apt-mark unhold linux-image-4.4.0-21-generic
-sudo apt-mark unhold linux-image-extra-4.4.0-21-generic
+sudo apt-mark unhold linux-modules-extra-4.4.0-21-generic
 ```

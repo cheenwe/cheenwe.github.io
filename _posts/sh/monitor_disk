@@ -37,6 +37,12 @@ do
 done
 
 
-# 每 5 分钟执行一次
+# sudo -i
+# file="/usr/local/bin/monitor_disk"
+# wget https://github.com/cheenwe/cheenwe.github.io/files/4970873/monitor_disk.zip
+# mv monitor_disk.zip $file
+# chmod +x  $file
+
+# ## 每 5 分钟执行一次
 # crontab  -e
-#*/5 * * * * /usr/local/bin/monitor_disk.sh
+# */5 * * * * /usr/local/bin/monitor_disk
