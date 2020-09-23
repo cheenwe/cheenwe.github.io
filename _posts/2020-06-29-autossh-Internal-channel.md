@@ -22,6 +22,8 @@ autossh 是一个用来监控 SSH 链接，并自动进行重连的工具。为�
 2. 生成ssh key
 
 ```
+sudo -i
+
 ssh-keygen #一直按 enter
 
 ssh-copy-id pc@1.10sh.cn
@@ -50,7 +52,6 @@ file=/lib/systemd/system/issh.service
 mv $file $file.bak
 
 cat <<EOF >>$file
- 
 [Unit]
 Description=autossh shell to connect to my server by chenwei.  #sudo apt  install autossh
 

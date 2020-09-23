@@ -34,9 +34,16 @@ categories: mysql
 或者（MySql 5.7/mariadb）：
 
 ```
-update mysql.user set authentication_string=password('root') where user='root' and Host = 'localhost';
+mysql -uroot
+use mysql;
+select user, plugin from user;  
+update user set authentication_string=password("root"),plugin="mysql_native_password" where user="root";
+
 flush privileges;
-quit
+quit 
+
+service mysql restart
+
 ```
 
 ## 修改完root密码后。 phpmyadmin 无法登录

@@ -74,3 +74,30 @@ rm -rf $bak_path/*.sql
 
 ## 设置开机启动脚本执行
 >crontab -e
+
+
+
+
+
+
+
+## 将数据库分别导出到各自的文件。
+
+```
+#!/bin/bash
+ 
+USER="用户名"
+PASSWORD="密码"
+ 
+databases=`mysql -u $USER -p$PASSWORD -e "SHOW DATABASES;" | tr -d "| " | grep -v Database`
+ 
+for db in $databases; do
+    if [[ "$db" != "information_schema" ]] && [[ "$db" != "performance_schema" ]] && [[ "$db" != "mysql" ]] && [[ "$db" != _* ]] ; then
+        echo "Dumping database: $db"
+        mysqldump -u $USER -p$PASSWORD --databases $db > `date +%Y%m%d`.$db.sql
+        mysql -u $USER -p$PASSWORD -e 'DROP DATABASE $db';
+       # gzip $OUTPUT/`date +%Y%m%d`.$db.sql
+    fi
+done
+
+```
