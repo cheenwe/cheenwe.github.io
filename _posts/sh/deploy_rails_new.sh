@@ -6,9 +6,7 @@ sudo apt-get install -y software-properties-common
 
 sudo apt-add-repository ppa:brightbox/ruby-ng
 sudo apt-get update
-sudo apt-get install -y ruby2.6 ruby2.6-dev
-
-apt-get install  git libsqlite3-dev  libxml2-dev   libmysqlclient-dev mysql-server nodejs
+sudo apt-get install -y ruby2.6 ruby2.6-dev git libsqlite3-dev libxml2-dev libmysqlclient-dev mysql-server-5.7 nodejs nginx redis-server
 
 gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
 
@@ -16,6 +14,18 @@ gem install bundler
 
 bundle config mirror.https://rubygems.org https://gems.ruby-china.com
 
+
+
+##前两步设置pip源，可忽略
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pip -U
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
+pip install supervisor
+
+
+## 设置 supervisor 开机启动
+sudo cp /etc/supervisor.service  /lib/systemd/system/
+sudo systemctl enable --now supervisor.service  
 
 
 ## install redmine
