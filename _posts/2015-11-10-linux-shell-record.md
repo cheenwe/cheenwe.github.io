@@ -172,7 +172,7 @@ sudo apt-get install rsync
 
 ## 删除大量小文件
 
-rsync --delete-before -d -a -H -v --progress --stats /tmp /your_need_delete_files
+rsync --delete-before -d -a -H -v --progress --stats /your_need_delete_files  /tmp
 
 or
 

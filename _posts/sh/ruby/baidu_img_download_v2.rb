@@ -61,14 +61,14 @@ APP_ROOT = Pathname.new File.expand_path('../', __FILE__)
 PER_PAGE = 60
 START_PAGE = 0
 END_PAGE = 0
-MAX_SIZE = 300
+MAX_SIZE = 500
 FACE = 0
 
 # THREAD_NUM: 开辟的线程数
 THREAD_NUM = 10
 
 # 搜索关键字内容 空格分隔
-KEY_WORD = %w(男士蹲姿礼仪 错误蹲姿 女士站姿 高低式蹲姿 男士标准蹲姿 男士蹲姿图片 蹲姿 军人蹲姿)
+KEY_WORD = %w(油罐车侧面 油罐车正面  油罐车全身照 油罐车整车图 油罐车半挂)
 
 $queue = Queue.new
 threads = []

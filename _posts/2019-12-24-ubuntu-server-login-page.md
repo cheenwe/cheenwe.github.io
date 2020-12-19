@@ -16,3 +16,51 @@ category: ubuntu
 ## 查看效果
     
     run-parts /etc/update-motd.d
+
+
+
+## 添加其他信息
+
+cat /etc/update-motd.d/10-help-text 
+
+```
+
+BANNER_PATH=/etc/update-motd.d/banner
+cat $BANNER_PATH/info
+cat $BANNER_PATH/contact
+
+```
+
+
+
+cat /etc/update-motd.d/banner/info
+
+```
+
+
+██      ███    ███       ██   ██        ██████           ██████ 
+        ████  ████       ██   ██        ██   ██         ██         
+██      ██ ████ ██       ███████        ██████          ██     
+██      ██  ██  ██       ██   ██        ██              ██      
+██      ██      ██       ██   ██        ██               ██████ 
+
+
+            High Performance Computing Cluster
+
+```
+
+
+
+cat /etc/update-motd.d/banner/contact
+
+```
+
+* Management: Cheenwe cxhyun@126.com
+
+* Support: xxxx cxhyun@126.com
+
+* Usage:
+   >>>  使用手册                 http://doc.hpc.io    <<<      
+
+```
+

@@ -110,3 +110,21 @@ systemctl status redmine.service
 
 
 
+
+
+
+### for ubuntu 20.4
+
+
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install -y ruby2.6-dev
+
+apt-get install  git libsqlite3-dev  libxml2-dev   libmysqlclient-dev mysql-server nodejs
+
+gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
+
+gem install bundler
+
+bundle config mirror.https://rubygems.org https://gems.ruby-china.com
+

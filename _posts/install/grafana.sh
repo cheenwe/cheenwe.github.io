@@ -39,6 +39,8 @@ sudo update-rc.d grafana-server defaults
 
 
 
+## for docker 
+docker run -d -p 3000:3000 grafana/grafana
 
 
 

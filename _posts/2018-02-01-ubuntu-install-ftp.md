@@ -16,48 +16,58 @@ category:   ftp
 >nano /etc/vsftpd.conf
 
 ```
-#这些设置系统默认是开启的，可以不管
 listen=YES
-listen_ipv6=YES
+listen_ipv6=NO
+anonymous_enable=NO
+local_enable=YES
+write_enable=YES
+local_umask=022
 dirmessage_enable=YES
 use_localtime=YES
 xferlog_enable=YES
-connect_from_port_20=YES
+connect_from_port_20=YES #主动式连接使用的数据通道  / NO 被动模式
+#pasv_enable=NO #支持数据流的被动式连接模式 / YES 被动模式
+#xferlog_std_format=YES  #日志文件位置
+#========== 被动模式
+#pasv_min_port=1024(default:0(use any port))
+#pasv_max_port=65536(default:0(use any port))
 
-#下面的就要自定义设置了，建议系统默认的不管，然后复制下面的
-
-#是否允许匿名访问，NO为不允许
-anonymous_enable=NO
-#是否允许本地用户访问,就是linux本机中存在的用户，YES允许
-local_enable=YES
-#是否开启写模式，YES为开启
-write_enable=YES
-
-#使用utf8
-utf8_filesystem=YES
-
-#新建文件权限，一般设置为022，那么新建后的文件的权限就是777-022=755
-local_umask=022
-
-#是否启动userlist为通过模式，YES的话只有存在于userlist文件中的用户才能登录ftp（可以理解为userlist是一个白名单），NO的话，白名单失效，和下面一个参数配合使用
-userlist_enable=YES
-#是否启动userlist为禁止模式，YES表示在userlist中的用户禁止登录ftp（黑名单），NO表示黑名单失效，我们已经让userlist作为一个白名单，所以无需使用黑名单功能
-userlist_deny=NO
-#指定哪个文件作为userlist文件，我们稍后编辑这个文件
-userlist_file=/etc/vsftpd.user_list
-
-#是否限制本地所有用户切换根目录的权限，YES为开启限制，即登录后的用户不能访问ftp根目录以外的目录，当然要限制啦
 chroot_local_user=YES
-#是否启动限制用户的名单list为允许模式，上面的YES限制了所有用户，可以用这个名单作为白名单，作为例外允许访问ftp根目录以外
+#锁定用户到各自的根目录
 chroot_list_enable=YES
-#设置哪个文件是list文件，里面的用户将不受限制的去访问ftp根目录以外的目录
 chroot_list_file=/etc/vsftpd.chroot_list
-#是否开启写模式，开启后可以进行创建文件夹等写入操作
 allow_writeable_chroot=YES
 
-#设置ftp根目录的位置,这个文件我们稍后自己创建
-local_root=/home/ftp
+secure_chroot_dir=/var/run/vsftpd/empty
+pam_service_name=vsftpd
+rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem
+rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
+#===================
+
+ssl_enable=NO
+utf8_filesystem=YES
+anonymous_enable=NO
+
+userlist_deny=NO
+userlist_enable=YES
+#允许登录的用户
+userlist_file=/etc/allowed_users
+seccomp_sandbox=NO
+#添加读取用户配置目录
+user_config_dir=/etc/vsftpd/userconf
+use_localtime=YES
 ```
+> cat  /etc/vsftpd/userconf/ftper
+
+    local_root=/home/ftper 
+
+> cat /etc/allowed_users
+
+    ftper
+
+
+touch /etc/vsftpd.chroot_list
+
 ## 重启
 
 >sudo /etc/init.d/vsftpd restart
@@ -67,9 +77,41 @@ local_root=/home/ftp
 ## 创建ftp用户
 
 ```
-sudo mkdir /home/ftp
-sudo useradd -d /home/ftp -s /bin/false -g ftp ftp
-sudo passwd ftp
+sudo adduser ftper
+```
+
+
+
+
+## Docker
+
+- 修改IP 192.168.1.127
 
 ```
+mkdir /tmp/ftp
+
+
+docker run -d -p 21:21 -p 20:20 -p 21100-21110:21100-21110 -v /tmp/ftp:/home/vsftpd -e FTP_USER=ftpuser -e FTP_PASS=ftpuser -e PASV_ADDRESS=192.168.1.127 -e PASV_MIN_PORT=21100 -e PASV_MAX_PORT=21110 --name vsftpd --restart=always fauria/vsftpd
+```
+
+
+-其他配置
+
+```
+# 进入container
+
+docker exec -i -t vsftpd bash 
+
+# 修改并生成虚拟用户模式下的用户db文件，向文件中最后两行写入用户名和密码
+vi /etc/vsftpd/virtual_users.txt
+
+#假如我们添加了user用户，我们需要建立对应用户的文件夹
+mkdir /home/vsftpd/user
+
+#把登录的验证信息写入数据库 
+/usr/bin/db_load -T -t hash -f /etc/vsftpd/virtual_users.txt /etc/vsftpd/virtual_users.db
+```
+
+
+docker restart vsftpd
 

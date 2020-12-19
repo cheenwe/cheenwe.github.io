@@ -95,6 +95,33 @@ example.hostname.com:/ubuntu /local/ubuntu nfs rsize=8192,wsize=8192,timeo=14,in
 ```
 
 
+### 其他
+
+-  mount_nfs: can't mount with remote locks when server xx is not running rpc.statd: RPC prog. not avail mount: xx  failed with 74
+
+```
+ mount -o nolock  -t nfs 192.168.30.29:/disk4 ~/disk4
+```
+
+- 查看服务器共享目录
+
+```
+ showmount  192.168.30.29 
+```
+
+- 查看挂载目录的信息： 
+
+```
+fuser -m -v /usr/local/test  
+```
+
+- 查看主机的rpc服务和端口
+
+```
+rpcinfo –p   192.168.30.29 
+```
+
+
 ###  Ansible 部署 nfs
 
 ```bash
@@ -139,3 +166,26 @@ ansible all -m copy -a "src=/etc/rc.local dest=/etc/rc.local"
 ansible all  -a "bash /root/sh/nfs.sh" #开启所有 nfs
 
 ```
+
+
+
+
+## CentOS 安装
+
+
+``` bash
+yum install -y nfs-utils rpcbind
+
+# 参照上面修改  /etc/exports
+
+exportfs  -r 
+
+service rpcbind  start  
+
+service nfs  start  
+
+```
+
+- 关闭 防火墙
+
+systemctl stop firewalld.service    

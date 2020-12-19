@@ -1,6 +1,6 @@
 # install golang
 
-PACKAGE_NAME="1.14.2"
+PACKAGE_NAME="1.15.5"
 
 wget https://studygolang.com/dl/golang/go$PACKAGE_NAME.linux-amd64.tar.gz
 
