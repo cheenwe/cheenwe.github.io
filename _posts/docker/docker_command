@@ -332,3 +332,15 @@ sudo docker push 192.168.30.31:80/hyperai/mxnet_v18.07--sklearn-py2:latest
 
   141  sudo docker push  zt.em-data.com.cn/admin/chenwei:least
 
+
+
+
+
+
+
+
+
+
+## docker wechat
+sudo docker run -d --name wechat --device /dev/snd/ -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME/TencenFiles:/TencentFiles -e DISPLAY=unix$DISPLAY -e XMODIFIERS=@im=fcitx -e QT_IM_MODULE=fcitx -e GTK_IM_MODULE=fcitx -e AUDIO_GID=`getent group audio | cut -d: -f3` -e VIDEO_GID=`getent group video | cut -d: -f3` -e GID=`id -g` -e UID=`id -u` bestwu/wechat:latest
+1

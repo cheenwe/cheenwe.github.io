@@ -422,3 +422,18 @@ history -c
 ## shell远程执行
     
     ssh user@remoteNode "cd /home ; ls"
+
+
+## ubuntu 音频无法播放
+
+
+    sudo apt-get remove -y --purge alsa-base pulseaudio
+    sudo apt-get install -y alsa-base pulseaudio pavucontrol
+    sudo alsa force-reload
+
+    reboot now
+
+    pavucontrol
+
+    ＃拟立体声
+
